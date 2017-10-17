@@ -9,6 +9,12 @@ import TopBar from './components/bar/TopBar'
 import TabIcon from './components/TabIcon'
 
 import Home from './views/blockInitial/Home'
+import Requirement from './views/blockInitial/Requirement'
+import Setting from './views/blockInitial/Setting'
+import Work from './views/blockInitial/Work'
+import Task from './views/Task'
+import Command from './views/Command'
+import DriverInfo from './views/DriverInfo'
 
 
 const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
@@ -51,7 +57,19 @@ export default class App extends Component {
                 <Scene key="root">
                     <Scene key="main" tabs={true} tabBarStyle={styles.tabBarStyle} tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}>
                         <Scene key="homeBlock" initial={true} icon={TabIcon} online='ios-home' outline='ios-home-outline' >
-                            <Scene key="home" initial={true} title='首页' component={Home} hideNavBar={false} navBar={TopBar} />
+                            <Scene key="home" title='首页' component={Home} hideNavBar={false} navBar={TopBar} />
+                            <Scene key="task" title='司机任务' component={Task} hideNavBar={false} navBar={NavBar} />
+                            <Scene key="command"  title='调度指令' component={Command} hideNavBar={false} navBar={NavBar} />
+                            <Scene key="driverInfo" initial={true} title='司机信息' component={DriverInfo} hideNavBar={false} navBar={NavBar} />
+                        </Scene>
+                        <Scene key="requirementBlock" icon={TabIcon} online='ios-bus' outline='ios-bus-outline' >
+                            <Scene key="work" initial={true} title='工作' component={Work} hideNavBar={false} navBar={TopBar} />
+                        </Scene>
+                        <Scene key="workBlock" icon={TabIcon} online='ios-archive' outline='ios-archive-outline' >
+                            <Scene key="requirement" initial={true} title='工作' component={Requirement} hideNavBar={false} navBar={TopBar} />
+                        </Scene>
+                        <Scene key="settingmentBlock" icon={TabIcon} online='ios-settings' outline='ios-settings-outline' >
+                            <Scene key="setting" initial={true} title='工作' component={Setting} hideNavBar={false} navBar={TopBar} />
                         </Scene>
                     </Scene>
                 </Scene>
