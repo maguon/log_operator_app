@@ -15,6 +15,7 @@ import Work from './views/blockInitial/Work'
 import Task from './views/Task'
 import Command from './views/Command'
 import DriverInfo from './views/DriverInfo'
+import Cars from './views/Cars'
 
 
 const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
@@ -60,7 +61,8 @@ export default class App extends Component {
                             <Scene key="home" title='首页' component={Home} hideNavBar={false} navBar={TopBar} />
                             <Scene key="task" title='司机任务' component={Task} hideNavBar={false} navBar={NavBar} />
                             <Scene key="command"  title='调度指令' component={Command} hideNavBar={false} navBar={NavBar} />
-                            <Scene key="driverInfo" initial={true} title='司机信息' component={DriverInfo} hideNavBar={false} navBar={NavBar} />
+                            <Scene key="driverInfo"  title='司机信息' component={DriverInfo} hideNavBar={false} navBar={NavBar} />
+                            <Scene key="cars" initial={true} title='装车信息' component={Cars} hideNavBar={false} navBar={NavBar} />
                         </Scene>
                         <Scene key="requirementBlock" icon={TabIcon} online='ios-bus' outline='ios-bus-outline' >
                             <Scene key="work" initial={true} title='工作' component={Work} hideNavBar={false} navBar={TopBar} />
