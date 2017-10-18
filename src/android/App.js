@@ -71,10 +71,10 @@ export default class App extends Component {
                         </Scene>
                         <Scene key="workBlock" icon={TabIcon} initial={true} online='ios-bus' outline='ios-bus-outline' >
                             <Scene key="work" title='工作' component={Work} hideNavBar={false} navBar={TopBar} />
-                            <Scene key="addCar" initial={true} title='增加商品车' component={AddCar} hideNavBar={false} navBar={NavBar} />
-                            <Scene key="carInfo" title='商品车信息' component={CarInfo} hideNavBar={false} navBar={NavBar} />
+                            <Scene key="addCar" title='增加商品车' component={AddCar} hideNavBar={false} navBar={NavBar} />
+                            <Scene key="carInfo" title='商品车信息' initial={true} component={CarInfo} hideNavBar={false} navBar={NavBar} />
                         </Scene>
-                        <Scene key="requirementBlock"  icon={TabIcon} online='ios-archive'outline='ios-archive-outline' >
+                        <Scene key="requirementBlock" icon={TabIcon} online='ios-archive' outline='ios-archive-outline' >
                             <Scene key="requirement" title='工作' component={Requirement} hideNavBar={false} navBar={TopBar} />
                             <Scene key="addRequirement" initial={true} title='增加需求' component={AddRequirement} hideNavBar={false} navBar={NavBar} />
                             <Scene key="requirementInfo" title='需求详情' component={RequirementInfo} hideNavBar={false} navBar={NavBar} />
