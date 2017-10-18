@@ -159,7 +159,7 @@ export default class Select extends Component {
 
     render() {
         return (
-            <View>
+            <View style={{flex:1}}>
                 {this.props.isEnable ? this.renderEnable() : this.renderDisable()}
             </View>
 

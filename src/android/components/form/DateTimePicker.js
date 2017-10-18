@@ -14,6 +14,7 @@ import moment from 'moment'
 const styles = StyleSheet.create({
     containerSytle: {
         borderBottomWidth: 0.5,
+        flex:1,
         // paddingHorizontal: 10,
         borderColor: '#dddddd',
         paddingVertical: 10,
@@ -124,6 +125,7 @@ export default class DateTimePicker extends Component {
         return (
             <TouchableHighlight
                 underlayColor='rgba(0,0,0,0.1)'
+                style={{flex:1}}
                 onPress={() => this.showPicker({ date: new Date(), mode: 'spinner' })}>
                 <View style={this.props.containerSytle}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', flex: 1 }}>
