@@ -16,6 +16,7 @@ import Task from './views/Task'
 import Command from './views/Command'
 import DriverInfo from './views/DriverInfo'
 import Cars from './views/Cars'
+import RequirementInfo from './views/RequirementInfo'
 
 
 const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
@@ -64,10 +65,11 @@ export default class App extends Component {
                             <Scene key="driverInfo" title='司机信息' component={DriverInfo} hideNavBar={false} navBar={NavBar} />
                             <Scene key="cars" initial={true} title='装车信息' component={Cars} hideNavBar={false} navBar={NavBar} />
                         </Scene>
-                        <Scene key="requirementBlock" icon={TabIcon} online='ios-bus' outline='ios-bus-outline' >
-                            <Scene key="requirement" initial={true} title='工作' component={Requirement} hideNavBar={false} navBar={TopBar} />
+                        <Scene key="requirementBlock" initial={true}  icon={TabIcon} online='ios-bus' outline='ios-bus-outline' >
+                            <Scene key="requirement" title='工作' component={Requirement} hideNavBar={false} navBar={TopBar} />
+                            <Scene key="requirementInfo" initial={true} title='工作' component={RequirementInfo} hideNavBar={false} navBar={TopBar} />
                         </Scene>
-                        <Scene key="workBlock" initial={true} icon={TabIcon} online='ios-archive' outline='ios-archive-outline' >
+                        <Scene key="workBlock" icon={TabIcon} online='ios-archive' outline='ios-archive-outline' >
                             <Scene key="work" initial={true} title='工作' component={Work} hideNavBar={false} navBar={TopBar} />
                         </Scene>
                         <Scene key="settingmentBlock" icon={TabIcon} online='ios-settings' outline='ios-settings-outline' >
