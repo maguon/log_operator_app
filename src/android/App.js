@@ -17,6 +17,10 @@ import Command from './views/Command'
 import DriverInfo from './views/DriverInfo'
 import Cars from './views/Cars'
 import RequirementInfo from './views/RequirementInfo'
+import AddRequirement from './views/AddRequirement'
+
+import CarInfo from './views/CarInfo'
+import AddCar from './views/AddCar'
 
 
 const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
@@ -65,12 +69,15 @@ export default class App extends Component {
                             <Scene key="driverInfo" title='司机信息' component={DriverInfo} hideNavBar={false} navBar={NavBar} />
                             <Scene key="cars" initial={true} title='装车信息' component={Cars} hideNavBar={false} navBar={NavBar} />
                         </Scene>
-                        <Scene key="requirementBlock" initial={true}  icon={TabIcon} online='ios-bus' outline='ios-bus-outline' >
-                            <Scene key="requirement" title='工作' component={Requirement} hideNavBar={false} navBar={TopBar} />
-                            <Scene key="requirementInfo" initial={true} title='工作' component={RequirementInfo} hideNavBar={false} navBar={TopBar} />
+                        <Scene key="workBlock" icon={TabIcon} initial={true} online='ios-bus' outline='ios-bus-outline' >
+                            <Scene key="work" title='工作' component={Work} hideNavBar={false} navBar={TopBar} />
+                            <Scene key="addCar" initial={true} title='增加商品车' component={AddCar} hideNavBar={false} navBar={NavBar} />
+                            <Scene key="carInfo" title='商品车信息' component={CarInfo} hideNavBar={false} navBar={NavBar} />
                         </Scene>
-                        <Scene key="workBlock" icon={TabIcon} online='ios-archive' outline='ios-archive-outline' >
-                            <Scene key="work" initial={true} title='工作' component={Work} hideNavBar={false} navBar={TopBar} />
+                        <Scene key="requirementBlock"  icon={TabIcon} online='ios-archive'outline='ios-archive-outline' >
+                            <Scene key="requirement" title='工作' component={Requirement} hideNavBar={false} navBar={TopBar} />
+                            <Scene key="addRequirement" initial={true} title='增加需求' component={AddRequirement} hideNavBar={false} navBar={NavBar} />
+                            <Scene key="requirementInfo" title='需求详情' component={RequirementInfo} hideNavBar={false} navBar={NavBar} />
                         </Scene>
                         <Scene key="settingmentBlock" icon={TabIcon} online='ios-settings' outline='ios-settings-outline' >
                             <Scene key="setting" initial={true} title='工作' component={Setting} hideNavBar={false} navBar={TopBar} />
