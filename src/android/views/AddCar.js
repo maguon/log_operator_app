@@ -5,11 +5,12 @@ import {
     ScrollView
 } from 'react-native'
 
-
-import {Button} from 'native-base'
+import { Actions } from 'react-native-router-flux'
+import { Button } from 'native-base'
 import TextBox from '../components/form/TextBox'
 import Select from '../components/form/Select'
 import DateTimePicker from '../components/form/DateTimePicker'
+import * as RouterDirection from '../../util/RouterDirection'
 
 export default class AddCar extends Component {
     constructor(props) {
@@ -50,25 +51,29 @@ export default class AddCar extends Component {
                         <Select
                             title='起始城市：'
                             value={'请选择'}
-                            onValueChange={() => { }}
+                            showList={RouterDirection.selectCity(this.props.parent)}
+                            onValueChange={(param) => console.log(param)}
                             defaultValue={'请选择'}
                         />
                         <Select
                             title='委托方：'
                             value={'请选择'}
-                            onValueChange={() => { }}
+                            showList={RouterDirection.selectEntrust(this.props.parent)}
+                            onValueChange={(param) => console.log(param)}
                             defaultValue={'请选择'}
                         />
                         <Select
                             title='目的城市：'
                             value={'请选择'}
-                            onValueChange={() => { }}
+                            showList={RouterDirection.selectCity(this.props.parent)}
+                            onValueChange={(param) => console.log(param)}
                             defaultValue={'请选择'}
                         />
                         <Select
                             title='经销商：'
                             value={'请选择'}
-                            onValueChange={() => { }}
+                            showList={RouterDirection.selectReceive(this.props.parent)}
+                            onValueChange={(param) => console.log(param)}
                             defaultValue={'请选择'}
                         />
                         <Button full style={{ backgroundColor: '#00cade', justifyContent: 'center', marginHorizontal: 10, marginTop: 30 }} onPress={() => { }}>

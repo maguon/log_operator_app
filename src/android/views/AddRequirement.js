@@ -4,10 +4,11 @@ import {
     View,
     ScrollView
 } from 'react-native'
-import {Button} from 'native-base'
+import { Button } from 'native-base'
 import TextBox from '../components/form/TextBox'
 import Select from '../components/form/Select'
 import DateTimePicker from '../components/form/DateTimePicker'
+import * as RouterDirection from '../../util/RouterDirection'
 
 export default class AddRequirement extends Component {
     constructor(props) {
@@ -22,13 +23,15 @@ export default class AddRequirement extends Component {
                         <Select
                             title='委托方：'
                             value={'请选择'}
-                            onValueChange={() => { }}
+                            showList={RouterDirection.selectEntrust(this.props.parent)}
+                            onValueChange={(param) => console.log(param)}
                             defaultValue={'请选择'}
                         />
                         <Select
                             title='起始城市：'
                             value={'请选择'}
-                            onValueChange={() => { }}
+                            showList={RouterDirection.selectCity(this.props.parent)}
+                            onValueChange={(param) => console.log(param)}
                             defaultValue={'请选择'}
                         />
                         <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
@@ -37,7 +40,8 @@ export default class AddRequirement extends Component {
                         <Select
                             title='目的城市：'
                             value={'请选择'}
-                            onValueChange={() => { }}
+                            showList={RouterDirection.selectCity(this.props.parent)}
+                            onValueChange={(param) => console.log(param)}
                             defaultValue={'请选择'}
                         />
                         <Select
