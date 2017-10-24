@@ -5,33 +5,58 @@ import {
     ScrollView
 } from 'react-native'
 import { Button } from 'native-base'
+import { connect } from 'react-redux'
 import TextBox from '../components/form/TextBox'
 import Select from '../components/form/Select'
 import DateTimePicker from '../components/form/DateTimePicker'
 import * as RouterDirection from '../../util/RouterDirection'
+import * as addRequirementAction from '../../actions/AddRequirementAction'
 
-export default class AddRequirement extends Component {
+class AddRequirement extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            routeStartId: 0,
+            routeStart: '',
+            baseAddrId: 102,
+            routeEndId: 0,
+            routeEnd: '',
+            receiveId: 0,
+            receive: '',
+            preCount: 0,
+            dateId: ''
+        }
+        this.addRequirement = this.addRequirement.bind(this)
+    }
+
+    addRequirement() {
+        this.props.addRequirement({
+            requiredParam: { userId: 81 },
+            postParam: {
+                routeStartId: this.state.routeStartId,
+                routeStart: this.state.routeStart,
+                baseAddrId: this.state.baseAddrId,
+                routeEndId: this.state.routeEndId,
+                routeEnd: this.state.routeEnd,
+                receiveId: this.state.receiveId,
+                preCount: this.state.preCount,
+                dateId: this.state.dateId
+            }
+        })
     }
 
     render() {
+        console.log('this.props.addRequirementReducer', this.props.addRequirementReducer)
         return (
             <View style={{ flex: 1 }}>
-                <ScrollView>
+                <ScrollView
+                    showsHorizontalScrollIndicator={false}>
                     <View style={{ flex: 1 }}>
                         <Select
-                            title='委托方：'
-                            value={'请选择'}
-                            showList={RouterDirection.selectEntrust(this.props.parent)}
-                            onValueChange={(param) => console.log(param)}
-                            defaultValue={'请选择'}
-                        />
-                        <Select
                             title='起始城市：'
-                            value={'请选择'}
+                            value={this.state.routeStart ? this.state.routeStart : '请选择'}
                             showList={RouterDirection.selectCity(this.props.parent)}
-                            onValueChange={(param) => console.log(param)}
+                            onValueChange={(param) => this.setState({ routeStartId: param.id, routeStart: param.city_name })}
                             defaultValue={'请选择'}
                         />
                         <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
@@ -39,31 +64,32 @@ export default class AddRequirement extends Component {
                         </View>
                         <Select
                             title='目的城市：'
-                            value={'请选择'}
+                            value={this.state.routeEnd ? this.state.routeEnd : '请选择'}
                             showList={RouterDirection.selectCity(this.props.parent)}
-                            onValueChange={(param) => console.log(param)}
+                            onValueChange={(param) => this.setState({ routeEndId: param.id, routeEnd: param.city_name })}
                             defaultValue={'请选择'}
                         />
                         <Select
                             title='送达地点：'
-                            value={'请选择'}
-                            onValueChange={() => { }}
+                            value={this.state.receive ? this.state.receive : '请选择'}
+                            showList={RouterDirection.selectReceive(this.props.parent)}
+                            onValueChange={(param) => this.setState({ receiveId: param.id, receive: param.address })}
                             defaultValue={'请选择'}
                         />
                         <TextBox
                             title='运送车辆数：'
-                            value={''}
+                            value={this.state.preCount ? this.state.preCount : ''}
                             defaultValue={''}
-                            onValueChange={() => { }}
+                            onValueChange={(param) => this.setState({ preCount: param })}
                             placeholder='请输入车牌'
                         />
                         <DateTimePicker
                             title='指令时间：'
                             defaultValue={'请选择'}
-                            value={'请选择'}
-                            onValueChange={() => { }}
+                            value={this.state.dateId ? this.state.dateId : '请选择'}
+                            onValueChange={(param) => this.setState({ dateId: param })}
                         />
-                        <Button full style={{ backgroundColor: '#00cade', justifyContent: 'center', marginHorizontal: 10, marginTop: 30 }} onPress={() => { }}>
+                        <Button full style={{ backgroundColor: '#00cade', justifyContent: 'center', marginHorizontal: 10, marginTop: 30 }} onPress={this.addRequirement}>
                             <Text style={{ color: '#fff' }}>确 定</Text>
                         </Button>
                     </View>
@@ -72,3 +98,24 @@ export default class AddRequirement extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        addRequirementReducer: state.addRequirementReducer
+    }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    addRequirement: (param) => {
+        dispatch(addRequirementAction.addRequirement(param))
+    },
+    addRequirementWaiting: () => {
+        dispatch(addRequirementAction.addRequirementWaiting())
+    },
+    resetAddRequirement: () => {
+        dispatch(addRequirementAction.resetAddRequirement())
+    }
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddRequirement)

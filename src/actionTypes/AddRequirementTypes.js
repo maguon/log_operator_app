@@ -1,0 +1,6 @@
+export const ADD_Requirement_SUCCESS = 'ADD_Requirement_SUCCESS'
+export const ADD_Requirement_FAILED = 'ADD_Requirement_FAILED'
+export const ADD_Requirement_WAITING = 'ADD_Requirement_WAITING'
+export const ADD_Requirement_ERROR = 'ADD_Requirement_ERROR'
+export const ADD_Requirement_SERVICEERROR = 'ADD_Requirement_SERVICEERROR'
+export const RESET_ADD_Requirement = 'RESET_ADD_Requirement'

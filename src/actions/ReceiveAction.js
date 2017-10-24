@@ -1,9 +1,10 @@
 import httpRequest from '../util/HttpRequest'
 import { base_host } from '../config/Host'
 import * as actionTypes from '../actionTypes'
+import { ObjectToUrl } from '../util/ObjectToUrl'
 
-export const getReceiveList = () => async (dispatch) => {
-    const url = `${base_host}/receive`
+export const getReceiveList = (param) => async (dispatch) => {
+    const url = `${base_host}/receive?${ObjectToUrl(param.OptionalParam)}`
     try {
         let res = await httpRequest.get(url)
         if (res.success) {

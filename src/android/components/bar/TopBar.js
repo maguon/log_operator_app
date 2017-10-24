@@ -8,6 +8,11 @@ export default class TopBar extends Component {
         super(props)
     }
 
+    static defaultProps = {
+        rightType: 0, //0：不显示right 1:add
+        onPressRight: () => { }
+    }
+
     render() {
         const { title, layout } = this.props
         return (

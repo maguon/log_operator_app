@@ -14,3 +14,8 @@ export const selectReceive = (parent) => {
     if (parent === 'workBlock') return Actions.receiveAtWorkBlock
     if (parent === 'requirementBlock') return Actions.receiveAtRequirementBlock
 }
+
+export const selectBaseAddr = (parent) => {
+    if (parent === 'workBlock') return Actions.baseAddrAtWorkBlock
+    if (parent === 'requirementBlock') return Actions.baseAddrAtRequirementBlock
+}

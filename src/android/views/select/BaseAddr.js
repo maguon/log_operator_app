@@ -6,21 +6,23 @@ import {
     TouchableNativeFeedback,
     InteractionManager,
     ActivityIndicator
+
 } from 'react-native'
 import { connect } from 'react-redux'
-import * as receiveAction from '../../../actions/ReceiveAction'
+import * as baseAddrAction from '../../../actions/BaseAddrAction'
 import { Actions } from 'react-native-router-flux'
 
-class Receive extends Component {
+
+class BaseAddr extends Component {
     constructor(props) {
         super(props)
         this._onPress = this._onPress.bind(this)
-        
+
     }
 
     componentDidMount() {
-        this.props.getReceiveListWaiting()
-        InteractionManager.runAfterInteractions(()=>this.props.getReceiveList({ OptionalParam: { cityId: this.props.cityId } }))
+        this.props.getBaseAddrListWaiting()
+        InteractionManager.runAfterInteractions(() => this.props.getBaseAddrList({ OptionalParam: { cityId: this.props.cityId } }))
     }
 
     _onPress(param) {
@@ -29,13 +31,13 @@ class Receive extends Component {
     }
 
     render() {
-        const { receiveList } = this.props.receiveReducer.data
-        const { getRecevieList } = this.props.receiveReducer
-        if (getRecevieList.isResultStatus == 1) {
+        const { baseAddrList } = this.props.baseAddrReducer.data
+        const { getBaseAddrList } = this.props.baseAddrReducer
+        if (getBaseAddrList.isResultStatus == 1) {
             return (
                 <View style={{ backgroundColor: '#fff', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                     <ActivityIndicator
-                        animating={getRecevieList.isResultStatus == 1}
+                        animating={getBaseAddrList.isResultStatus == 1}
                         style={{ height: 80 }}
                         size="large"
                     />
@@ -46,10 +48,10 @@ class Receive extends Component {
                 <View style={{ flex: 1 }}>
                     <FlatList
                         showsVerticalScrollIndicator={false}
-                        data={receiveList}
+                        data={baseAddrList}
                         renderItem={({ item, index }) => <TouchableNativeFeedback key={index} onPress={() => this._onPress(item)} background={TouchableNativeFeedback.SelectableBackground()}>
                             <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
-                                <Text style={{ fontSize: 12 }}>{item.short_name}</Text>
+                                <Text style={{ fontSize: 12 }}>{item.addr_name}</Text>
                             </View>
                         </TouchableNativeFeedback>}
                     />
@@ -61,18 +63,18 @@ class Receive extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        receiveReducer: state.receiveReducer
+        baseAddrReducer: state.baseAddrReducer
     }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    getReceiveList: (param) => {
-        dispatch(receiveAction.getReceiveList(param))
+    getBaseAddrList: (param) => {
+        dispatch(baseAddrAction.getBaseAddrList(param))
     },
-    getReceiveListWaiting: () => {
-        dispatch(receiveAction.getReceiveListWaiting())
+    getBaseAddrListWaiting: () => {
+        dispatch(baseAddrAction.getBaseAddrListWaiting())
     }
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Receive)
+export default connect(mapStateToProps, mapDispatchToProps)(BaseAddr)

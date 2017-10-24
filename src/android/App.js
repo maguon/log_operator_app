@@ -21,6 +21,8 @@ import AddRequirement from './views/AddRequirement'
 import City from './views/select/City'
 import Entrust from './views/select/Entrust'
 import Receive from './views/select/Receive'
+import BaseAddr from './views/select/BaseAddr'
+import RequirementList from './views/RequirementList'
 
 import CarInfo from './views/CarInfo'
 import AddCar from './views/AddCar'
@@ -77,15 +79,17 @@ export default class App extends Component {
                             <Scene key="carInfo" title='商品车信息' component={CarInfo} hideNavBar={false} navBar={NavBar} />
                             <Scene key="cityAtWorkBlock" title='选择城市' component={City} hideNavBar={false} navBar={NavBar} />
                             <Scene key="entrustAtWorkBlock" title='选择委托方' component={Entrust} hideNavBar={false} navBar={NavBar} />
-                            <Scene key="receiveAtWorkBlock" title='选择经销商'  component={Receive} hideNavBar={false} navBar={NavBar} />
+                            <Scene key="receiveAtWorkBlock" title='选择经销商' component={Receive} hideNavBar={false} navBar={NavBar} />
                         </Scene>
                         <Scene key="requirementBlock" icon={TabIcon} initial={true} online='ios-archive' outline='ios-archive-outline' >
-                            <Scene key="requirement" title='工作' component={Requirement} hideNavBar={false} navBar={TopBar} />
-                            <Scene key="addRequirement" initial={true} title='增加需求' component={AddRequirement} hideNavBar={false} navBar={NavBar} />
+                            <Scene key="requirement" initial={true} rightType={1} title='需求管理' onPressRight={() => Actions.addRequirement()} component={Requirement} hideNavBar={false} navBar={TopBar} />
+                            <Scene key="addRequirement" title='增加需求' component={AddRequirement} hideNavBar={false} navBar={NavBar} />
                             <Scene key="requirementInfo" title='需求详情' component={RequirementInfo} hideNavBar={false} navBar={NavBar} />
+                            <Scene key="requirementList" title='需求列表' component={RequirementList} hideNavBar={false} navBar={NavBar} />
                             <Scene key="cityAtRequirementBlock" title='选择城市' component={City} hideNavBar={false} navBar={NavBar} />
                             <Scene key="entrustAtRequirementBlock" title='选择委托方' component={Entrust} hideNavBar={false} navBar={NavBar} />
-                            <Scene key="receiveAtRequirementBlock" title='选择经销商'  component={Receive} hideNavBar={false} navBar={NavBar} />
+                            <Scene key="receiveAtRequirementBlock" title='选择送达地点' component={Receive} hideNavBar={false} navBar={NavBar} />
+                            <Scene key="baseAddrAtRequirementBlock" title='选择装车地点' component={BaseAddr} hideNavBar={false} navBar={NavBar} />
                         </Scene>
                         <Scene key="settingmentBlock" icon={TabIcon} online='ios-settings' outline='ios-settings-outline' >
                             <Scene key="setting" initial={true} title='工作' component={Setting} hideNavBar={false} navBar={TopBar} />
