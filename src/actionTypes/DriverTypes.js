@@ -1,0 +1,11 @@
+export const GET_DriverList_SUCCESS = 'GET_DriverList_SUCCESS'
+export const GET_DriverList_FAILED = 'GET_DriverList_FAILED'
+export const GET_DriverList_WAITING = 'GET_DriverList_WAITING'
+export const GET_DriverList_ERROR = 'GET_DriverList_ERROR'
+export const GET_DriverList_SERVICEERROR = 'GET_DriverList_SERVICEERROR'
+
+export const GET_DriverListMore_SUCCESS = 'GET_DriverListMore_SUCCESS'
+export const GET_DriverListMore_FAILED = 'GET_DriverListMore_FAILED'
+export const GET_DriverListMore_WAITING = 'GET_DriverListMore_WAITING'
+export const GET_DriverListMore_ERROR = 'GET_DriverListMore_ERROR'
+export const GET_DriverListMore_SERVICEERROR = 'GET_DriverListMore_SERVICEERROR'

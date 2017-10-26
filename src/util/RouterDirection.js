@@ -3,6 +3,7 @@ import { Actions } from 'react-native-router-flux'
 export const selectCity = (parent) => {
     if (parent === 'workBlock') return Actions.cityAtWorkBlock
     if (parent === 'requirementBlock') return Actions.cityAtRequirementBlock
+    if (parent === 'settingBlock') return Actions.cityAtSettingBlock
 }
 
 export const selectEntrust = (parent) => {
@@ -18,4 +19,5 @@ export const selectReceive = (parent) => {
 export const selectBaseAddr = (parent) => {
     if (parent === 'workBlock') return Actions.baseAddrAtWorkBlock
     if (parent === 'requirementBlock') return Actions.baseAddrAtRequirementBlock
+    if (parent === 'settingBlock') return Actions.baseAddrAtSettingBlock
 }

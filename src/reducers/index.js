@@ -6,6 +6,9 @@ import receiveReducer from './receiveReducer'
 import addRequirementReducer from './addRequirementReducer'
 import baseAddrReducer from './baseAddrReducer'
 import requirementListReducer from './requirementListReducer'
+import settingReducer from './settingReducer'
+import driverReducer from './driverReducer'
+import truckReducer from './truckReducer'
 
 export default combineReducers({
     homeReducer,
@@ -14,5 +17,8 @@ export default combineReducers({
     receiveReducer,
     addRequirementReducer,
     baseAddrReducer,
-    requirementListReducer
+    requirementListReducer,
+    settingReducer,
+    driverReducer,
+    truckReducer
 })

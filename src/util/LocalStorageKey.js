@@ -1,5 +1,6 @@
 const localStorageKey = {
-    USER: 'user'
+    USER: 'user',
+    BASEADDR: 'baseaddr'
     // WELCOME_FLAG: 'welcome',
     // WELCOME_FLAG_SHOWN: 1,
     // WELCOME_FLAG_SHOWN_NOT: 0,

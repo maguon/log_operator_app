@@ -10,6 +10,7 @@ import {
 import { connect } from 'react-redux'
 import * as cityAction from '../../../actions/CityAction'
 import { Actions } from 'react-native-router-flux'
+import * as RouterDirection from '../../../util/RouterDirection'
 
 class City extends Component {
     constructor(props) {
@@ -17,14 +18,29 @@ class City extends Component {
         this._onPress = this._onPress.bind(this)
     }
 
+    static defaultProps = {
+        isMultistep: false
+    }
+
+
     componentDidMount() {
         this.props.getCityListWaiting()
         InteractionManager.runAfterInteractions(this.props.getCityList)
     }
 
     _onPress(param) {
-        this.props.onSelect(param)
-        Actions.pop()
+        if (!this.props.isMultistep) {
+            this.props.onSelect(param)
+            Actions.pop()
+        } else {
+            RouterDirection.selectBaseAddr(this.props.parent)({
+                isMultistep: true,
+                lastStep: true,
+                stepNum: 2,
+                cityId: param.id,
+                onSelect: this.props.onSelect
+            })
+        }
     }
 
     render() {

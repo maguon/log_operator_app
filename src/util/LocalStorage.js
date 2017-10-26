@@ -45,9 +45,9 @@ class LocalStorage {
             key: key,
             id: id
         }).then(ret => {
-            return ret;
+            callback(null, ret)
         }).catch(err => {
-            return null;
+            callback(err, null)
         })
     }
     removeKey(key) {

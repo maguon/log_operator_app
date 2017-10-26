@@ -10,10 +10,6 @@ export default class RequirementInfo extends Component {
         super(props)
     }
 
-    componentDidMount() {
-        console.log('this.props.initParam', this.props.initParam)
-    }
-
     render() {
         const { requirementInfo } = this.props.initParam
         return (

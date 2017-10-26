@@ -37,7 +37,6 @@ class RequirementList extends Component {
     }
 
     render() {
-        console.log('this.props.requirementListReducer', this.props.requirementListReducer)
         const { requirementList } = this.props.requirementListReducer.data
         const { getRequirementList, getRequirementListMore } = this.props.requirementListReducer
         if (getRequirementList.isResultStatus == 1) {

@@ -20,14 +20,25 @@ class BaseAddr extends Component {
 
     }
 
+    static defaultProps = {
+        isMultistep: false
+    }
+
     componentDidMount() {
         this.props.getBaseAddrListWaiting()
         InteractionManager.runAfterInteractions(() => this.props.getBaseAddrList({ OptionalParam: { cityId: this.props.cityId } }))
     }
 
     _onPress(param) {
-        this.props.onSelect(param)
-        Actions.pop()
+        if (!this.props.isMultistep) {
+            this.props.onSelect(param)
+            Actions.pop()
+        } else {
+            if (this.props.lastStep) {
+                this.props.onSelect(param)
+                Actions.pop({ popNum: this.props.stepNum })
+            }
+        }
     }
 
     render() {

@@ -6,7 +6,7 @@ import {
 } from 'react-native'
 
 import { Button } from 'native-base'
-
+import * as RouterDirection from '../../../util/RouterDirection'
 import TextBox from '../../components/form/TextBox'
 import Select from '../../components/form/Select'
 import DateTimePicker from '../../components/form/DateTimePicker'
@@ -14,6 +14,14 @@ import DateTimePicker from '../../components/form/DateTimePicker'
 export default class Work extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            dateIdStart: '',
+            dateIdEnd: '',
+            routeEndId: 0,
+            routeEnd: '',
+            routeStart: '',
+            routeStartId: 0
+        }
     }
 
     render() {
@@ -25,27 +33,29 @@ export default class Work extends Component {
                             <DateTimePicker
                                 title='装车时间从：'
                                 defaultValue={'请选择'}
-                                value={'请选择'}
-                                onValueChange={() => { }}
+                                value={this.state.dateIdStart ? this.state.dateIdStart : '请选择'}
+                                onValueChange={(param) => this.setState({ dateIdStart: param })}
                             />
                             <DateTimePicker
                                 title='到：'
                                 defaultValue={'请选择'}
-                                value={'请选择'}
-                                onValueChange={() => { }}
+                                value={this.state.dateIdEnd ? this.state.dateIdEnd : '请选择'}
+                                onValueChange={(param) => this.setState({ dateIdEnd: param })}
                             />
                         </View>
                         <View style={{ flexDirection: 'row' }}>
                             <Select
                                 title='起始城市：'
-                                value={'请选择'}
-                                onValueChange={() => { }}
+                                value={this.state.routeStart ? this.state.routeStart : '请选择'}
+                                showList={RouterDirection.selectCity(this.props.parent)}
+                                onValueChange={(param) => this.setState({ routeStartId: param.id, routeStart: param.city_name })}
                                 defaultValue={'请选择'}
                             />
                             <Select
                                 title='目的城市：'
-                                value={'请选择'}
-                                onValueChange={() => { }}
+                                value={this.state.routeEnd ? this.state.routeEnd : '请选择'}
+                                showList={RouterDirection.selectCity(this.props.parent)}
+                                onValueChange={(param) => this.setState({ routeEndId: param.id, routeEnd: param.city_name })}
                                 defaultValue={'请选择'}
                             />
                         </View>
