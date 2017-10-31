@@ -5,9 +5,9 @@ import * as actionTypes from '../actionTypes'
 //isResultStatus(执行结果状态):[0(未执行),1(等待)，2(成功)，3(错误)，4(执行失败),5(服务器未处理错误)]
 const initialState = {
     data: {
-        cityList: []
+        carInfo: {}
     },
-    getCityList: {
+    getCarInfo: {
         isResultStatus: 0,
         errorMsg: '',
         failedMsg: '',
@@ -16,55 +16,56 @@ const initialState = {
 }
 
 export default handleActions({
-    [actionTypes.cityTypes.GET_CITYS_SUCCESS]: (state, action) => {
+    [actionTypes.carInfoTypes.GET_CarInfo_SUCCESS]: (state, action) => {
         const { payload: { data } } = action
+        console.log('data',data)
         return {
             data: {
-                cityList: data
+                carInfo: data
             },
-            getCityList: {
-                ...state.getCityList,
+            getCarInfo: {
+                ...state.getCarInfo,
                 isResultStatus: 2
             }
         }
     },
-    [actionTypes.cityTypes.GET_CITYS_FAILED]: (state, action) => {
+    [actionTypes.carInfoTypes.GET_CarInfo_FAILED]: (state, action) => {
         const { payload: { data } } = action
         return {
             ...state,
-            getCityList: {
-                ...state.getCityList,
+            getCarInfo: {
+                ...state.getCarInfo,
                 isResultStatus: 4,
                 failedMsg: data
             }
         }
     },
-    [actionTypes.cityTypes.GET_CITYS_WAITING]: (state, action) => {
+    [actionTypes.carInfoTypes.GET_CarInfo_WAITING]: (state, action) => {
         return {
             ...state,
-            getCityList: {
-                ...state.getCityList,
+            getCarInfo: {
+                ...state.getCarInfo,
                 isResultStatus: 1
             }
         }
     },
-    [actionTypes.cityTypes.GET_CITYS_ERROR]: (state, action) => {
+    [actionTypes.carInfoTypes.GET_CarInfo_ERROR]: (state, action) => {
         const { payload: { data } } = action
         return {
             ...state,
-            getCityList: {
-                ...state.getCityList,
+            getCarInfo: {
+                ...state.getCarInfo,
                 isResultStatus: 3,
                 errorMsg: data
             }
         }
     },
-    [actionTypes.cityTypes.GET_CITYS_SERVICEERROR]: (state, action) => {
+    [actionTypes.carInfoTypes.GET_CarInfo_SERVICEERROR]: (state, action) => {
         const { payload: { data } } = action
         return {
             ...state,
-            getCityList: {
-                ...state.getCityList,
+            getCarInfo: {
+                ...state.getCarInfo,
                 isResultStatus: 5,
                 errorMsg: data
             }

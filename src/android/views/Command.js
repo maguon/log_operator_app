@@ -7,12 +7,14 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { Button } from 'native-base'
 
 
+
 export default class Command extends Component {
     constructor(props) {
         super(props)
     }
 
     render() {
+        console.log('this.props',this.props)
         return (
             <View style={{ flex: 1 }}>
                 <View style={{ padding: 10, backgroundColor: '#f2f6f9', borderBottomWidth: 0.5, borderColor: '#a8a8a8' }}>

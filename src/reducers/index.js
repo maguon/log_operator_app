@@ -9,6 +9,10 @@ import requirementListReducer from './requirementListReducer'
 import settingReducer from './settingReducer'
 import driverReducer from './driverReducer'
 import truckReducer from './truckReducer'
+import carVinReducer from './carVinReducer'
+import commandListReducer from './commandListReducer'
+import taskInfoAtWorkReducer from './taskInfoAtWorkReducer'
+import carInfoReducer from './carInfoReducer'
 
 export default combineReducers({
     homeReducer,
@@ -20,5 +24,9 @@ export default combineReducers({
     requirementListReducer,
     settingReducer,
     driverReducer,
-    truckReducer
+    truckReducer,
+    carVinReducer,
+    commandListReducer,
+    taskInfoAtWorkReducer,
+    carInfoReducer
 })

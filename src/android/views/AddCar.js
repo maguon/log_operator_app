@@ -15,6 +15,19 @@ import * as RouterDirection from '../../util/RouterDirection'
 export default class AddCar extends Component {
     constructor(props) {
         super(props)
+        this.state={
+            
+        }
+        this._onPressOK=this._onPressOK.bind(this)
+        this._onPressReset=this._onPressReset.bind(this)
+    }
+
+    _onPressOK(){
+
+    }
+
+    _onPressReset(){
+
     }
 
     render() {
@@ -76,9 +89,18 @@ export default class AddCar extends Component {
                             onValueChange={(param) => console.log(param)}
                             defaultValue={'请选择'}
                         />
-                        <Button full style={{ backgroundColor: '#00cade', justifyContent: 'center', marginHorizontal: 10, marginTop: 30 }} onPress={() => { }}>
-                            <Text style={{ color: '#fff' }}>确 定</Text>
-                        </Button>
+                        <View style={{ flexDirection: 'row' }}>
+                        <View style={{ flex: 1 }}>
+                            <Button full style={{ backgroundColor: '#00cade', justifyContent: 'center', marginHorizontal: 10, marginTop: 30 }} onPress={this._onPressOK}>
+                                <Text style={{ color: '#fff' }}>确 定</Text>
+                            </Button>
+                        </View>
+                        <View style={{ flex: 1 }}>
+                            <Button full style={{ backgroundColor: '#00cade', justifyContent: 'center', marginHorizontal: 10, marginTop: 30 }} onPress={this._onPressReset}>
+                                <Text style={{ color: '#fff' }}>重 置</Text>
+                            </Button>
+                        </View>
+                    </View>
                     </View>
                 </ScrollView>
             </View>

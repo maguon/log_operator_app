@@ -7,6 +7,10 @@ import * as requirementListTypes from './RequirementListTypes'
 import * as settingTypes from './SettingTypes'
 import * as truckTypes from './TruckTypes'
 import * as driverTypes from './DriverTypes'
+import * as carVinTypes from './CarVinTypes'
+import * as commandListTypes from './CommandListTypes'
+import * as taskInfoAtWorkTypes from './TaskInfoAtWorkTypes'
+import * as carInfoTypes from './CarInfoTypes'
 
 export {
     cityTypes,
@@ -17,5 +21,9 @@ export {
     requirementListTypes,
     settingTypes,
     truckTypes,
-    driverTypes
+    driverTypes,
+    carVinTypes,
+    commandListTypes,
+    taskInfoAtWorkTypes,
+    carInfoTypes
 }   

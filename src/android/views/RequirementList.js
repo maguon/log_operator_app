@@ -8,7 +8,6 @@ import {
     ActivityIndicator,
     Button
 } from 'react-native'
-
 import { connect } from 'react-redux'
 import * as requirementListAction from '../../actions/RequirementListAction'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'

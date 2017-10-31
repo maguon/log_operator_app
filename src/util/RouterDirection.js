@@ -21,3 +21,27 @@ export const selectBaseAddr = (parent) => {
     if (parent === 'requirementBlock') return Actions.baseAddrAtRequirementBlock
     if (parent === 'settingBlock') return Actions.baseAddrAtSettingBlock
 }
+
+export const selectCarVin = (parent) => {
+    if (parent === 'workBlock') return Actions.carVinAtWorkBlock
+}
+
+export const selectTruck = (parent) => {
+    if (parent === 'workBlock') return Actions.truckAtWorkBlock
+}
+
+export const selectDriver = (parent) => {
+    if (parent === 'workBlock') return Actions.driverAtWorkBlock
+}
+
+export const commandList = (parent) => {
+    if (parent === 'workBlock') return Actions.commandListAtWorkBlock
+}
+
+export const command = (parent) => {
+    if (parent === 'workBlock') return Actions.commandAtWorkBlock
+}
+
+export const carInfo = (parent) => {
+    if (parent === 'workBlock') return Actions.carInfoAtWorkBlock
+}

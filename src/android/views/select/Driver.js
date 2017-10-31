@@ -40,8 +40,6 @@ class Driver extends Component {
     render() {
         const { driverList } = this.props.driverReducer.data
         const { getDriverList,getDriverListMore } = this.props.driverReducer
-
-        console.log(driverList)
         if (getDriverList.isResultStatus == 1) {
             return (
                 <View style={{ backgroundColor: '#fff', flex: 1, alignItems: 'center', justifyContent: 'center' }}>

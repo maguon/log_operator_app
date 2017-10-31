@@ -59,6 +59,7 @@ export default class Requirement extends Component {
             baseAddr: ''
         })
     }
+    
 
     render() {
         return (
