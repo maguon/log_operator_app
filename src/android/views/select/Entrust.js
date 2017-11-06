@@ -19,7 +19,7 @@ class Entrust extends Component {
 
     componentDidMount() {
         this.props.getEntrustListWaiting()
-        InteractionManager.runAfterInteractions(this.props.getEntrustList)
+        InteractionManager.runAfterInteractions(() => this.props.getEntrustList({ OptionalParam: { cityId: this.props.cityId } }))
     }
 
     _onPress(param) {
@@ -64,8 +64,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    getEntrustList: () => {
-        dispatch(entrustAction.getEntrustList())
+    getEntrustList: (param) => {
+        dispatch(entrustAction.getEntrustList(param))
     },
     getEntrustListWaiting: () => {
         dispatch(entrustAction.getEntrustListWaiting())

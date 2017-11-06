@@ -13,6 +13,9 @@ import carVinReducer from './carVinReducer'
 import commandListReducer from './commandListReducer'
 import taskInfoAtWorkReducer from './taskInfoAtWorkReducer'
 import carInfoReducer from './carInfoReducer'
+import makeReducer from './makeReducer'
+import addCarReducer from './addCarReducer'
+import addCarImageReducer from './addCarImageReducer'
 
 export default combineReducers({
     homeReducer,
@@ -28,5 +31,8 @@ export default combineReducers({
     carVinReducer,
     commandListReducer,
     taskInfoAtWorkReducer,
-    carInfoReducer
+    carInfoReducer,
+    makeReducer,
+    addCarReducer,
+    addCarImageReducer
 })

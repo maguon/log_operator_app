@@ -11,6 +11,9 @@ import * as carVinTypes from './CarVinTypes'
 import * as commandListTypes from './CommandListTypes'
 import * as taskInfoAtWorkTypes from './TaskInfoAtWorkTypes'
 import * as carInfoTypes from './CarInfoTypes'
+import * as makeTypes from './MakeTypes'
+import * as addCarTypes from './AddCarTypes'
+import * as addCarImageTypes from './AddCarImageTypes'
 
 export {
     cityTypes,
@@ -25,5 +28,8 @@ export {
     carVinTypes,
     commandListTypes,
     taskInfoAtWorkTypes,
-    carInfoTypes
+    carInfoTypes,
+    makeTypes,
+    addCarTypes,
+    addCarImageTypes
 }   

@@ -29,6 +29,9 @@ function post(url, params) {
         headers: requestHeaders.headers,
         body: JSON.stringify(params)
     }).then((response) => response.json())
+    // .catch((error) => {
+    //     console.log(error)
+    // });
 }
 
 function postCallBack(url, params, callback) {
@@ -75,7 +78,9 @@ function del(url, callback) {
 }
 
 
-function postFile(url, params, callback) {
+function postFile(url,params ) {
+    // console.log(url)
+    // console.log(params)
     let formData = new FormData()
     let file = { uri: params.imageUrl, type: params.imageType, name: params.imageName }
     formData.append(params.key, file)
@@ -84,6 +89,27 @@ function postFile(url, params, callback) {
         headers: requestHeaders.formHeaders,
         body: formData,
     }).then((response) => response.json())
+    // .catch((error) => {
+    //     console.log(error)
+    // });
+}
+
+
+function postFileCallBack(url, params, callback) {
+    let formData = new FormData()
+    let file = { uri: params.imageUrl, type: params.imageType, name: params.imageName }
+    formData.append(params.key, file)
+    return fetch(url, {
+        method: 'POST',
+        headers: requestHeaders.formHeaders,
+        body: formData,
+    }).then((response) => response.json())
+        .then((responseJson) => {
+            callback(null, responseJson)
+        })
+        .catch((error) => {
+            callback(error, null)
+        });
 }
 
 
@@ -95,5 +121,6 @@ module.exports = {
     postFile: postFile,
     getCallBack: getCallBack,
     postCallBack: postCallBack,
-    putCallBack: putCallBack
+    putCallBack: putCallBack,
+    postFileCallBack: postFileCallBack
 }

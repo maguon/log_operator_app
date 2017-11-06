@@ -8,19 +8,18 @@ import {
     ActivityIndicator
 } from 'react-native'
 import { connect } from 'react-redux'
-import * as receiveAction from '../../../actions/ReceiveAction'
+import * as makeAction from '../../../actions/MakeAction'
 import { Actions } from 'react-native-router-flux'
 
-class Receive extends Component {
+class Make extends Component {
     constructor(props) {
         super(props)
         this._onPress = this._onPress.bind(this)
-        
     }
 
     componentDidMount() {
-        this.props.getReceiveListWaiting()
-        InteractionManager.runAfterInteractions(() => this.props.getReceiveList({ OptionalParam: { cityId: this.props.cityId } }))
+        this.props.getMakeListWaiting()
+        InteractionManager.runAfterInteractions(() => this.props.getMakeList())
     }
 
     _onPress(param) {
@@ -29,13 +28,13 @@ class Receive extends Component {
     }
 
     render() {
-        const { receiveList } = this.props.receiveReducer.data
-        const { getRecevieList } = this.props.receiveReducer
-        if (getRecevieList.isResultStatus == 1) {
+        const { makeList } = this.props.makeReducer.data
+        const { getMakeList } = this.props.makeReducer
+        if (getMakeList.isResultStatus == 1) {
             return (
                 <View style={{ backgroundColor: '#fff', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                     <ActivityIndicator
-                        animating={getRecevieList.isResultStatus == 1}
+                        animating={getMakeList.isResultStatus == 1}
                         style={{ height: 80 }}
                         size="large"
                     />
@@ -45,11 +44,12 @@ class Receive extends Component {
             return (
                 <View style={{ flex: 1 }}>
                     <FlatList
+                        showsHorizontalScrollIndicator={false}
                         showsVerticalScrollIndicator={false}
-                        data={receiveList}
+                        data={makeList}
                         renderItem={({ item, index }) => <TouchableNativeFeedback key={index} onPress={() => this._onPress(item)} background={TouchableNativeFeedback.SelectableBackground()}>
                             <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
-                                <Text style={{ fontSize: 12 }}>{item.short_name}</Text>
+                                <Text style={{ fontSize: 12 }}>{item.make_name}</Text>
                             </View>
                         </TouchableNativeFeedback>}
                     />
@@ -59,20 +59,21 @@ class Receive extends Component {
     }
 }
 
+
 const mapStateToProps = (state) => {
     return {
-        receiveReducer: state.receiveReducer
+        makeReducer: state.makeReducer
     }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    getReceiveList: (param) => {
-        dispatch(receiveAction.getReceiveList(param))
+    getMakeList: () => {
+        dispatch(makeAction.getMakeList())
     },
-    getReceiveListWaiting: () => {
-        dispatch(receiveAction.getReceiveListWaiting())
+    getMakeListWaiting: () => {
+        dispatch(makeAction.getMakeListWaiting())
     }
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Receive)
+export default connect(mapStateToProps, mapDispatchToProps)(Make)

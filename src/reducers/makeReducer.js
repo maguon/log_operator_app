@@ -2,10 +2,10 @@ import { handleActions } from 'redux-actions'
 import * as actionTypes from '../actionTypes'
 
 const initialState = {
-    data:{
-        carId:0
+    data: {
+        makeList: []
     },
-    addCar: {
+    getMakeList: {
         isResultStatus: 0,
         errorMsg: '',
         failedMsg: '',
@@ -13,68 +13,60 @@ const initialState = {
     }
 }
 
-//isResultStatus(执行结果状态):[0(成功)，1(错误)，2(执行失败),3(服务器错误)] 
-//isExecuteStatus(执行状态):[0(未执行)，1(正在执行)，2(执行完毕)]
+//isResultStatus(执行结果状态):[0(未执行),1(等待)，2(成功)，3(错误)，4(执行失败),5(服务器未处理错误)]
 export default handleActions({
-    [actionTypes.addCarTypes.ADD_Car_SUCCESS]: (state, action) => {
+    [actionTypes.makeTypes.GET_MakeList_SUCCESS]: (state, action) => {
         const { payload: { data } } = action
         return {
-            ...state,
             data: {
-                carId: data
+                makeList: data
             },
-            addCar: {
-                ...state.addCar,
+            getMakeList: {
+                ...state.getMakeList,
                 isResultStatus: 2
             }
         }
     },
-    [actionTypes.addCarTypes.ADD_Car_FAILED]: (state, action) => {
+    [actionTypes.makeTypes.GET_MakeList_FAILED]: (state, action) => {
         const { payload: { data } } = action
         return {
             ...state,
-            addCar: {
-                ...state.addCar,
+            getMakeList: {
+                ...state.getMakeList,
                 isResultStatus: 4,
                 failedMsg: data
             }
         }
     },
-    [actionTypes.addCarTypes.ADD_Car_WAITING]: (state, action) => {
+    [actionTypes.makeTypes.GET_MakeList_WAITING]: (state, action) => {
         return {
             ...state,
-            addCar: {
-                ...state.addCar,
+            getMakeList: {
+                ...state.getMakeList,
                 isResultStatus: 1
             }
         }
     },
-    [actionTypes.addCarTypes.ADD_Car_ERROR]: (state, action) => {
+    [actionTypes.makeTypes.GET_MakeList_ERROR]: (state, action) => {
         const { payload: { data } } = action
         return {
             ...state,
-            addCar: {
-                ...state.addCar,
+            getMakeList: {
+                ...state.getMakeList,
                 isResultStatus: 3,
                 errorMsg: data
             }
         }
     },
-    [actionTypes.addCarTypes.ADD_Car_SERVICEERROR]: (state, action) => {
+    [actionTypes.makeTypes.GET_MakeList_SERVICEERROR]: (state, action) => {
         const { payload: { data } } = action
         return {
             ...state,
-            addCar: {
-                ...state.addCar,
+            getMakeList: {
+                ...state.getMakeList,
                 isResultStatus: 5,
                 errorMsg: data
             }
-        }
-    },
-    [actionTypes.addCarTypes.RESET_ADD_Car]: (state, action) => {
-        return {
-            ...state,
-            addCar: { ...initialState.addCar }
         }
     }
 }, initialState)

@@ -4,16 +4,21 @@ import * as actionTypes from '../actionTypes'
 import { ObjectToUrl } from '../util/ObjectToUrl'
 
 export const addCar = (param) => async (dispatch) => {
-    dispatch({ type: actionTypes.carInfoTypes.GET_CarInfo_WAITING, payload: {} })
-    const url = `${base_host}/car?${ObjectToUrl(param.OptionalParam)}`
-    try {   
-        let res = await httpRequest.get(url)
+    dispatch({ type: actionTypes.addCarTypes.ADD_Car_WAITING, payload: {} })
+    const url = `${base_host}/user/${param.requiredParam.userId}/car`
+    try {
+        let res = await httpRequest.post(url,param.postParam)
         if (res.success) {
-            dispatch({ type: actionTypes.carInfoTypes.GET_CarInfo_SUCCESS, payload: { data: res.result[0] } })
+            dispatch({ type: actionTypes.addCarTypes.ADD_Car_SUCCESS, payload: { data: res.id } })
         } else {
-            dispatch({ type: actionTypes.carInfoTypes.GET_CarInfo_FAILED, payload: { data: res.msg } })
+            dispatch({ type: actionTypes.addCarTypes.ADD_Car_FAILED, payload: { data: res.msg } })
         }
     } catch (err) {
-        dispatch({ type: actionTypes.carInfoTypes.GET_CarInfo_ERROR, payload: { data: err } })
+        dispatch({ type: actionTypes.addCarTypes.ADD_Car_ERROR, payload: { data: err } })
     }
+}
+
+
+export const resetAddCar = () => (dispatch) => {
+    dispatch({ type: actionTypes.addCarTypes.RESET_ADD_Car, payload: {} })
 }

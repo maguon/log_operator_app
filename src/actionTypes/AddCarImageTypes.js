@@ -1,0 +1,6 @@
+export const ADD_CarImage_SUCCESS = 'ADD_CarImage_SUCCESS'
+export const ADD_CarImage_FAILED = 'ADD_CarImage_FAILED'
+export const ADD_CarImage_WAITING = 'ADD_CarImage_WAITING'
+export const ADD_CarImage_ERROR = 'ADD_CarImage_ERROR'
+export const ADD_CarImage_SERVICEERROR = 'ADD_CarImage_SERVICEERROR'
+export const RESET_ADD_CarImage = 'RESET_ADD_CarImage'

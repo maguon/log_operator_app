@@ -33,6 +33,8 @@ import CarVin from './views/select/CarVin'
 
 import CommandList from './views/CommandList'
 import TaskInfoAtWork from './views/TaskInfoAtWork'
+import Make from './views/select/Make'
+import AddCarImage from './views/AddCarImage'
 
 
 const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
@@ -81,7 +83,7 @@ export default class App extends Component {
                             <Scene key="cars" title='装车信息' component={Cars} hideNavBar={false} navBar={NavBar} />
                         </Scene>
                         <Scene key="workBlock" icon={TabIcon} initial={true} online='ios-bus' outline='ios-bus-outline' >
-                            <Scene key="work" title='工作' initial={true}  component={Work} hideNavBar={false} navBar={TopBar} />
+                            <Scene key="work" title='工作' component={Work} hideNavBar={false} navBar={TopBar} />
                             <Scene key="addCar" title='增加商品车' component={AddCar} hideNavBar={false} navBar={NavBar} />
                             <Scene key="carInfoAtWorkBlock" title='商品车信息' component={CarInfo} hideNavBar={false} navBar={NavBar} />
                             <Scene key="cityAtWorkBlock" title='选择城市' component={City} hideNavBar={false} navBar={NavBar} />
@@ -90,10 +92,12 @@ export default class App extends Component {
                             <Scene key="truckAtWorkBlock" title='选择货车' component={Truck} hideNavBar={false} navBar={NavBar} />
                             <Scene key="driverAtWorkBlock" title='选择司机' component={Driver} hideNavBar={false} navBar={NavBar} />
                             <Scene key="carVinAtWorkBlock" title='选择商品车' component={CarVin} hideNavBar={false} navBar={NavBar} />
-                            <Scene key="baseAddrAtWorkBlock" title='选择装车地点' component={BaseAddr} hideNavBar={false} navBar={NavBar} />                            
+                            <Scene key="baseAddrAtWorkBlock" title='选择装车地点' component={BaseAddr} hideNavBar={false} navBar={NavBar} />
                             <Scene key="commandListAtWorkBlock" title='指令列表' component={CommandList} hideNavBar={false} hideTabBar navBar={NavBar} />
                             <Scene key="commandAtWorkBlock" title='指令列表' component={Command} hideNavBar={false} hideTabBar navBar={NavBar} />
-                            <Scene key="taskInfoAtWork" title='装车信息'  component={TaskInfoAtWork} hideNavBar={false} hideTabBar navBar={NavBar} />
+                            <Scene key="taskInfoAtWork" title='装车信息' component={TaskInfoAtWork} hideNavBar={false} hideTabBar navBar={NavBar} />
+                            <Scene key="makeAtWorkBlock" title='选择品牌' component={Make} hideNavBar={false} hideTabBar navBar={NavBar} />
+                            <Scene key="addCarImage" title='添加照片' initial={true} component={AddCarImage} hideNavBar={false} hideTabBar navBar={NavBar} />
                         </Scene>
                         <Scene key="requirementBlock" icon={TabIcon} online='ios-archive' outline='ios-archive-outline' >
                             <Scene key="requirement" rightType={1} title='需求管理' onPressRight={() => Actions.addRequirement()} component={Requirement} hideNavBar={false} navBar={TopBar} />

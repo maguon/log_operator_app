@@ -45,3 +45,7 @@ export const command = (parent) => {
 export const carInfo = (parent) => {
     if (parent === 'workBlock') return Actions.carInfoAtWorkBlock
 }
+
+export const make = (parent) => {
+    if (parent === 'workBlock') return Actions.makeAtWorkBlock
+}
