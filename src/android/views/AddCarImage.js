@@ -3,15 +3,13 @@ import {
     Text,
     View,
     Dimensions,
-    TouchableOpacity,
     StyleSheet,
-    Image,
-    Alert,
     Modal,
     TouchableHighlight,
     FlatList,
     StatusBar,
-    ActivityIndicator
+    ActivityIndicator,
+    ToastAndroid
 } from 'react-native'
 import { Button, Icon, Spinner } from 'native-base'
 import ImageResizer from 'react-native-image-resizer'
@@ -78,8 +76,20 @@ class AddCarImage extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const addCarImage = nextProps.addCarImageReducer
-        console.log(addCarImage)
+        const { addCarImage } = nextProps.addCarImageReducer
+        if (addCarImage.isResultStatus == 2) {
+            ToastAndroid.show('上传成功！', ToastAndroid.SHORT)
+            this.props.resetAddCarImage()
+        } else if (addCarImage.isResultStatus == 6) {
+            ToastAndroid.showWithGravity(`上传失败${addCarImage.unsuccessNum}张！`, ToastAndroid.SHORT)
+            this.props.resetAddCarImage()
+        } else if (addCarImage.isResultStatus == 4) {
+            ToastAndroid.showWithGravity('上传失败！', ToastAndroid.SHORT)
+            this.props.resetAddCarImage()
+        } else if (addCarImage.isResultStatus == 3) {
+            ToastAndroid.showWithGravity('上传失败！', ToastAndroid.SHORT)
+            this.props.resetAddCarImage()
+        }
     }
 
     addCarImage(param) {
@@ -108,7 +118,6 @@ class AddCarImage extends Component {
     }
 
     _cameraStart() {
-        console.log('start')
         this.props.addCarImageWaiting()
     }
 
@@ -157,10 +166,7 @@ class AddCarImage extends Component {
 
 
     render() {
-        // console.log(this.props)
-        // console.log(this.props.addCarImageReducer)
         const { imageList } = this.props.addCarImageReducer.data
-
         return (
             <View style={{ flex: 1 }}>
                 <FlatList
