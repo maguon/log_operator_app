@@ -41,7 +41,7 @@ class AddCar extends Component {
         const { addCar } = nextProps.addCarReducer
         if (addCar.isResultStatus == 2) {
             ToastAndroid.show('创建成功！', ToastAndroid.SHORT)
-            console.log('nextProps.addCarReducer',nextProps.addCarReducer)
+           // console.log('nextProps.addCarReducer',nextProps.addCarReducer)
             Actions.addCarImage({ initParam: { carId: nextProps.addCarReducer.data.carId,vin:this.state.vin } })
             this.props.resetAddCar()
         }

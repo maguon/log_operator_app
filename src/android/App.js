@@ -75,14 +75,14 @@ export default class App extends Component {
             <Router getSceneStyle={getSceneStyle}>
                 <Scene key="root">
                     <Scene key="main" tabs={true} tabBarStyle={styles.tabBarStyle} tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}>
-                        <Scene key="homeBlock" icon={TabIcon} initial={true}  online='ios-home' outline='ios-home-outline' >
-                            <Scene key="home"  initial={true}  title='首页' component={Home} hideNavBar={false} navBar={TopBar} />
-                            <Scene key="task" title='司机任务' component={Task} hideNavBar={false} navBar={NavBar} />
-                            <Scene key="command"title='调度指令' component={Command} hideNavBar={false} navBar={NavBar} />
+                        <Scene key="homeBlock" icon={TabIcon} initial={true} online='ios-home' outline='ios-home-outline' >
+                            <Scene key="home" title='首页'  initial={true}  component={Home} hideNavBar={false} navBar={TopBar} />
+                            <Scene key="task" title='司机任务' component={Task} hideTabBar hideNavBar={false} navBar={NavBar} />
+                            <Scene key="command" title='调度指令'component={Command} hideTabBar hideNavBar={false} navBar={NavBar} />
                             <Scene key="driverInfo" title='司机信息' component={DriverInfo} hideNavBar={false} navBar={NavBar} />
                             <Scene key="cars" title='装车信息' component={Cars} hideNavBar={false} navBar={NavBar} />
                         </Scene>
-                        <Scene key="workBlock" icon={TabIcon}  online='ios-bus' outline='ios-bus-outline' >
+                        <Scene key="workBlock" icon={TabIcon} online='ios-bus' outline='ios-bus-outline' >
                             <Scene key="work" title='工作' component={Work} hideNavBar={false} navBar={TopBar} />
                             <Scene key="addCar" title='增加商品车' component={AddCar} hideNavBar={false} navBar={NavBar} />
                             <Scene key="carInfoAtWorkBlock" title='商品车信息' component={CarInfo} hideNavBar={false} navBar={NavBar} />
@@ -97,7 +97,7 @@ export default class App extends Component {
                             <Scene key="commandAtWorkBlock" title='指令列表' component={Command} hideNavBar={false} hideTabBar navBar={NavBar} />
                             <Scene key="taskInfoAtWork" title='装车信息' component={TaskInfoAtWork} hideNavBar={false} hideTabBar navBar={NavBar} />
                             <Scene key="makeAtWorkBlock" title='选择品牌' component={Make} hideNavBar={false} hideTabBar navBar={NavBar} />
-                            <Scene key="addCarImage" title='添加照片'  component={AddCarImage} hideNavBar={false} hideTabBar navBar={NavBar} />
+                            <Scene key="addCarImage" title='添加照片' component={AddCarImage} hideNavBar={false} hideTabBar navBar={NavBar} />
                         </Scene>
                         <Scene key="requirementBlock" icon={TabIcon} online='ios-archive' outline='ios-archive-outline' >
                             <Scene key="requirement" rightType={1} title='需求管理' onPressRight={() => Actions.addRequirement()} component={Requirement} hideNavBar={false} navBar={TopBar} />

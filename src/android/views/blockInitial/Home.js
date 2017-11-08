@@ -5,11 +5,13 @@ import {
     FlatList,
     InteractionManager,
     ActivityIndicator,
+    TouchableNativeFeedback
 } from 'react-native'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { connect } from 'react-redux'
 import * as homeAction from '../../../actions/HomeAction'
 import moment from 'moment'
+import { Actions } from 'react-native-router-flux'
 
 class Home extends Component {
     constructor(props) {
@@ -30,7 +32,7 @@ class Home extends Component {
             },
             getTaskList: {
                 OptionalParam: {
-                    // baseAddrId: 102,
+                     baseAddrId: 102,
                     start: 0,
                     size: 12
                 }
@@ -46,7 +48,7 @@ class Home extends Component {
         if (!listLoadComplete && getTaskListMore.isResultStatus != 1) {
             this.props.getTaskListMore({
                 OptionalParam: {
-                    // baseAddrId: 102,
+                    baseAddrId: 102,
                     start: taskList.length,
                     size: 12
                 }
@@ -83,24 +85,25 @@ class Home extends Component {
 
 
     renderListItem(item, index) {
-        console.log(item)
         return (
-            <View key={index} style={{ borderWidth: 1, borderColor: '#eee', marginHorizontal: 10, marginTop: 10 }}>
-                <View style={{ flexDirection: 'row', backgroundColor: '#eff3f5', padding: 10, justifyContent: 'space-between' }}>
-                    <View style={{ flexDirection: 'row' }}>
-                        <MaterialCommunityIcons name='truck-delivery' size={20} color='#00cade' />
-                        <Text style={{ paddingLeft: 10, fontWeight: 'bold', color: '#8c989f' }}>{item.city_route_start?`${item.city_route_start}`:''} -> {item.city_route_end?`${item.city_route_end}`:''}</Text>
+            <TouchableNativeFeedback key={index} onPress={() => Actions.command({ initParam: { taskInfo: item } })} background={TouchableNativeFeedback.SelectableBackground()}>
+                <View style={{ borderWidth: 1, borderColor: '#eee', marginHorizontal: 10, marginTop: 10 }}>
+                    <View style={{ flexDirection: 'row', backgroundColor: '#eff3f5', padding: 10, justifyContent: 'space-between' }}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <MaterialCommunityIcons name='truck-delivery' size={20} color='#00cade' />
+                            <Text style={{ paddingLeft: 10, fontWeight: 'bold', color: '#8c989f' }}>{item.city_route_start ? `${item.city_route_start}` : ''} -> {item.city_route_end ? `${item.city_route_end}` : ''}</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row' }}>
+                            <MaterialCommunityIcons name='account' size={20} color='#00cade' />
+                            <Text style={{ paddingLeft: 10, fontWeight: 'bold', color: '#8c989f' }}>{item.drive_name ? `${item.drive_name}` : ''}</Text>
+                        </View>
                     </View>
-                    <View style={{ flexDirection: 'row' }}>
-                        <MaterialCommunityIcons name='account' size={20} color='#00cade' />
-                        <Text style={{ paddingLeft: 10, fontWeight: 'bold', color: '#8c989f' }}>{item.drive_name?`${item.drive_name}`:''}</Text>
+                    <View style={{ flexDirection: 'row', backgroundColor: '#fff', padding: 10, justifyContent: 'space-between' }}>
+                        <Text style={{ fontSize: 11, color: '#8c989f' }}>执行时间：{item.task_start_date ? moment(`${item.task_start_date}`).format('YYYY-MM-DD HH:mm') : ''}</Text>
+                        <Text style={{ fontSize: 11, color: '#8c989f' }}>指定装载：{item.plan_count ? `${item.plan_count}` : ''}</Text>
                     </View>
                 </View>
-                <View style={{ flexDirection: 'row', backgroundColor: '#fff', padding: 10, justifyContent: 'space-between' }}>
-                    <Text style={{ fontSize: 11, color: '#8c989f' }}>执行时间：{item.task_start_date ? moment(`${item.task_start_date}`).format('YYYY-MM-DD HH:mm') : ''}</Text>
-                    <Text style={{ fontSize: 11, color: '#8c989f' }}>指定装载：{item.plan_count?`${item.plan_count}`:''}</Text>
-                </View>
-            </View>
+            </TouchableNativeFeedback>
         )
     }
 

@@ -18,7 +18,6 @@ const initialState = {
 export default handleActions({
     [actionTypes.carInfoTypes.GET_CarInfo_SUCCESS]: (state, action) => {
         const { payload: { data } } = action
-        console.log('data',data)
         return {
             data: {
                 carInfo: data
