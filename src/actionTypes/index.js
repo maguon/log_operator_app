@@ -16,6 +16,7 @@ import * as addCarTypes from './AddCarTypes'
 import * as addCarImageTypes from './AddCarImageTypes'
 import * as homeTypes from './HomeTypes'
 import * as commandTypes from './CommandTypes'
+import * as carsTypes from './CarsTypes'
 
 export {
     cityTypes,
@@ -35,5 +36,6 @@ export {
     addCarTypes,
     homeTypes,
     addCarImageTypes,
-    commandTypes
+    commandTypes,
+    carsTypes
 }   

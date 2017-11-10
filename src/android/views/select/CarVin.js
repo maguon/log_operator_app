@@ -39,7 +39,7 @@ class CarVin extends Component {
     }
 
     _onPress(item) {
-        this.props.onSelect(item.vin)
+        this.props.onSelect(item)
         Actions.pop()
     }
 

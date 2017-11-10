@@ -70,12 +70,27 @@ function putCallBack(url, params, callback) {
         });
 }
 
-function del(url, callback) {
+function del(url) {
     return fetch(url, {
         method: 'DELETE',
         headers: requestHeaders.headers,
     }).then((response) => response.json())
 }
+
+function delCallback(url, callback) {
+    fetch(url, {
+        method: 'DELETE',
+        headers: requestHeaders.headers,
+        //body: JSON.stringify(params)
+    }).then((response) => response.json())
+        .then((responseJson) => {
+            callback(null, responseJson)
+        })
+        .catch((error) => {
+            callback(error, null);
+        });
+}
+
 
 
 function postFile(url,params ) {
@@ -122,5 +137,6 @@ module.exports = {
     getCallBack: getCallBack,
     postCallBack: postCallBack,
     putCallBack: putCallBack,
-    postFileCallBack: postFileCallBack
+    postFileCallBack: postFileCallBack,
+    delCallback: delCallback
 }

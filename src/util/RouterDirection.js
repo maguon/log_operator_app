@@ -24,6 +24,7 @@ export const selectBaseAddr = (parent) => {
 
 export const selectCarVin = (parent) => {
     if (parent === 'workBlock') return Actions.carVinAtWorkBlock
+    if (parent === 'homeBlock') return Actions.carVinAtHomeBlock
 }
 
 export const selectTruck = (parent) => {

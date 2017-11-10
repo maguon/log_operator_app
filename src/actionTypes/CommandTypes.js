@@ -10,3 +10,5 @@ export const CancelCommand_WAITING = 'CancelCommand_WAITING'
 export const CancelCommand_ERROR = 'CancelCommand_ERROR'
 export const CancelCommand_SERVICEERROR = 'CancelCommand_SERVICEERROR'
 export const REMOVE_CancelCommand = 'REMOVE_CancelCommand'
+
+export const CHANGE_TaskStatus = 'CHANGE_TaskStatus'

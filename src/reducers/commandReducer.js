@@ -82,9 +82,6 @@ export default handleActions({
     },
 
 
-
-
-
     [actionTypes.commandTypes.CancelCommand_SUCCESS]: (state, action) => {
         const { payload: { data: { id } } } = action
         return {
@@ -200,6 +197,30 @@ export default handleActions({
             ...state,
             data: {
                 commandList: newCommandList ? [...newCommandList] : []
+            }
+        }
+    },
+
+
+    [actionTypes.commandTypes.CHANGE_TaskStatus]: (state, action) => {
+        const { payload: { data: { id, load_task_status } } } = action
+        return {
+            ...state,
+            data: {
+                ...state.data,
+                commandList: [...state.data.commandList.map(item => {
+                    if (item.data.id == id) {
+                        return {
+                            ...item,
+                            data:{
+                                ...item.data,
+                                load_task_status
+                            }
+                        }
+                    } else {
+                        return item
+                    }
+                })]
             }
         }
     }

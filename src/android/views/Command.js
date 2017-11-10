@@ -57,7 +57,8 @@ class Command extends Component {
     }
 
     carry(param) {
-        Actions.cars({ initParam: { commandInfo: param.data } })
+        const { truck_id } = this.props.initParam.taskInfo
+        Actions.cars({ initParam: { commandInfo: { ...param.data, truck_id } } })
     }
 
     renderListHeader() {
@@ -129,6 +130,7 @@ class Command extends Component {
     render() {
         const { commandList } = this.props.commandReducer.data
         const { getCommandList } = this.props.commandReducer
+        console.log('commandList',commandList)
         if (getCommandList.isResultStatus == 1) {
             return (
                 <View style={{ flex: 1 }}>
