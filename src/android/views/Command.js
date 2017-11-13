@@ -36,7 +36,6 @@ class Command extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
         const { commandList } = nextProps.commandReducer.data
         const command = commandList.find(item => item.cancelCommand.isResultStatus == 2)
         if (command) {
@@ -130,7 +129,7 @@ class Command extends Component {
     render() {
         const { commandList } = this.props.commandReducer.data
         const { getCommandList } = this.props.commandReducer
-        console.log('commandList',commandList)
+        //console.log('commandList',commandList)
         if (getCommandList.isResultStatus == 1) {
             return (
                 <View style={{ flex: 1 }}>

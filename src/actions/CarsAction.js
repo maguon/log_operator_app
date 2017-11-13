@@ -8,10 +8,10 @@ import { ObjectToUrl } from '../util/ObjectToUrl'
 export const finishCarry = (param) => async (dispatch) => {
     dispatch({ type: actionTypes.carsTypes.Finish_Carry_WAITING, payload: {} })
     const url = `${base_host}/user/${param.requiredParam.userId}/dpRouteLoadTask/${param.requiredParam.dpRouteLoadTaskId}/loadTaskStatus/${param.requiredParam.loadTaskStatus}`
-    console.log('url', url)
+   // console.log('url', url)
     try {
         let res = await httpRequest.put(url, {})
-        console.log('res', res)
+        //console.log('res', res)
         if (res.success) {
             dispatch({ type: actionTypes.carsTypes.Finish_Carry_SUCCESS, payload: { data: param.requiredParam.loadTaskStatus } })
             dispatch({

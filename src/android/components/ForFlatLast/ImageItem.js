@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Dimensions, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { Text, View, Dimensions, StyleSheet,Image, TouchableOpacity } from 'react-native'
 import { Button, Icon, Spinner } from 'native-base'
 import { isEqualKeys, isEqualOwnPropertys } from '../../../util/IsObjectValueEqual'
 
@@ -27,6 +27,8 @@ export default class CarCameraItem extends Component {
         this.state = {
             spinnerDisplay: true
         }
+        this._getContainerWidth = this._getContainerWidth.bind(this)
+        this._getContainerHeight = this._getContainerHeight.bind(this)
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -56,6 +58,8 @@ export default class CarCameraItem extends Component {
     }
 
     render() {
+        // console.log('imageUrl',this.props.imageUrl)
+        //onError={({nativeEvent})=>console.log('nativeEvent',nativeEvent)}
         return <View style={{ ...styles.container, width: this._getContainerWidth(), height: this._getContainerHeight(), ...this.props.containerStyle }}>
             <Image source={{ uri: this.props.imageUrl }}
                 style={{ ...styles.image, ...this.props.imageStyle }}
@@ -72,7 +76,3 @@ export default class CarCameraItem extends Component {
         </View>
     }
 }
-
-
-
-

@@ -5,7 +5,8 @@ import * as actionTypes from '../actionTypes'
 //isResultStatus(执行结果状态):[0(未执行),1(等待)，2(成功)，3(错误)，4(执行失败),5(服务器未处理错误)]
 const initialState = {
     data: {
-        carInfo: {}
+        carInfo: {},
+        imageList: []
     },
     getCarInfo: {
         isResultStatus: 0,
@@ -17,10 +18,11 @@ const initialState = {
 
 export default handleActions({
     [actionTypes.carInfoTypes.GET_CarInfo_SUCCESS]: (state, action) => {
-        const { payload: { data } } = action
+        const { payload: { data: { carInfo, imageList } } } = action
         return {
             data: {
-                carInfo: data
+                carInfo,
+                imageList
             },
             getCarInfo: {
                 ...state.getCarInfo,

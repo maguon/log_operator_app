@@ -132,12 +132,15 @@ class Cars extends Component {
                     />
                 </View>}
                 {item.removeCommandCar.isResultStatus != 1 && <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'flex-end' }}>
-                    <Icon name='ios-close-circle' style={{ color: '#fe8a95', fontSize: 26 }} onPress={() => this.removeCar(item)} />
-                    <Icon name='ios-arrow-dropright-circle' style={{ color: '#00cade', marginLeft: 10, fontSize: 26 }} />
+                    <Icon name='ios-close-circle'
+                        style={{ color: '#fe8a95', fontSize: 26 }}
+                        onPress={() => this.removeCar(item)} />
+                    <Icon name='ios-arrow-dropright-circle'
+                        style={{ color: '#00cade', marginLeft: 10, fontSize: 26 }}
+                        onPress={() => RouterDirection.carInfo(this.props.parent)({ initParam: { vin: item.data.vin, carId: item.data.car_id } })} />
                 </View>}
             </View>
         } else {
-            console.log('123123123')
             return <View style={{ flexDirection: 'row', paddingHorizontal: 10, paddingVertical: 5, borderBottomWidth: 1, borderColor: '#eee', alignItems: 'center' }}>
                 <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
                     <MaterialCommunityIcons name='car' size={14} style={{ color: '#8c989f' }} />
@@ -147,7 +150,9 @@ class Cars extends Component {
                     <Text style={{ fontSize: 11 }}>{item.data.make_name ? `${item.data.make_name}` : ''}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'flex-end' }}>
-                    <Icon name='ios-arrow-dropright-circle' style={{ color: '#00cade', marginLeft: 10, fontSize: 26 }} />
+                    <Icon name='ios-arrow-dropright-circle'
+                        style={{ color: '#00cade', marginLeft: 10, fontSize: 26 }}
+                        onPress={() => RouterDirection.carInfo(this.props.parent)({ initParam: { vin: item.data.vin, carId: item.data.car_id } })} />
                 </View>
             </View>
         }
@@ -156,7 +161,7 @@ class Cars extends Component {
     render() {
         const { carList, taskInfo } = this.props.carsReducer.data
         const { pushCarInCommand, getCommandCarList } = this.props.carsReducer
-        console.log('this.props.carsReducer', this.props.carsReducer)
+        //console.log('this.props.carsReducer', this.props.carsReducer)
         if (getCommandCarList.isResultStatus == 1) {
             return (
                 <View style={{ flex: 1 }}>
