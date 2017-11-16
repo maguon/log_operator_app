@@ -8,7 +8,8 @@ const localStorageKey = {
     // USER_TOKEN: 'user-token',
     // USER_ID: 'user-id',
     // USER_TYPE: 'user-type',
-    // USER_STATUS: 'user-status',
+    // USER_STATUS: 'user-status',log_operator_app_
+    
 }
 
 export default localStorageKey

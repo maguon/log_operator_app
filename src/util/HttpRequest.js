@@ -5,9 +5,7 @@ function get(url) {
     return fetch(url, {
         method: 'GET',
         headers: requestHeaders.headers
-    }).then((response) => {
-        return response.json()
-    })
+    }).then((response) => response.json())
 }
 
 function getCallBack(url, callBack) {

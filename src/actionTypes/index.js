@@ -17,6 +17,8 @@ import * as addCarImageTypes from './AddCarImageTypes'
 import * as homeTypes from './HomeTypes'
 import * as commandTypes from './CommandTypes'
 import * as carsTypes from './CarsTypes'
+import * as loginTypes from './LoginTypes'
+import * as initializationTypes from './InitializationTypes'
 
 export {
     cityTypes,
@@ -37,5 +39,7 @@ export {
     homeTypes,
     addCarImageTypes,
     commandTypes,
-    carsTypes
+    carsTypes,
+    loginTypes,
+    initializationTypes
 }   

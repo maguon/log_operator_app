@@ -8,7 +8,7 @@ export const getCarInfo = (param) => async (dispatch) => {
     `${record_host}/user/${param.requiredParam.userId}/car/${param.requiredParam.carId}/record`]
     try {
         let res = await Promise.all(urls.map(url => httpRequest.get(url)))
-        console.log('res', res)
+        //console.log('res', res)
         if (res[0].success && res[1].success) {
             dispatch({
                 type: actionTypes.carInfoTypes.GET_CarInfo_SUCCESS,

@@ -18,6 +18,8 @@ import addCarReducer from './addCarReducer'
 import addCarImageReducer from './addCarImageReducer'
 import commandReducer from './commandReducer'
 import carsReducer from './carsReducer'
+import userReducer from './userReducer'
+import initializationReducer from './initializationReducer'
 
 export default combineReducers({
     homeReducer,
@@ -38,5 +40,7 @@ export default combineReducers({
     addCarReducer,
     addCarImageReducer,
     commandReducer,
-    carsReducer
+    carsReducer,
+    userReducer,
+    initializationReducer
 })

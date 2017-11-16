@@ -3,6 +3,7 @@ package com.log_operator_app;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.jeepeng.react.xgpush.PushPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import fr.bamlab.rnimageresizer.ImageResizerPackage;
 import com.imagepicker.ImagePickerPackage;
@@ -27,6 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new PushPackage(),
             new PickerPackage(),
             new ImageResizerPackage(),
             new ImagePickerPackage(),
