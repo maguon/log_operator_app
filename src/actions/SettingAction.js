@@ -6,6 +6,10 @@ import localStorage from '../util/LocalStorage'
 
 
 export const saveBaseAddr = (param) => (dispatch) => {
-    localStorage.saveKeyId(localStorageKey.BASEADDR, param.id, param.value)
+    console.log(param.value)
+    // localStorage.save({
+    //     key: localStorageKey.BASEADDR,
+    //     data: param.value
+    // })
     dispatch({ type: actionTypes.settingTypes.SAVE_BaseAddr, payload: { data: param.value } })
 }

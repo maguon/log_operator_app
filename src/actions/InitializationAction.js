@@ -21,19 +21,25 @@ import { sleep } from '../util/Sleep'
  * param : 对应执行步骤执行时所需要的参数
  * currentStep : 执行到第N步（从1开始）
  * tryCount : 当遇到网络错误的时候尝试的次数（从1开始）
+ * 
+ * 
+ * 初始化流程：
+ * 第一步：验证版本是否是最新版本
+ * 第二步：获取本地localstorage的数据
+ * 第三步：换network request所需要的token
  */
 export const initApp = (param, tryCount = 1, currentStep = 1) => (dispatch) => {
     if (currentStep == 1) {
         //执行第一步
-        console.log(`========执行第${currentStep}步    第${tryCount}次尝试========`)
+        //console.log(`========执行第${currentStep}步    第${tryCount}次尝试========`)
         validateVersion(param, tryCount, currentStep)(dispatch)
     } else if (currentStep == 2) {
         //执行第二步
-        console.log(`========执行第${currentStep}步    第${tryCount}次尝试========`)
+        //console.log(`========执行第${currentStep}步    第${tryCount}次尝试========`)
         loadLocalStorage(null, tryCount, currentStep)(dispatch)
     } else if (currentStep == 3) {
         //执行第三步
-        console.log(`========执行第${currentStep}步    第${tryCount}次尝试========`)
+        //console.log(`========执行第${currentStep}步    第${tryCount}次尝试========`)
         validateToken(param, tryCount, currentStep)(dispatch)
     }
 }
@@ -99,6 +105,7 @@ export const loadLocalStorage = (param = null, tryCount = 1, currentStep = 2) =>
         //         token: '3AiNDlhdSX2xXS_M0vjIjmkidQc=kzn-84Lbb3553a0ab516f100a537f211165bd85542c0b0de439835a57b793b1214710e57c66467bd405ba3854852c1f16f744373'
         //     }
         // })
+        //localStorage.remove({ key: localStorageKey.USER })
         const localStorageRes = await localStorage.load({ key: localStorageKey.USER })
         if (localStorageRes.token && localStorageRes.userId) {
             dispatch({ type: actionTypes.initializationTypes.Load_LocalStorage_Success, payload: { step: currentStep } })
@@ -110,14 +117,14 @@ export const loadLocalStorage = (param = null, tryCount = 1, currentStep = 2) =>
             }, 1, currentStep + 1)(dispatch)
         }
         else {
-            localStorage.remove(localStorageKey.USER)
+            localStorage.remove({ key: localStorageKey.USER })
             dispatch({ type: actionTypes.initializationTypes.Load_LocalStorage_Failed, payload: { step: currentStep } })
         }
     } catch (err) {
         if (err.name == 'NotFoundError') {
             dispatch({ type: actionTypes.initializationTypes.Load_LocalStorage_NotFoundError, payload: { step: currentStep } })
         } else {
-            localStorage.remove(localStorageKey.USER)
+            localStorage.remove({ key: localStorageKey.USER })
             dispatch({ type: actionTypes.initializationTypes.Load_LocalStorage_Error, payload: { errorMsg: err.message, step: currentStep } })
         }
     }
@@ -145,8 +152,8 @@ export const validateToken = (param, tryCount = 1, currentStep = 3) => async (di
             requestHeaders.set('user-type', res.result.type)
             requestHeaders.set('user-name', res.result.phone)
             dispatch({
-                type: actionTypes.loginTypes.LOGIN_SUCCESS, payload: {
-                    data: {
+                type: actionTypes.loginTypes.Set_UserInfo, payload: {
+                    user: {
                         userId: res.result.userId,
                         token: res.result.accessToken,
                         userType: res.result.type,
@@ -168,12 +175,11 @@ export const validateToken = (param, tryCount = 1, currentStep = 3) => async (di
                 await sleep(1000)
                 initApp(param, tryCount + 1, currentStep)(dispatch)
             } else {
-                dispatch({ type: actionTypes.initializationTypes.validate_token_NetWorkError, payload: {param, step: currentStep } })
+                dispatch({ type: actionTypes.initializationTypes.validate_token_NetWorkError, payload: { param, step: currentStep } })
             }
         } else {
             dispatch({ type: actionTypes.initializationTypes.validate_token_Error, payload: { step: currentStep } })
         }
-
     }
 }
 

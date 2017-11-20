@@ -5,34 +5,62 @@ import {
     FlatList,
     InteractionManager,
     ActivityIndicator,
-    TouchableNativeFeedback
+    TouchableNativeFeedback,
+    Modal,
+    ART,
+    Dimensions,
+    TouchableHighlight,
+    TouchableOpacity
 } from 'react-native'
+import { Icon } from 'native-base'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { connect } from 'react-redux'
 import * as homeAction from '../../../actions/HomeAction'
+import * as settingAction from '../../../actions/SettingAction'
+import * as RouterDirection from '../../../util/RouterDirection'
 import moment from 'moment'
 import { Actions } from 'react-native-router-flux'
+
+
+
+const { width, height } = Dimensions.get('window');
+let mwidth = 70;
+let mheight = 100;
+const top = 46
 
 class Home extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            menuModalIsVisible: false
+        }
         this.renderListHeader = this.renderListHeader.bind(this)
         this.getTaskListMore = this.getTaskListMore.bind(this)
+        this.renderMenu = this.renderMenu.bind(this)
+        this._onSaveBaseAddr=this._onSaveBaseAddr.bind(this)
     }
 
     componentDidMount() {
+        Actions.refresh({
+            onPressLeft: () => RouterDirection.selectCity(this.props.parent)({onSelect:this._onSaveBaseAddr,  isMultistep: true }),
+            leftButtonTitle: this.props.settingReducer.data.baseAddr,
+            onPressRight: () => this.setState({ menuModalIsVisible: true })
+        })
+        const { user } = this.props.userReducer.data
+        const { data } = this.props.settingReducer
         this.props.getHomeDataWaiting()
         InteractionManager.runAfterInteractions(() => this.props.getHomeData({
             getCarriedCount: {
                 OptionalParam: {
-                    loadDateStart: '2017-10-01',
-                    loadDateEnd: '2017-10-30',
-                    loadTaskStatusArr: '3,7,9'
+                    loadDateStart: moment().format('YYYY-MM-01'),
+                    loadDateEnd: moment().format('YYYY-MM-DD'),
+                    loadTaskStatusArr: '3,7,9',
+                    fieldOpId: user.userId
                 }
             },
             getTaskList: {
                 OptionalParam: {
-                     baseAddrId: 102,
+                    baseAddrId: data.baseAddrId,
                     start: 0,
                     size: 12
                 }
@@ -40,15 +68,32 @@ class Home extends Component {
         }))
     }
 
+    _onSaveBaseAddr(param) {
+        this.props.saveBaseAddr({
+            id: 1,
+            value: {
+                baseAddrId: param.id,
+                baseAddr: param.address
+            }
+        })
+    }
 
+    componentWillReceiveProps(nextProps) {
+        const { data } = nextProps.settingReducer
+        if (data.baseAddr != this.props.settingReducer.data.baseAddr) {
+            console.log(data.baseAddr)
+            Actions.refresh({ leftButtonTitle: data.baseAddr })
+        }
+    }
 
     getTaskListMore() {
         const { taskList, listLoadComplete } = this.props.homeReducer.data
         const { getTaskListMore } = this.props.homeReducer
+        const { data } = this.props.settingReducer
         if (!listLoadComplete && getTaskListMore.isResultStatus != 1) {
             this.props.getTaskListMore({
                 OptionalParam: {
-                    baseAddrId: 102,
+                    baseAddrId: data.baseAddrId,
                     start: taskList.length,
                     size: 12
                 }
@@ -84,6 +129,59 @@ class Home extends Component {
     }
 
 
+    renderMenu() {
+        const path = ART.Path();
+        path.moveTo(width - 10 - mwidth * 1 / 3 + 3, top);
+        path.lineTo(width - 10 - mwidth * 1 / 3 + 9, top - 7);
+        path.lineTo(width - 10 - mwidth * 1 / 3 + 15, top);
+        path.close();
+        return (
+            <Modal
+                transparent={true}
+                animationType={"fade"}
+                visible={this.state.menuModalIsVisible}
+                onRequestClose={() => { }}>
+                <TouchableHighlight underlayColor={'rgba(0,0,0,0.2)'} style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.2)' }} onPress={() => this.setState({ menuModalIsVisible: false })}>
+                    <View style={{ position: 'absolute', top: 0, right: 10 }}>
+                        <ART.Surface width={width} height={top} >
+                            <ART.Shape d={path} fill={'#fff'} />
+                        </ART.Surface>
+                        <View style={{
+                            backgroundColor: '#fff',
+                            alignSelf: 'flex-end',
+                            padding: 5,
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
+                            borderRadius: 3
+                        }}>
+                            <TouchableOpacity style={{ padding: 5, flexDirection: 'row', alignItems: 'center' }}>
+                                <Icon name='ios-qr-scanner' style={{ fontSize: 12 }} />
+                                <Text style={{ fontSize: 12, paddingLeft: 5 }}>扫一扫</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{ padding: 5, flexDirection: 'row', alignItems: 'center' }}
+                                onPress={() => {
+                                    this.setState({ menuModalIsVisible: false })
+                                    RouterDirection.addRequirement(this.props.parent)()
+                                }}>
+                                <Icon name='ios-clipboard-outline' style={{ fontSize: 12 }} />
+                                <Text style={{ fontSize: 12, paddingLeft: 5 }}>增加需求</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{ padding: 5, flexDirection: 'row', alignItems: 'center' }}
+                                onPress={() => {
+                                    this.setState({ menuModalIsVisible: false })
+                                    RouterDirection.addCar(this.props.parent)()
+                                }}>
+                                <Icon name='ios-car-outline' style={{ fontSize: 12 }} />
+                                <Text style={{ fontSize: 12, paddingLeft: 5 }}>增加商品车</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </TouchableHighlight>
+            </Modal>
+        )
+    }
+
+
     renderListItem(item, index) {
         return (
             <TouchableNativeFeedback key={index} onPress={() => Actions.command({ initParam: { taskInfo: item } })} background={TouchableNativeFeedback.SelectableBackground()}>
@@ -108,6 +206,7 @@ class Home extends Component {
     }
 
     render() {
+
         const { carriedCount, taskList, listLoadComplete } = this.props.homeReducer.data
         const { getHomeData, getTaskListMore } = this.props.homeReducer
         if (getHomeData.isResultStatus == 1) {
@@ -140,6 +239,7 @@ class Home extends Component {
                             size="large"
                         />
                     </View>
+                    {this.renderMenu()}
                 </View>
             )
         } else {
@@ -161,6 +261,7 @@ class Home extends Component {
                             <Text style={{ fontSize: 11, paddingLeft: 10 }}>正在加载……</Text>
                         </View> : <View style={{ height: 10 }} />}
                         renderItem={({ item, index }) => this.renderListItem(item, index)} />
+                    {this.renderMenu()}
                 </View>
             )
         }
@@ -169,7 +270,9 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        homeReducer: state.homeReducer
+        userReducer: state.userReducer,
+        homeReducer: state.homeReducer,
+        settingReducer: state.settingReducer
     }
 }
 
@@ -182,6 +285,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     getTaskListMore: (param) => {
         dispatch(homeAction.getTaskListMore(param))
+    },
+    saveBaseAddr: (param) => {
+        dispatch(settingAction.saveBaseAddr(param))
     }
 })
 

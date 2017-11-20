@@ -45,7 +45,6 @@ const initialState = {
 
 export default handleActions({
     [actionTypes.initializationTypes.INIT_App_Waiting]: (state, action) => {
-        const { payload: { data } } = action
         return {
             ...initialState,
             data: {

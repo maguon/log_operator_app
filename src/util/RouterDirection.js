@@ -4,6 +4,7 @@ export const selectCity = (parent) => {
     if (parent === 'workBlock') return Actions.cityAtWorkBlock
     if (parent === 'requirementBlock') return Actions.cityAtRequirementBlock
     if (parent === 'settingBlock') return Actions.cityAtSettingBlock
+    if (parent === 'homeBlock') return Actions.cityAtHomeBlock
 }
 
 export const selectEntrust = (parent) => {
@@ -18,6 +19,7 @@ export const selectReceive = (parent) => {
 
 export const selectBaseAddr = (parent) => {
     if (parent === 'workBlock') return Actions.baseAddrAtWorkBlock
+    if (parent === 'homeBlock') return Actions.baseAddrAtHomeBlock
     if (parent === 'requirementBlock') return Actions.baseAddrAtRequirementBlock
     if (parent === 'settingBlock') return Actions.baseAddrAtSettingBlock
 }
@@ -50,4 +52,15 @@ export const carInfo = (parent) => {
 
 export const make = (parent) => {
     if (parent === 'workBlock') return Actions.makeAtWorkBlock
+}
+
+
+export const addCar=(parent) => {
+    if (parent === 'homeBlock') return Actions.addCarAtHomeBlock
+    //if (parent === 'homeBlock') return Actions.carInfoAtHomeBlock
+}
+
+export const addRequirement=(parent) => {
+    if (parent === 'homeBlock') return Actions.addRequirementAtHomeBlock
+    //if (parent === 'homeBlock') return Actions.carInfoAtHomeBlock
 }
