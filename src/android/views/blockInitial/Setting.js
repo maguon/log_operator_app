@@ -29,11 +29,8 @@ class Setting extends Component {
 
     _onSaveBaseAddr(param) {
         this.props.saveBaseAddr({
-            id: 1,
-            value: {
-                baseAddrId: param.id,
-                baseAddr: param.address
-            }
+            baseAddrId: param.id,
+            baseAddr: param.address
         })
     }
 
@@ -43,6 +40,7 @@ class Setting extends Component {
 
     render() {
         const { baseAddrId, baseAddr } = this.props.settingReducer.data
+        const {version} =this.props.initializationReducer.data
         return (
             <View style={{ flex: 1, backgroundColor: '#fafafa' }}>
                 <ScrollView>
@@ -65,7 +63,7 @@ class Setting extends Component {
                             </View>
                         </TouchableHighlight>
                         <View style={{ backgroundColor: '#fff', padding: 10, borderBottomWidth: 1, borderColor: '#eee' }}>
-                            <Text style={{ fontSize: 12, fontWeight: 'bold' }}>版本信息：<Text style={{ fontWeight: '100' }}>v</Text></Text>
+                            <Text style={{ fontSize: 12, fontWeight: 'bold' }}>版本信息：<Text style={{ fontWeight: '100' }}>{`v${version.currentVersion}`}</Text></Text>
                         </View>
                     </View>
                     <View style={{ marginHorizontal: 10, marginTop: 50 }}>
@@ -81,7 +79,8 @@ class Setting extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        settingReducer: state.settingReducer
+        settingReducer: state.settingReducer,
+        initializationReducer:state.initializationReducer
     }
 }
 

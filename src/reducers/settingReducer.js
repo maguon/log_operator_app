@@ -11,15 +11,13 @@ const initialState = {
 
 export default handleActions({
     [actionTypes.settingTypes.LOAD_BaseAddr]: (state, action) => {
-        const { payload: { data } } = action
-       
+        const { payload: { data } } = action    
         return {
             data
         }
     },
     [actionTypes.settingTypes.SAVE_BaseAddr]: (state, action) => {
         const { payload: { data } } = action
-        console.log(data)
         return {
             data
         }

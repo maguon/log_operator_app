@@ -21,8 +21,6 @@ import * as RouterDirection from '../../../util/RouterDirection'
 import moment from 'moment'
 import { Actions } from 'react-native-router-flux'
 
-
-
 const { width, height } = Dimensions.get('window');
 let mwidth = 70;
 let mheight = 100;
@@ -41,11 +39,6 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        Actions.refresh({
-            onPressLeft: () => RouterDirection.selectCity(this.props.parent)({onSelect:this._onSaveBaseAddr,  isMultistep: true }),
-            leftButtonTitle: this.props.settingReducer.data.baseAddr,
-            onPressRight: () => this.setState({ menuModalIsVisible: true })
-        })
         const { user } = this.props.userReducer.data
         const { data } = this.props.settingReducer
         this.props.getHomeDataWaiting()
@@ -70,19 +63,39 @@ class Home extends Component {
 
     _onSaveBaseAddr(param) {
         this.props.saveBaseAddr({
-            id: 1,
-            value: {
-                baseAddrId: param.id,
-                baseAddr: param.address
-            }
+            baseAddrId: param.id,
+            baseAddr: param.address
         })
     }
 
     componentWillReceiveProps(nextProps) {
         const { data } = nextProps.settingReducer
-        if (data.baseAddr != this.props.settingReducer.data.baseAddr) {
-            console.log(data.baseAddr)
-            Actions.refresh({ leftButtonTitle: data.baseAddr })
+        const { user } = nextProps.userReducer.data
+        if(data.baseAddrId!=this.props.settingReducer.data.baseAddrId) {
+            this.props.getHomeDataWaiting()
+            InteractionManager.runAfterInteractions(() => this.props.getHomeData({
+                getCarriedCount: {
+                    OptionalParam: {
+                        loadDateStart: moment().format('YYYY-MM-01'),
+                        loadDateEnd: moment().format('YYYY-MM-DD'),
+                        loadTaskStatusArr: '3,7,9',
+                        fieldOpId: user.userId
+                    }
+                },
+                getTaskList: {
+                    OptionalParam: {
+                        baseAddrId: data.baseAddrId,
+                        start: 0,
+                        size: 12
+                    }
+                }
+            }))  
+        }else if (nextProps.leftButtonTitle!=data.baseAddr) {
+            Actions.refresh({ 
+                onPressLeft: () => RouterDirection.selectCity(this.props.parent)({onSelect:this._onSaveBaseAddr,  isMultistep: true }),
+                leftButtonTitle: data.baseAddr,
+                onPressRight: () => this.setState({ menuModalIsVisible: true })
+             })
         }
     }
 
@@ -100,7 +113,6 @@ class Home extends Component {
             })
         }
     }
-
 
     renderListHeader() {
         const { carriedCount } = this.props.homeReducer.data
@@ -127,7 +139,6 @@ class Home extends Component {
             </View>
         )
     }
-
 
     renderMenu() {
         const path = ART.Path();
@@ -181,7 +192,6 @@ class Home extends Component {
         )
     }
 
-
     renderListItem(item, index) {
         return (
             <TouchableNativeFeedback key={index} onPress={() => Actions.command({ initParam: { taskInfo: item } })} background={TouchableNativeFeedback.SelectableBackground()}>
@@ -206,7 +216,6 @@ class Home extends Component {
     }
 
     render() {
-
         const { carriedCount, taskList, listLoadComplete } = this.props.homeReducer.data
         const { getHomeData, getTaskListMore } = this.props.homeReducer
         if (getHomeData.isResultStatus == 1) {
@@ -290,6 +299,5 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(settingAction.saveBaseAddr(param))
     }
 })
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

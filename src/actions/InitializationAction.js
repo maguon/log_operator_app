@@ -41,6 +41,10 @@ export const initApp = (param, tryCount = 1, currentStep = 1) => (dispatch) => {
         //执行第三步
         //console.log(`========执行第${currentStep}步    第${tryCount}次尝试========`)
         validateToken(param, tryCount, currentStep)(dispatch)
+    }else if (currentStep == 4) {
+        //执行第四步
+        //console.log(`========执行第${currentStep}步    第${tryCount}次尝试========`)
+        getBaseAddr(param, tryCount, currentStep)(dispatch)
     }
 }
 
@@ -81,6 +85,7 @@ export const validateVersion = (param, tryCount = 1, currentStep = 1) => async (
             dispatch({ type: actionTypes.initializationTypes.Valdate_Version_Failed, payload: { failedMsg: res.msg, step: currentStep } })
         }
     } catch (err) {
+
         if (err.message == 'Network request failed') {
             //尝试20次
             if (tryCount < 20) {
@@ -95,7 +100,7 @@ export const validateVersion = (param, tryCount = 1, currentStep = 1) => async (
     }
 }
 
-//第二步：获取localStorage中的数据
+//第二步：获取localStorage中的user数据
 export const loadLocalStorage = (param = null, tryCount = 1, currentStep = 2) => async (dispatch) => {
     try {
         // localStorage.save({
@@ -121,6 +126,7 @@ export const loadLocalStorage = (param = null, tryCount = 1, currentStep = 2) =>
             dispatch({ type: actionTypes.initializationTypes.Load_LocalStorage_Failed, payload: { step: currentStep } })
         }
     } catch (err) {
+        console.log(err)
         if (err.name == 'NotFoundError') {
             dispatch({ type: actionTypes.initializationTypes.Load_LocalStorage_NotFoundError, payload: { step: currentStep } })
         } else {
@@ -163,6 +169,7 @@ export const validateToken = (param, tryCount = 1, currentStep = 3) => async (di
                 }
             })
             dispatch({ type: actionTypes.initializationTypes.validate_token_Success, payload: { step: currentStep } })
+            initApp({}, 1, currentStep + 1)(dispatch)
         }
         else {
             //判断请求是否成功，如果失败，跳转到登录页
@@ -180,6 +187,21 @@ export const validateToken = (param, tryCount = 1, currentStep = 3) => async (di
         } else {
             dispatch({ type: actionTypes.initializationTypes.validate_token_Error, payload: { step: currentStep } })
         }
+    }
+}
+
+//第四步：获取localStorage中的baseAddr数据
+export const getBaseAddr = (param, tryCount = 1, currentStep = 4) => async (dispatch) => {
+    try {
+        const localStorageRes = await localStorage.load({ key: localStorageKey.BASEADDR })
+        if (localStorageRes.baseAddrId && localStorageRes.baseAddr) {
+            dispatch({ type: actionTypes.settingTypes.LOAD_BaseAddr, payload: { data: localStorageRes } })
+        }
+        else {
+            localStorage.remove({ key: localStorageKey.BASEADDR })
+        }
+    } catch (err) {
+        localStorage.remove({ key: localStorageKey.BASEADDR })
     }
 }
 
