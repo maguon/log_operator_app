@@ -37,8 +37,7 @@ class Login extends Component {
                 },
                 postParam: {
                     mobile: this.state.textUserName,
-                    password: this.state.textPassword,
-                    type: 39
+                    password: this.state.textPassword
                 }
             })
         } else if (loginFlow.step == 2) {
@@ -52,8 +51,7 @@ class Login extends Component {
                 },
                 postParam: {
                     mobile: this.state.textUserName,
-                    password: this.state.textPassword,
-                    type: 39
+                    password: this.state.textPassword
                 }
             }, 1, 2)
         }
@@ -79,7 +77,7 @@ class Login extends Component {
     }
 
     render() {
-        console.log(this.props.userReducer)
+        //console.log(this.props.userReducer)
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <StatusBar hidden={true} />
