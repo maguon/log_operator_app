@@ -34,11 +34,25 @@ export const loginFlow = (param, tryCount = 1, currentStep = 1) => (dispatch) =>
     }
 }
 
+// /**
+//    * 注册成功
+//    * @param deviceToken
+//    * @private
+//    */
+//   export const _onRegister=(deviceToken) =>{
+//     console.log('onRegister: ' + deviceToken);
+//     // 在ios中，register方法是向apns注册，如果要使用信鸽推送，得到deviceToken后还要向信鸽注册
+//    // XGPush.registerForXG(deviceToken);
+//   }
+
 //获取deviceToken
-export const initPush = (param, tryCount = 1, currentStep = 1) => async (dispatch) => {
+export const initPush = (param, tryCount = 1, currentStep = 1) =>async  (dispatch) => {
+    // 
+    // XGPush.addEventListener('register', _onRegister);
     try {
         XGPush.init(2100270818, 'AK3E3I847AMD')
         const deviceToken = await XGPush.register('jeepeng')
+        console.log(deviceToken)
         if (deviceToken) {
             dispatch({ type: actionTypes.loginTypes.Init_Push_Success, payload: { step: currentStep,deviceToken } })
             param.OptionalParam.deviceToken = deviceToken
@@ -47,6 +61,7 @@ export const initPush = (param, tryCount = 1, currentStep = 1) => async (dispatc
             dispatch({ type: actionTypes.loginTypes.Init_Push_Failed, payload: { step: currentStep } })
         }
     } catch (err) {
+        console.log(err)
         dispatch({ type: actionTypes.loginTypes.Init_Push_Error, payload: { step: currentStep, errorMsg: err.message } })
     }
 }
@@ -55,7 +70,9 @@ export const initPush = (param, tryCount = 1, currentStep = 1) => async (dispatc
 export const login = (param, tryCount = 1, currentStep = 1) => async (dispatch) => {
     try {
         const url = `${base_host}/mobileUserLogin?${ObjectToUrl(param.OptionalParam)}`
+        console.log(url,'url')
         const res = await httpRequest.post(url, param.postParam)
+        console.log('res',res)
         if (res.success) {
             //判断请求是否成功，如果成功，更新token
             if (res.result.type == 39) {

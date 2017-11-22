@@ -32,7 +32,8 @@ class Login extends Component {
             this.props.loginFlow({
                 OptionalParam: {
                     version: version.currentVersion,
-                    appType: 3
+                    appType: 3,
+                    deviceType:1
                 },
                 postParam: {
                     mobile: this.state.textUserName,
@@ -46,7 +47,8 @@ class Login extends Component {
                 OptionalParam: {
                     version: version.currentVersion,
                     appType: 3,
-                    deviceToken: initPush.deviceToken
+                    deviceToken: initPush.deviceToken,
+                    deviceType:1
                 },
                 postParam: {
                     mobile: this.state.textUserName,
@@ -97,23 +99,23 @@ class Login extends Component {
                     </View>
                     <View>
                         <Item rounded style={{ backgroundColor: 'rgba(255,255,255,0.15)', width: window.width / 4 * 3, borderWidth: 0, marginTop: 50 }}>
-                            <Icon active name='md-person' style={{ color: '#00b9cd', marginLeft: 10 }} />
+                            <Icon active name='md-person' style={{ color: '#d1bae3', marginLeft: 10 }} />
                             <Input placeholder='请输入用户名'
-                                placeholderTextColor='#00b9cd'
-                                style={{ color: '#00b9cd' }}
+                                placeholderTextColor='#d1bae3'
+                                style={{ color: '#d1bae3' }}
                                 onChangeText={(text) => this.setState({ textUserName: text })}
                                 value={this.state.textUserName} />
                         </Item>
                         <Item rounded style={{ backgroundColor: 'rgba(255,255,255,0.15)', width: window.width / 4 * 3, borderWidth: 0, marginTop: 20 }}>
-                            <Icon active name='md-lock' style={{ color: '#00b9cd', marginLeft: 10 }} />
+                            <Icon active name='md-lock' style={{ color: '#d1bae3', marginLeft: 10 }} />
                             <Input placeholder='请输入密码'
-                                placeholderTextColor='#00b9cd'
-                                style={{ color: '#00b9cd' }}
+                                placeholderTextColor='#d1bae3'
+                                style={{ color: '#d1bae3' }}
                                 secureTextEntry
                                 onChangeText={(text) => this.setState({ textPassword: text })}
                                 value={this.state.textPassword} />
                         </Item>
-                        <Button style={{ marginTop: 50, width: window.width / 4 * 3, borderRadius: 25, backgroundColor: '#26c6da', justifyContent: 'center' }}
+                        <Button style={{ marginTop: 50, width: window.width / 4 * 3, borderRadius: 25, backgroundColor: '#7a36bd', justifyContent: 'center' }}
                             onPress={this.login}>
                             <Text>登录</Text>
                         </Button>
