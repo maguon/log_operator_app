@@ -77,7 +77,8 @@ export default class TextBox extends Component {
         labelStyle: styles.labelStyle,
         inputStyle: styles.inputStyle,
         messageSytle: styles.messageSytle,
-        onRequire: (param) => { }
+        onRequire: (param) => { },
+        secureTextEntry: false
     }
 
     renderValidateMessage() {
@@ -100,6 +101,7 @@ export default class TextBox extends Component {
                     <Text style={{ color: 'red', width: 10, textAlign: 'right' }}>{this.props.isRequire && '*'}</Text>
                     <Text style={this.props.labelStyle}>{this.props.title}</Text>
                     <TextInput
+                        secureTextEntry={this.props.secureTextEntry}
                         underlineColorAndroid="transparent"
                         placeholder={this.props.placeholder}
                         placeholderTextColor='#ddd'

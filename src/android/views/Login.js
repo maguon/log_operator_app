@@ -20,8 +20,8 @@ class Login extends Component {
         super(props)
         this.login = this.login.bind(this)
         this.state = {
-            textUserName: '15555566666',
-            textPassword: '52631aaa'
+            textUserName: '',
+            textPassword: ''
         }
     }
 
@@ -77,6 +77,7 @@ class Login extends Component {
     }
 
     render() {
+        console.log(this.props.userReducer)
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <StatusBar hidden={true} />

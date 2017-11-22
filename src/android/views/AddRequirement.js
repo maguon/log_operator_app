@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import {
     Text,
     View,
-    ScrollView
+    ScrollView,
+    ToastAndroid
 } from 'react-native'
 import { Button } from 'native-base'
 import { connect } from 'react-redux'
@@ -18,7 +19,6 @@ class AddRequirement extends Component {
         this.state = {
             routeStartId: 0,
             routeStart: '',
-            baseAddrId: 102,
             routeEndId: 0,
             routeEnd: '',
             receiveId: 0,
@@ -30,23 +30,55 @@ class AddRequirement extends Component {
     }
 
     addRequirement() {
-        this.props.addRequirement({
-            requiredParam: { userId: 81 },
-            postParam: {
-                routeStartId: this.state.routeStartId,
-                routeStart: this.state.routeStart,
-                baseAddrId: this.state.baseAddrId,
-                routeEndId: this.state.routeEndId,
-                routeEnd: this.state.routeEnd,
-                receiveId: this.state.receiveId,
-                preCount: this.state.preCount,
-                dateId: this.state.dateId
-            }
-        })
+        if (this.props.settingReducer.data.baseAddrId) {
+            console.log(this.props.userReducer)
+            this.props.addRequirement({
+                requiredParam: { userId: 81 },
+                postParam: {
+                    routeStartId: this.state.routeStartId,
+                    routeStart: this.state.routeStart,
+                    baseAddrId: this.props.settingReducer.data.baseAddrId,
+                    routeEndId: this.state.routeEndId,
+                    routeEnd: this.state.routeEnd,
+                    receiveId: this.state.receiveId,
+                    preCount: this.state.preCount,
+                    dateId: this.state.dateId
+                }
+            })
+        } else {
+            ToastAndroid.showWithGravity('您未选择装车地点，请先设置装车地点', ToastAndroid.SHORT, ToastAndroid.CENTER)
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { addRequirement } = nextProps.addRequirementReducer
+        console.log(addRequirement)
+        if (addRequirement.isResultStatus == 2) {
+            ToastAndroid.showWithGravity('需求创建成功', ToastAndroid.SHORT, ToastAndroid.CENTER)
+            this.setState({
+                routeStartId: 0,
+                routeStart: '',
+                routeEndId: 0,
+                routeEnd: '',
+                receiveId: 0,
+                receive: '',
+                preCount: 0,
+                dateId: ''
+            })
+            this.props.resetAddRequirement()
+        } else if (addRequirement.isResultStatus == 3) {
+            ToastAndroid.showWithGravity('需求创建失败，请重试', ToastAndroid.SHORT, ToastAndroid.CENTER)
+            this.props.resetAddRequirement()
+        } else if (addRequirement.isResultStatus == 4) {
+            ToastAndroid.showWithGravity(`需求创建失败，请重试`, ToastAndroid.SHORT, ToastAndroid.CENTER)
+            this.props.resetAddRequirement()
+        } else if (addRequirement.isResultStatus == 5) {
+            ToastAndroid.showWithGravity('需求创建失败，请重试', ToastAndroid.SHORT, ToastAndroid.CENTER)
+            this.props.resetAddRequirement()
+        }
     }
 
     render() {
-        console.log('this.props.addRequirementReducer', this.props.addRequirementReducer)
         return (
             <View style={{ flex: 1 }}>
                 <ScrollView
@@ -60,7 +92,7 @@ class AddRequirement extends Component {
                             defaultValue={'请选择'}
                         />
                         <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
-                            <Text style={{ fontSize: 12, fontWeight: 'bold' }}>装车地点：<Text style={{ fontWeight: '100' }}>大连港口</Text></Text>
+                            <Text style={{ fontSize: 12, fontWeight: 'bold' }}>装车地点：<Text style={{ fontWeight: '100' }}>{this.props.settingReducer.data.baseAddr ? this.props.settingReducer.data.baseAddr : '未选择装车地点'}</Text></Text>
                         </View>
                         <Select
                             title='目的城市：'
@@ -101,7 +133,9 @@ class AddRequirement extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        addRequirementReducer: state.addRequirementReducer
+        settingReducer: state.settingReducer,
+        addRequirementReducer: state.addRequirementReducer,
+        userReducer: state.userReducer
     }
 }
 

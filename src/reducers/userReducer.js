@@ -183,17 +183,7 @@ export default handleActions({
     },
     [actionTypes.loginTypes.CLEAN_LOGIN]: (state, action) => {
         return {
-            user: {
-                userId: 0,
-                token: '',
-                userType: 1,
-                userStatus: 1,
-                phone: ''
-            },
-            isResultStatus: 0,
-            isExecStatus: 0,
-            errorMsg: '',
-            failedMsg: ''
+            ...initialState
         }
     }
 }, initialState)

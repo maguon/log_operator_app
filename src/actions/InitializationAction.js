@@ -193,6 +193,7 @@ export const validateToken = (param, tryCount = 1, currentStep = 3) => async (di
 //第四步：获取localStorage中的baseAddr数据
 export const getBaseAddr = (param, tryCount = 1, currentStep = 4) => async (dispatch) => {
     try {
+        // localStorage.remove({ key: localStorageKey.BASEADDR })
         const localStorageRes = await localStorage.load({ key: localStorageKey.BASEADDR })
         if (localStorageRes.baseAddrId && localStorageRes.baseAddr) {
             dispatch({ type: actionTypes.settingTypes.LOAD_BaseAddr, payload: { data: localStorageRes } })

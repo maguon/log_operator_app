@@ -20,6 +20,7 @@ import commandReducer from './commandReducer'
 import carsReducer from './carsReducer'
 import userReducer from './userReducer'
 import initializationReducer from './initializationReducer'
+import passwordReducer from './passwordReducer'
 
 export default combineReducers({
     homeReducer,
@@ -42,5 +43,6 @@ export default combineReducers({
     commandReducer,
     carsReducer,
     userReducer,
-    initializationReducer
+    initializationReducer,
+    passwordReducer
 })
