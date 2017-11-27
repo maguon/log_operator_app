@@ -75,19 +75,21 @@ class CommandList extends Component {
                                         <MaterialCommunityIcons name='truck-delivery' size={14} color='#00cade' />
                                         <Text style={{ fontSize: 11,paddingLeft: 10, fontWeight: 'bold', color: '#8c989f' }}>{item.addr_name ? `${item.addr_name}` : ''} -> {item.city_name ? `${item.city_name}` : ''} {item.short_name ? `${item.short_name}` : ''}</Text>
                                     </View>
-                                    <View style={{ flexDirection: 'row' }}>
-                                        <Text style={{ fontSize: 11, color: '#8c989f' }}>{item.created_on ? `${moment(`${item.created_on}`).format('YYYY-MM-DD HH:mm')}` : ''}</Text>
-                                    </View>
                                 </View>
-                                <View style={{ flexDirection: 'row', backgroundColor: '#fff', padding: 10 }}>
-                                    <View style={{ flex: 1 }}>
+                                <View style={{ flexDirection: 'row', backgroundColor: '#fff', padding: 10,justifyContent:'space-between'  }}>
+                                    <View>
                                         <Text style={{ fontSize: 10, color: '#8c989f' }}>司机：{item.drive_name ? `${item.drive_name}` : ''}</Text>
                                     </View>
-                                    <View style={{ flex: 1 }}>
+                                    <View>
                                         <Text style={{ fontSize: 10, color: '#8c989f' }}>货车：{item.truck_num ? `${item.truck_num}` : ''}</Text>
                                     </View>
-                                    <View style={{ flex: 1, alignItems: 'flex-end' }}>
+                                </View>
+                                <View style={{ flexDirection: 'row', backgroundColor: '#fff' ,paddingHorizontal:10,paddingBottom:10,justifyContent:'space-between' }}>
+                                    <View>
                                         <Text style={{ fontSize: 10, color: '#8c989f' }}>实际装车：<Text style={{ color: '#00cade' }}>{item.car_count || item.car_count == 0 ? `${item.car_count}` : ''}</Text></Text>
+                                    </View>
+                                    <View>
+                                        <Text style={{ fontSize: 10, color: '#8c989f' }}>{item.created_on ? `${moment(`${item.created_on}`).format('YYYY-MM-DD HH:mm')}` : ''}</Text>
                                     </View>
                                 </View>
                             </View>
