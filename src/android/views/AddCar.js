@@ -19,13 +19,14 @@ import { Actions } from 'react-native-router-flux'
 class AddCar extends Component {
     constructor(props) {
         super(props)
+        const { cityId, cityName } = this.props.settingReducer.data
         this.state = {
             vin: '',
             engineNum: '',
             makeId: 0,
             makeName: '',
-            routeStartId: 0,
-            routeStart: '',
+            routeStartId: cityId ? cityId : 0,
+            routeStart: cityName ? cityName : '',
             routeEndId: 0,
             routeEnd: '',
             receiveId: 0,
@@ -33,6 +34,7 @@ class AddCar extends Component {
             entrustId: 0,
             entrust: ''
         }
+        //console.log('this.props.settingReducer',this.props.settingReducer)
         this._onPressOK = this._onPressOK.bind(this)
         this._onPressReset = this._onPressReset.bind(this)
     }
@@ -41,27 +43,27 @@ class AddCar extends Component {
         const { addCar } = nextProps.addCarReducer
         if (addCar.isResultStatus == 2) {
             ToastAndroid.show('创建成功！', ToastAndroid.SHORT)
-           // console.log('nextProps.addCarReducer',nextProps.addCarReducer)
-            Actions.addCarImage({ initParam: { carId: nextProps.addCarReducer.data.carId,vin:this.state.vin } })
+            // console.log('nextProps.addCarReducer',nextProps.addCarReducer)
+            Actions.addCarImage({ initParam: { carId: nextProps.addCarReducer.data.carId, vin: this.state.vin } })
             this.props.resetAddCar()
         }
     }
 
-    
+
 
     _onPressOK() {
         const { vin, engineNum, makeId, makeName, routeStartId, routeStart, routeEndId, routeEnd, receiveId, entrustId } = this.state
-        let initParam = { vin, engineNum, makeId, makeName, routeStartId, routeStart, routeEndId, routeEnd, receiveId, entrustId  }
+        let initParam = { vin, engineNum, makeId, makeName, routeStartId, routeStart, routeEndId, routeEnd, receiveId, entrustId }
         for (key in initParam) {
-            if(!initParam[key]){
+            if (!initParam[key]) {
                 delete initParam[key]
             }
         }
         this.props.addCar({
-            requiredParam:{
-                userId:38
+            requiredParam: {
+                userId: 38
             },
-            postParam:initParam
+            postParam: initParam
         })
     }
 
@@ -173,6 +175,7 @@ class AddCar extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        settingReducer: state.settingReducer,
         addCarReducer: state.addCarReducer
     }
 }

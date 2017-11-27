@@ -85,13 +85,6 @@ class AddRequirement extends Component {
                     <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
                             <Text style={{ fontSize: 12, fontWeight: 'bold' }}>起始城市：<Text style={{ fontWeight: '100' }}>{this.props.settingReducer.data.cityName ? this.props.settingReducer.data.cityName : '未选择装车城市'}</Text></Text>
                         </View>
-                        {/* <Select
-                            title='起始城市：'
-                            value={this.state.routeStart ? this.state.routeStart : '请选择'}
-                            showList={RouterDirection.selectCity(this.props.parent)}
-                            onValueChange={(param) => this.setState({ routeStartId: param.id, routeStart: param.city_name })}
-                            defaultValue={'请选择'}
-                        /> */}
                         <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
                             <Text style={{ fontSize: 12, fontWeight: 'bold' }}>装车地点：<Text style={{ fontWeight: '100' }}>{this.props.settingReducer.data.baseAddr ? this.props.settingReducer.data.baseAddr : '未选择装车地点'}</Text></Text>
                         </View>
@@ -102,13 +95,19 @@ class AddRequirement extends Component {
                             onValueChange={(param) => this.setState({ routeEndId: param.id, routeEnd: param.city_name })}
                             defaultValue={'请选择'}
                         />
-                        <Select
+                        {this.state.routeEndId ? <Select
                             title='送达地点：'
                             value={this.state.receive ? this.state.receive : '请选择'}
-                            showList={RouterDirection.selectReceive(this.props.parent)}
-                            onValueChange={(param) => this.setState({ receiveId: param.id, receive: param.address })}
+                            showList={(param) => RouterDirection.selectReceive(this.props.parent)({ ...param, cityId: this.state.routeEndId })}
+                            onValueChange={(param) => {
+                                if (this.state.receiveId != param.id) {
+                                    this.setState({ receiveId: param.id, receive: param.address })
+                                }
+                            }}
                             defaultValue={'请选择'}
-                        />
+                        /> : <View style={{ padding: 10, backgroundColor: '#eee' }}>
+                                <Text style={{ fontSize: 12, fontWeight: 'bold' }}>送达地点：<Text style={{ fontWeight: '100' }}>请先选择目的城市</Text></Text>
+                            </View>}
                         <TextBox
                             title='运送车辆数：'
                             value={this.state.preCount ? this.state.preCount : ''}
