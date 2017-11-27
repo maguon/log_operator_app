@@ -23,7 +23,6 @@ class TaskInfoAtWork extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.initParam)
         this.props.getRouteLoadTaskDetailWaiting()
         InteractionManager.runAfterInteractions(() => this.props.getRouteLoadTaskDetail({ requiredParam: { routeLoadTaskId: this.props.initParam.taskInfo.id } }))
     }
@@ -93,7 +92,7 @@ class TaskInfoAtWork extends Component {
     renderItem(item, index) {
         return (
             <TouchableNativeFeedback key={index}
-                onPress={() => RouterDirection.carInfo(this.props.parent)({ initParam: { vin: item.vin } })}
+                onPress={() => RouterDirection.carInfo(this.props.parent)({ initParam: { carId: item.car_id,vin:item.vin } })}
                 background={TouchableNativeFeedback.SelectableBackground()}>
                 <View style={{ flexDirection: 'row', padding: 10, borderBottomWidth: 0.5, borderColor: '#eee', alignItems: 'center' }}>
                     <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
@@ -112,7 +111,6 @@ class TaskInfoAtWork extends Component {
     }
 
     render() {
-        console.log('this.props.taskInfoAtWorkReducer', this.props.taskInfoAtWorkReducer)
         const { routeLoadTaskDetail } = this.props.taskInfoAtWorkReducer.data
         const { getRouteLoadTaskDetail } = this.props.taskInfoAtWorkReducer
         if (getRouteLoadTaskDetail.isResultStatus == 1) {

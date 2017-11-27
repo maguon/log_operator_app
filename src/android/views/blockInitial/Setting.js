@@ -32,7 +32,9 @@ class Setting extends Component {
     _onSaveBaseAddr(param) {
         this.props.saveBaseAddr({
             baseAddrId: param.id,
-            baseAddr: param.addr_name
+            baseAddr: param.addr_name,
+            cityId: param.city_id,
+            cityName: param.city_name
         })
     }
 

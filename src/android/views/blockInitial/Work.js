@@ -69,7 +69,6 @@ export default class Work extends Component {
     }
 
     render() {
-        console.log('this.state', this.state)
         return (
             <View style={{ flex: 1 }}>
                 <ScrollView>

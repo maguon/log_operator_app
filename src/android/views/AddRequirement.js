@@ -31,13 +31,12 @@ class AddRequirement extends Component {
 
     addRequirement() {
         if (this.props.settingReducer.data.baseAddrId) {
-            console.log(this.props.userReducer)
             this.props.addRequirement({
                 requiredParam: { userId: 81 },
                 postParam: {
-                    routeStartId: this.state.routeStartId,
-                    routeStart: this.state.routeStart,
-                    baseAddrId: this.props.settingReducer.data.baseAddrId,
+                    routeStartId: this.props.settingReducer.data.cityId,
+                    routeStart: this.props.settingReducer.data.cityName,
+                    baseAddrId: this.props.settingReducer.data.baseAddrId, 
                     routeEndId: this.state.routeEndId,
                     routeEnd: this.state.routeEnd,
                     receiveId: this.state.receiveId,
@@ -52,7 +51,6 @@ class AddRequirement extends Component {
 
     componentWillReceiveProps(nextProps) {
         const { addRequirement } = nextProps.addRequirementReducer
-        console.log(addRequirement)
         if (addRequirement.isResultStatus == 2) {
             ToastAndroid.showWithGravity('需求创建成功', ToastAndroid.SHORT, ToastAndroid.CENTER)
             this.setState({
@@ -84,13 +82,16 @@ class AddRequirement extends Component {
                 <ScrollView
                     showsHorizontalScrollIndicator={false}>
                     <View style={{ flex: 1 }}>
-                        <Select
+                    <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
+                            <Text style={{ fontSize: 12, fontWeight: 'bold' }}>起始城市：<Text style={{ fontWeight: '100' }}>{this.props.settingReducer.data.cityName ? this.props.settingReducer.data.cityName : '未选择装车城市'}</Text></Text>
+                        </View>
+                        {/* <Select
                             title='起始城市：'
                             value={this.state.routeStart ? this.state.routeStart : '请选择'}
                             showList={RouterDirection.selectCity(this.props.parent)}
                             onValueChange={(param) => this.setState({ routeStartId: param.id, routeStart: param.city_name })}
                             defaultValue={'请选择'}
-                        />
+                        /> */}
                         <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
                             <Text style={{ fontSize: 12, fontWeight: 'bold' }}>装车地点：<Text style={{ fontWeight: '100' }}>{this.props.settingReducer.data.baseAddr ? this.props.settingReducer.data.baseAddr : '未选择装车地点'}</Text></Text>
                         </View>
@@ -113,7 +114,7 @@ class AddRequirement extends Component {
                             value={this.state.preCount ? this.state.preCount : ''}
                             defaultValue={''}
                             onValueChange={(param) => this.setState({ preCount: param })}
-                            placeholder='请输入车牌'
+                            placeholder='请输入车辆数'
                         />
                         <DateTimePicker
                             title='指令时间：'

@@ -90,13 +90,13 @@ class AddCar extends Component {
                 <ScrollView>
                     <View style={{ flex: 1 }}>
                         <TextBox
-                            title='VIN码：'
+                            title='VIN：'
                             value={this.state.vin ? `${this.state.vin}` : ''}
                             defaultValue={''}
                             onValueChange={(param) => {
                                 if (this.state.vin != param) { this.setState({ vin: param }) }
                             }}
-                            placeholder='请输入车牌'
+                            placeholder='请输入vin'
                         />
                         <Select
                             title='品牌：'
@@ -114,7 +114,7 @@ class AddCar extends Component {
                             onValueChange={(param) => {
                                 if (this.state.engineNum != param) { this.setState({ engineNum: param }) }
                             }}
-                            placeholder='请输入车牌'
+                            placeholder='请输入发动机号'
                         />
                         <Select
                             title='起始城市：'

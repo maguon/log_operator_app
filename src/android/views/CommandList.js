@@ -72,8 +72,8 @@ class CommandList extends Component {
                             <View style={{ borderWidth: 1, borderColor: '#dedede', marginHorizontal: 10, marginTop: 10 }}>
                                 <View style={{ flexDirection: 'row', backgroundColor: '#eff3f5', padding: 10, justifyContent: 'space-between' }}>
                                     <View style={{ flexDirection: 'row' }}>
-                                        <MaterialCommunityIcons name='truck-delivery' size={20} color='#00cade' />
-                                        <Text style={{ paddingLeft: 10, fontWeight: 'bold', color: '#8c989f' }}>{item.addr_name ? `${item.addr_name}` : ''} -> {item.city_name ? `${item.city_name}` : ''} {item.short_name ? `${item.short_name}` : ''}</Text>
+                                        <MaterialCommunityIcons name='truck-delivery' size={14} color='#00cade' />
+                                        <Text style={{ fontSize: 11,paddingLeft: 10, fontWeight: 'bold', color: '#8c989f' }}>{item.addr_name ? `${item.addr_name}` : ''} -> {item.city_name ? `${item.city_name}` : ''} {item.short_name ? `${item.short_name}` : ''}</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row' }}>
                                         <Text style={{ fontSize: 11, color: '#8c989f' }}>{item.created_on ? `${moment(`${item.created_on}`).format('YYYY-MM-DD HH:mm')}` : ''}</Text>
@@ -81,13 +81,13 @@ class CommandList extends Component {
                                 </View>
                                 <View style={{ flexDirection: 'row', backgroundColor: '#fff', padding: 10 }}>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={{ fontSize: 11, color: '#8c989f' }}>司机：{item.drive_name ? `${item.drive_name}` : ''}</Text>
+                                        <Text style={{ fontSize: 10, color: '#8c989f' }}>司机：{item.drive_name ? `${item.drive_name}` : ''}</Text>
                                     </View>
                                     <View style={{ flex: 1 }}>
-                                        <Text style={{ fontSize: 11, color: '#8c989f' }}>货车：{item.truck_num ? `${item.truck_num}` : ''}</Text>
+                                        <Text style={{ fontSize: 10, color: '#8c989f' }}>货车：{item.truck_num ? `${item.truck_num}` : ''}</Text>
                                     </View>
                                     <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                                        <Text style={{ fontSize: 11, color: '#8c989f' }}>实际装车：<Text style={{ color: '#00cade' }}>{item.car_count || item.car_count == 0 ? `${item.car_count}` : ''}</Text></Text>
+                                        <Text style={{ fontSize: 10, color: '#8c989f' }}>实际装车：<Text style={{ color: '#00cade' }}>{item.car_count || item.car_count == 0 ? `${item.car_count}` : ''}</Text></Text>
                                     </View>
                                 </View>
                             </View>
