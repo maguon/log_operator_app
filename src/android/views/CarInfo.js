@@ -38,7 +38,7 @@ class CarInfo extends Component {
         return (
             <View>
                 <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
-                    <Text style={{ fontSize: 12, fontWeight: 'bold' }}>VIN码：<Text style={{ fontWeight: '100' }}>{carInfo.vin ? `${carInfo.vin}` : ''}</Text></Text>
+                    <Text style={{ fontSize: 12, fontWeight: 'bold' }}>VIN：<Text style={{ fontWeight: '100' }}>{carInfo.vin ? `${carInfo.vin}` : ''}</Text></Text>
                 </View>
                 <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
                     <Text style={{ fontSize: 12, fontWeight: 'bold' }}>品牌：<Text style={{ fontWeight: '100' }}>{carInfo.make_name ? `${carInfo.make_name}` : ''}</Text></Text>

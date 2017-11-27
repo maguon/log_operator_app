@@ -17,9 +17,9 @@ export const addRequirement = (param) => async (dispatch) => {
 }
 
 export const addRequirementWaiting = () => (dispatch) => {
-    dispatch({ type: actionTypes.addRequirementTypes.ADD_Requirement_WAITING, payload: { data: err } })
+    dispatch({ type: actionTypes.addRequirementTypes.ADD_Requirement_WAITING, payload: {} })
 }
 
 export const resetAddRequirement = () => (dispatch) => {
-    dispatch({ type: actionTypes.addRequirementTypes.RESET_ADD_Requirement, payload: { data: err } })
+    dispatch({ type: actionTypes.addRequirementTypes.RESET_ADD_Requirement, payload: {} })
 }

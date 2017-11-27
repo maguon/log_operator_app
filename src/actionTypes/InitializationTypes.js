@@ -8,7 +8,7 @@ export const Load_LocalStorage_Failed = 'Load_LocalStorage_Failed'
 export const Load_LocalStorage_Error = 'Load_LocalStorage_Error'
 export const Load_LocalStorage_NotFoundError = 'Load_LocalStorage_NotFoundError'
 
-export const INIT_App_Waiting ='INIT_App_Waiting'
+export const INIT_App_Waiting = 'INIT_App_Waiting'
 
 export const validate_token_Success = 'validate_token_Success'
 export const validate_token_Failed = 'validate_token_Failed'

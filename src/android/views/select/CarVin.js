@@ -48,7 +48,7 @@ class CarVin extends Component {
         return (
             <View style={{ flex: 1 }}>
                 <TextBox
-                    title='VIN码：'
+                    title='VIN：'
                     value={this.state.vin ? this.state.vin : ''}
                     defaultValue={''}
                     onValueChange={(param) => this.setState({ vin: param })}

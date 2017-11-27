@@ -158,12 +158,13 @@ export default class Work extends Component {
                             placeholder='请输入执行指令编号'
                         />
                         <Select
-                            title='商品车VIN码：'
+                            title='VIN：'
                             value={this.state.vin ? this.state.vin : '请选择'}
                             showList={RouterDirection.selectCarVin(this.props.parent)}
                             onValueChange={(param) => {
-                                if (this.state.vin != param) {
-                                    this.setState({ vin: param })
+
+                                if (this.state.vin != param.vin) {
+                                    this.setState({ vin: param.vin })
                                 }
                             }}
                             defaultValue={'请选择'}

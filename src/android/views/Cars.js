@@ -119,7 +119,7 @@ class Cars extends Component {
             return <View style={{ flexDirection: 'row', paddingHorizontal: 10, paddingVertical: 5, borderBottomWidth: 1, borderColor: '#eee', alignItems: 'center' }}>
                 <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
                     <MaterialCommunityIcons name='car' size={14} style={{ color: '#8c989f' }} />
-                    <Text style={{ fontSize: 11, paddingLeft: 10 }}>VIN码：{item.data.vin ? `${item.data.vin}` : ''}</Text>
+                    <Text style={{ fontSize: 11, paddingLeft: 10 }}>VIN：{item.data.vin ? `${item.data.vin}` : ''}</Text>
                 </View>
                 <View style={{ flex: 1, alignItems: 'center' }}>
                     <Text style={{ fontSize: 11 }}>{item.data.make_name ? `${item.data.make_name}` : ''}</Text>
@@ -144,7 +144,7 @@ class Cars extends Component {
             return <View style={{ flexDirection: 'row', paddingHorizontal: 10, paddingVertical: 5, borderBottomWidth: 1, borderColor: '#eee', alignItems: 'center' }}>
                 <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
                     <MaterialCommunityIcons name='car' size={14} style={{ color: '#8c989f' }} />
-                    <Text style={{ fontSize: 11, paddingLeft: 10 }}>VIN码：{item.data.vin ? `${item.data.vin}` : ''}</Text>
+                    <Text style={{ fontSize: 11, paddingLeft: 10 }}>VIN：{item.data.vin ? `${item.data.vin}` : ''}</Text>
                 </View>
                 <View style={{ flex: 1, alignItems: 'center' }}>
                     <Text style={{ fontSize: 11 }}>{item.data.make_name ? `${item.data.make_name}` : ''}</Text>

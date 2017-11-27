@@ -98,7 +98,7 @@ class TaskInfoAtWork extends Component {
                 <View style={{ flexDirection: 'row', padding: 10, borderBottomWidth: 0.5, borderColor: '#eee', alignItems: 'center' }}>
                     <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
                         <MaterialCommunityIcons name='car' size={14} style={{ color: '#8c989f' }} />
-                        <Text style={{ fontSize: 11, paddingLeft: 10 }}>VIN码：{item.vin ? `${item.vin}` : ''}</Text>
+                        <Text style={{ fontSize: 11, paddingLeft: 10 }}>VIN：{item.vin ? `${item.vin}` : ''}</Text>
                     </View>
                     <View style={{ flex: 1, alignItems: 'center' }}>
                         <Text style={{ fontSize: 11 }}>{item.make_name ? `${item.make_name}` : ''}</Text>

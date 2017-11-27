@@ -29,7 +29,7 @@ class Initialization extends Component {
         this.props.initAppWaiting()
         this.props.initApp({
             optionalParam: {
-                app: 1,
+                app: 3,
                 type: 1
             }
         })
@@ -41,7 +41,7 @@ class Initialization extends Component {
             this.props.initAppWaiting()
             this.props.initApp({
                 optionalParam: {
-                    app: 1,
+                    app: 3,
                     type: 1
                 }
             })

@@ -57,7 +57,6 @@ export const login = (param, tryCount = 1, currentStep = 1) => async (dispatch) 
     try {
         const url = `${base_host}/mobileUserLogin?${ObjectToUrl(param.OptionalParam)}`
         const res = await httpRequest.post(url, param.postParam)
-        console.log(res)
         if (res.success) {
             //判断请求是否成功，如果成功，更新token
             if (res.result.type == 39||res.result.type == 31) {
