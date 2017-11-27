@@ -64,7 +64,7 @@ class Home extends Component {
     _onSaveBaseAddr(param) {
         this.props.saveBaseAddr({
             baseAddrId: param.id,
-            baseAddr: param.address
+            baseAddr: param.addr_name
         })
     }
 
