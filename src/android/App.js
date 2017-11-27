@@ -38,6 +38,7 @@ import AddCarImage from './views/AddCarImage'
 
 import Login from './views/Login'
 import Initialization from './views/Initialization'
+import Orientation from 'react-native-orientation'
 
 const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
     const style = {
@@ -77,6 +78,11 @@ const styles = StyleSheet.create({
 export default class App extends Component {
     constructor(props) {
         super(props)
+    }
+
+
+    componentWillMount() {
+        Orientation.lockToPortrait()
     }
 
     render() {

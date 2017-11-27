@@ -60,6 +60,7 @@ class Setting extends Component {
     render() {
         const { baseAddrId, baseAddr } = this.props.settingReducer.data
         const { version } = this.props.initializationReducer.data
+        console.log('version',version)
         return (
             <View style={{ flex: 1, backgroundColor: '#fafafa' }}>
                 <ScrollView>
