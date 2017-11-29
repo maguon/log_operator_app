@@ -35,7 +35,7 @@ export default class Requirement extends Component {
         const { createdOnStart, createdOnEnd, dateIdStart, dateIdEnd, routeStartId, routeEndId, baseAddrId, receiveId } = this.state
         let initParam = { createdOnStart, createdOnEnd, dateIdStart, dateIdEnd, routeStartId, routeEndId, baseAddrId, receiveId }
         for (key in initParam) {
-            if(!initParam[key]){
+            if (!initParam[key]) {
                 delete initParam[key]
             }
         }
@@ -59,7 +59,7 @@ export default class Requirement extends Component {
             baseAddr: ''
         })
     }
-    
+
 
     render() {
         return (
@@ -99,14 +99,22 @@ export default class Requirement extends Component {
                                 title='起始城市：'
                                 value={this.state.routeStart ? this.state.routeStart : '请选择'}
                                 showList={RouterDirection.selectCity(this.props.parent)}
-                                onValueChange={(param) => this.setState({ routeStartId: param.id, routeStart: param.city_name })}
+                                onValueChange={(param) => {
+                                    if (this.state.routeStartId != param.id) {
+                                        this.setState({ routeStartId: param.id, routeStart: param.city_name, baseAddrId: 0, baseAddr: '' })
+                                    }
+                                }}
                                 defaultValue={'请选择'}
                             />
                             <Select
                                 title='目的城市：'
                                 value={this.state.routeEnd ? this.state.routeEnd : '请选择'}
                                 showList={RouterDirection.selectCity(this.props.parent)}
-                                onValueChange={(param) => this.setState({ routeEndId: param.id, routeEnd: param.city_name })}
+                                onValueChange={(param) => {
+                                    if (this.state.routeEndId != param.id) {
+                                        this.setState({ routeEndId: param.id, routeEnd: param.city_name, receiveId: 0, receive: '' })
+                                    }
+                                }}
                                 defaultValue={'请选择'}
                             />
                         </View>

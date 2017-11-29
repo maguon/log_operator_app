@@ -3,7 +3,7 @@ import {
     Text,
     View,
     ScrollView,
-    TouchableHighlight,
+    TouchableOpacity,
     Linking
 } from 'react-native'
 import Select from '../../components/form/Select'
@@ -74,14 +74,13 @@ class Setting extends Component {
                                 defaultValue={'请选择'}
                             />
                         </View>
-                        <TouchableHighlight
-                            underlayColor='rgba(0,0,0,0.1)'
+                        <TouchableOpacity
                             onPress={Actions.password}>
                             <View style={{ backgroundColor: '#fff', padding: 10, borderBottomWidth: 1, flexDirection: 'row', borderColor: '#eee', justifyContent: 'space-between' }}>
                                 <Text style={{ fontSize: 12, fontWeight: 'bold' }}>设置密码</Text>
                                 <Icon name='ios-arrow-forward' style={{ fontSize: 18, color: '#7a7a7a' }} />
                             </View>
-                        </TouchableHighlight>
+                        </TouchableOpacity>
                         <View style={{ backgroundColor: '#fff', padding: 10, borderBottomWidth: 1, borderColor: '#eee',justifyContent: 'space-between',flexDirection:'row' }}>
                         
                             <Text style={{ fontSize: 12, fontWeight: 'bold' }}>版本信息：<Text style={{ fontWeight: '100' }}>{`v${version.currentVersion}`}</Text></Text>

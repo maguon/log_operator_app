@@ -4,9 +4,9 @@ import {
     View,
     FlatList,
     ActivityIndicator,
-    TouchableNativeFeedback,
     InteractionManager,
-    ToastAndroid
+    ToastAndroid,
+    TouchableOpacity
 } from 'react-native'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { Button } from 'native-base'
@@ -37,20 +37,25 @@ class Command extends Component {
 
     componentWillReceiveProps(nextProps) {
         const { commandList } = nextProps.commandReducer.data
-        const command = commandList.find(item => item.cancelCommand.isResultStatus == 2)
+        let command = commandList.find(item => item.cancelCommand.isResultStatus == 2)
         if (command) {
             ToastAndroid.show('取消成功！', ToastAndroid.SHORT)
             this.props.removeCancelCommand(command.data.id)
+        }else{
+            command = commandList.find(item => item.cancelCommand.isResultStatus == 4)
+            if(command) {
+                ToastAndroid.show(`${command.cancelCommand.failedMsg}`, ToastAndroid.SHORT)
+            }
         }
     }
 
 
     cancelCommand(item) {
+        const { user } = this.props.userReducer.data
         InteractionManager.runAfterInteractions(() => this.props.cancelCommand({
             requiredParam: {
                 dpRouteLoadTaskId: item.data.id,
-                userId: 38,
-                loadTaskStatus: 8
+                userId: user.userId
             }
         }))
     }
@@ -96,40 +101,64 @@ class Command extends Component {
     }
 
     renderListItem(item, index) {
-        return (
-            <View key={index} style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#eee' }}>
-                <View>
-                    <Text style={{ color: '#8c989f', fontWeight: 'bold' }}>{item.data.city_name ? `${item.data.city_name}` : ''} - {item.data.short_name ? `${item.data.short_name}` : ''}</Text>
-                </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
-                    <View>
-                        <Text style={{ fontSize: 11, color: '#8c989f' }}>计划装车：{item.data.plan_count ? `${item.data.plan_count}` : '0'}</Text>
-                    </View>
-                    {item.cancelCommand.isResultStatus == 1 ? <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: 110 }}>
-                        <ActivityIndicator
-                            animating={true}
-                            style={{ height: 20, alignSelf: 'center' }}
-                            size="small"
-                        /></View> : <View style={{ flexDirection: 'row' }}><View>
-                            <Button small rounded style={{ backgroundColor: '#fe8a95', width: 50, height: 20, justifyContent: 'center' }} onPress={() => this.cancelCommand(item)}>
-                                <Text style={{ color: '#fff', fontSize: 11, fontWeight: 'bold' }}>取 消</Text>
-                            </Button>
+        if (item.data.load_task_status == 3) {
+            return (
+                <TouchableOpacity onPress={() => this.carry(item)}>
+                    <View key={index} style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#eee' }}>
+                        <View>
+                            <Text style={{ color: '#8c989f', fontWeight: 'bold' }}>{item.data.city_name ? `${item.data.city_name}` : ''} - {item.data.short_name ? `${item.data.short_name}` : ''}</Text>
                         </View>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
+                            <View>
+                                <Text style={{ fontSize: 11, color: '#8c989f' }}>计划装车：{item.data.plan_count ? `${item.data.plan_count}` : '0'}</Text>
+                            </View>
+                            <View style={{ flexDirection: 'row' }}>
+                                <Text style={{ fontSize: 11, color: '#8c989f' }}>已装车</Text>
+                            </View>
+                        </View>
+                    </View>
+                </TouchableOpacity>
+            )
+        } else {
+            return (
+                <View key={index} style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#eee' }}>
+                    <View>
+                        <Text style={{ color: '#8c989f', fontWeight: 'bold' }}>{item.data.city_name ? `${item.data.city_name}` : ''} - {item.data.short_name ? `${item.data.short_name}` : ''}</Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
+                        <View>
+                            <Text style={{ fontSize: 11, color: '#8c989f' }}>计划装车：{item.data.plan_count ? `${item.data.plan_count}` : '0'}</Text>
+                        </View>
+                        {item.cancelCommand.isResultStatus == 1 && <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: 110 }}>
+                            <ActivityIndicator
+                                animating={true}
+                                style={{ height: 20, alignSelf: 'center' }}
+                                size="small" />
+                        </View>}
+                        {item.cancelCommand.isResultStatus != 1 && item.data.load_task_status == 1 && <View style={{ flexDirection: 'row' }}>
+                            <View>
+                                <Button small rounded style={{ backgroundColor: '#fe8a95', width: 50, height: 20, justifyContent: 'center' }} onPress={() => this.cancelCommand(item)}>
+                                    <Text style={{ color: '#fff', fontSize: 11, fontWeight: 'bold' }}>取 消</Text>
+                                </Button>
+                            </View>
                             <View style={{ paddingLeft: 10 }}>
                                 <Button small rounded style={{ backgroundColor: '#00cade', width: 50, height: 20, justifyContent: 'center' }} onPress={() => this.carry(item)}>
                                     <Text style={{ color: '#fff', fontSize: 11, fontWeight: 'bold' }}>装 车</Text>
                                 </Button>
                             </View>
                         </View>}
+                        {item.cancelCommand.isResultStatus != 1 && item.data.load_task_status == 8 && <View style={{ flexDirection: 'row' }}>
+                            <Text style={{ fontSize: 11, color: '#8c989f' }}>已取消</Text>
+                        </View>}
+                    </View>
                 </View>
-            </View>
-        )
+            )
+        }
     }
 
     render() {
         const { commandList } = this.props.commandReducer.data
         const { getCommandList } = this.props.commandReducer
-        //console.log('commandList',commandList)
         if (getCommandList.isResultStatus == 1) {
             return (
                 <View style={{ flex: 1 }}>
@@ -160,7 +189,8 @@ class Command extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        commandReducer: state.commandReducer
+        commandReducer: state.commandReducer,
+        userReducer: state.userReducer
     }
 }
 

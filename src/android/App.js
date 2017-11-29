@@ -82,10 +82,12 @@ export default class App extends Component {
 
 
     componentWillMount() {
+
         Orientation.lockToPortrait()
     }
 
     render() {
+        console.disableYellowBox = true
         return (
             <Router getSceneStyle={getSceneStyle}>
                 <Scene key="root">
@@ -121,13 +123,17 @@ export default class App extends Component {
                                 <Scene key="cars" title='装车信息' component={Cars} hideNavBar={false} navBar={NavBar} />
                                 <Scene key="carInfoAtHomeBlock" title='商品车信息' component={CarInfo} hideNavBar={false} navBar={NavBar} />
                                 <Scene key="cityAtHomeBlock" title='选择城市' component={City} hideNavBar={false} hideTabBar={true} navBar={NavBar} />
+                                <Scene key="entrustAtHomeBlock" title='选择委托方' component={Entrust} hideNavBar={false} hideTabBar={true} navBar={NavBar} />
+                                <Scene key="receiveAtHomeBlock" title='选择经销商' component={Receive} hideNavBar={false} hideTabBar={true} navBar={NavBar} />
                                 <Scene key="baseAddrAtHomeBlock" title='选择装车地点' component={BaseAddr} hideNavBar={false} hideTabBar={true} navBar={NavBar} />
+                                <Scene key="makeAtHomeBlock" title='选择品牌' component={Make} hideNavBar={false} hideTabBar navBar={NavBar} />
                                 <Scene key="addRequirementAtHomeBlock" title='增加需求' component={AddRequirement} hideTabBar={true} hideNavBar={false} navBar={NavBar} />
                                 <Scene key="addCarAtHomeBlock" title='增加商品车' component={AddCar} hideNavBar={false} hideTabBar={true} navBar={NavBar} />
+                                <Scene key="addCarImageAtHomeBlock" title='添加照片' component={AddCarImage} hideNavBar={false} hideTabBar navBar={NavBar} />
                             </Scene>
                             <Scene key="workBlock" icon={TabIcon} online='ios-bus' outline='ios-bus-outline' >
-                                <Scene key="work" title='工作' initial={true} rightType={1} onPressRight={() => Actions.addCar()}  component={Work} hideNavBar={false} navBar={TopBar} />
-                                <Scene key="addCar"  title='增加商品车' component={AddCar} hideNavBar={false} hideTabBar={true} navBar={NavBar} />
+                                <Scene key="work" title='工作' initial={true} rightType={1} onPressRight={() => Actions.addCarAtWorkBlock()}  component={Work} hideNavBar={false} navBar={TopBar} />
+                                <Scene key="addCarAtWorkBlock"  title='增加商品车' component={AddCar} hideNavBar={false} hideTabBar={true} navBar={NavBar} />
                                 <Scene key="carInfoAtWorkBlock" title='商品车信息' component={CarInfo} hideNavBar={false} hideTabBar={true} navBar={NavBar} />
                                 <Scene key="cityAtWorkBlock" title='选择城市' component={City} hideNavBar={false} hideTabBar={true} navBar={NavBar} />
                                 <Scene key="entrustAtWorkBlock" title='选择委托方' component={Entrust} hideNavBar={false} hideTabBar={true} navBar={NavBar} />
@@ -140,11 +146,11 @@ export default class App extends Component {
                                 <Scene key="commandAtWorkBlock" title='指令列表' component={Command} hideNavBar={false} hideTabBar navBar={NavBar} />
                                 <Scene key="taskInfoAtWork" title='装车信息' component={TaskInfoAtWork} hideNavBar={false} hideTabBar navBar={NavBar} />
                                 <Scene key="makeAtWorkBlock" title='选择品牌' component={Make} hideNavBar={false} hideTabBar navBar={NavBar} />
-                                <Scene key="addCarImage" title='添加照片' component={AddCarImage} hideNavBar={false} hideTabBar navBar={NavBar} />
+                                <Scene key="addCarImageAtWorkBlock" title='添加照片' component={AddCarImage} hideNavBar={false} hideTabBar navBar={NavBar} />
                             </Scene>
                             <Scene key="requirementBlock" icon={TabIcon} online='ios-archive' outline='ios-archive-outline' >
-                                <Scene key="requirement" initial={true} rightType={1} title='需求管理' onPressRight={() => Actions.addRequirement()} component={Requirement} hideNavBar={false} navBar={TopBar} />
-                                <Scene key="addRequirement" title='增加需求' component={AddRequirement} hideNavBar={false} hideTabBar={true}  navBar={NavBar} />
+                                <Scene key="requirement" initial={true} rightType={1} title='需求管理' onPressRight={() => Actions.addRequirementAtRequirementBlock()} component={Requirement} hideNavBar={false} navBar={TopBar} />
+                                <Scene key="addRequirementAtRequirementBlock" title='增加需求' component={AddRequirement} hideNavBar={false} hideTabBar={true}  navBar={NavBar} />
                                 <Scene key="requirementInfo" title='需求详情' component={RequirementInfo} hideNavBar={false} hideTabBar={true}  navBar={NavBar} />
                                 <Scene key="requirementList" title='需求列表' component={RequirementList} hideNavBar={false} hideTabBar={true}  navBar={NavBar} />
                                 <Scene key="cityAtRequirementBlock" title='选择城市' component={City} hideNavBar={false} hideTabBar={true}  navBar={NavBar} />

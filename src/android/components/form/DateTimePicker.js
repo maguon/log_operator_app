@@ -3,7 +3,7 @@ import {
     StyleSheet,
     Text,
     View,
-    TouchableHighlight,
+    TouchableOpacity,
     DatePickerAndroid
 } from 'react-native'
 
@@ -123,8 +123,7 @@ export default class DateTimePicker extends Component {
 
     render() {
         return (
-            <TouchableHighlight
-                underlayColor='rgba(0,0,0,0.1)'
+            <TouchableOpacity
                 style={{flex:1}}
                 onPress={() => this.showPicker({ date: new Date(), mode: 'spinner' })}>
                 <View style={this.props.containerSytle}>
@@ -140,7 +139,7 @@ export default class DateTimePicker extends Component {
                     </View>
                     {this.renderValidateMessage()}
                 </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
         )
     }
 }

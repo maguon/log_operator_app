@@ -3,7 +3,7 @@ import {
     Text,
     View,
     FlatList,
-    TouchableNativeFeedback,
+    TouchableOpacity,
     InteractionManager,
     ActivityIndicator
 
@@ -60,11 +60,11 @@ class BaseAddr extends Component {
                     <FlatList
                         showsVerticalScrollIndicator={false}
                         data={baseAddrList}
-                        renderItem={({ item, index }) => <TouchableNativeFeedback key={index} onPress={() => this._onPress(item)} background={TouchableNativeFeedback.SelectableBackground()}>
+                        renderItem={({ item, index }) => <TouchableOpacity key={index} onPress={() => this._onPress(item)}>
                             <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
                                 <Text style={{ fontSize: 12 }}>{item.addr_name}</Text>
                             </View>
-                        </TouchableNativeFeedback>}
+                        </TouchableOpacity>}
                     />
                 </View>
             )

@@ -5,7 +5,8 @@ import {
     FlatList,
     ActivityIndicator,
     InteractionManager,
-    ToastAndroid
+    ToastAndroid,
+    TouchableOpacity
 } from 'react-native'
 import { Button, Icon } from 'native-base'
 import { connect } from 'react-redux'
@@ -25,21 +26,23 @@ class Cars extends Component {
 
     componentDidMount() {
         const { commandInfo } = this.props.initParam
+        console.log('this.props.initParam', this.props.initParam)
         this.props.getCommandCarListWaiting()
         InteractionManager.runAfterInteractions(() => this.props.getCommandCarList({
             requiredParam: {
-                dpRouteLoadTaskId: 180
+                dpRouteLoadTaskId: commandInfo.id
             },
             taskInfo: commandInfo
         }))
     }
 
     onSelectCar(param) {
+        const { user } = this.props.userReducer.data
         const { taskInfo } = this.props.carsReducer.data
         this.props.pushCarInCommandWaiting()
         InteractionManager.runAfterInteractions(() => this.props.pushCarInCommand({
             requiredParam: {
-                userId: 81,
+                userId: user.userId,
                 dpRouteLoadTaskId: taskInfo.id,
             },
             OptionalParam: {
@@ -77,9 +80,10 @@ class Cars extends Component {
 
     removeCar(param) {
         const { taskInfo } = this.props.carsReducer.data
+        const { user } = this.props.userReducer.data
         this.props.removeCommandCar({
             requiredParam: {
-                userId: 81,
+                userId: user.userId,
                 dpRouteTaskDetailId: param.data.id
             },
             OptionalParam: {
@@ -103,10 +107,11 @@ class Cars extends Component {
     }
 
     finishCarry() {
+        const { user } = this.props.userReducer.data
         const { taskInfo } = this.props.carsReducer.data
         this.props.finishCarry({
             requiredParam: {
-                userId: 81,
+                userId: user.userId,
                 dpRouteLoadTaskId: taskInfo.id,
                 loadTaskStatus: 3
             }
@@ -132,12 +137,14 @@ class Cars extends Component {
                     />
                 </View>}
                 {item.removeCommandCar.isResultStatus != 1 && <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'flex-end' }}>
-                    <Icon name='ios-close-circle'
-                        style={{ color: '#fe8a95', fontSize: 26 }}
-                        onPress={() => this.removeCar(item)} />
-                    <Icon name='ios-arrow-dropright-circle'
-                        style={{ color: '#00cade', marginLeft: 10, fontSize: 26 }}
-                        onPress={() => RouterDirection.carInfo(this.props.parent)({ initParam: { vin: item.data.vin, carId: item.data.car_id } })} />
+                    <TouchableOpacity onPress={() => this.removeCar(item)}>
+                        <Icon name='ios-close-circle'
+                            style={{ color: '#fe8a95', fontSize: 26 }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => RouterDirection.carInfo(this.props.parent)({ initParam: { vin: item.data.vin, carId: item.data.car_id } })} >
+                        <Icon name='ios-arrow-dropright-circle'
+                            style={{ color: '#00cade', marginLeft: 10, fontSize: 26 }} />
+                    </TouchableOpacity>
                 </View>}
             </View>
         } else {
@@ -149,11 +156,12 @@ class Cars extends Component {
                 <View style={{ flex: 1, alignItems: 'center' }}>
                     <Text style={{ fontSize: 11 }}>{item.data.make_name ? `${item.data.make_name}` : ''}</Text>
                 </View>
-                <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'flex-end' }}>
+                <TouchableOpacity
+                    style={{ flexDirection: 'row', flex: 1, justifyContent: 'flex-end' }}
+                    onPress={() => RouterDirection.carInfo(this.props.parent)({ initParam: { vin: item.data.vin, carId: item.data.car_id } })}>
                     <Icon name='ios-arrow-dropright-circle'
-                        style={{ color: '#00cade', marginLeft: 10, fontSize: 26 }}
-                        onPress={() => RouterDirection.carInfo(this.props.parent)({ initParam: { vin: item.data.vin, carId: item.data.car_id } })} />
-                </View>
+                        style={{ color: '#00cade', marginLeft: 10, fontSize: 26 }} />
+                </TouchableOpacity>
             </View>
         }
     }
@@ -161,7 +169,6 @@ class Cars extends Component {
     render() {
         const { carList, taskInfo } = this.props.carsReducer.data
         const { pushCarInCommand, getCommandCarList } = this.props.carsReducer
-        //console.log('this.props.carsReducer', this.props.carsReducer)
         if (getCommandCarList.isResultStatus == 1) {
             return (
                 <View style={{ flex: 1 }}>
@@ -178,12 +185,20 @@ class Cars extends Component {
                 <View style={{ flex: 1 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 10, backgroundColor: '#f2f6f9', borderBottomWidth: 0.5, borderColor: '#a8a8a8' }}>
                         <Text style={{ fontSize: 11 }}>计划运送：{taskInfo.plan_count ? `${taskInfo.plan_count}` : '0'}</Text>
-                        {taskInfo.load_task_status == 1 && pushCarInCommand.isResultStatus != 1 && <Button small rounded
-                            style={{ backgroundColor: '#00cade', width: 70, height: 20, justifyContent: 'center', flexDirection: 'row' }}
-                            onPress={() => RouterDirection.selectCarVin(this.props.parent)({ onSelect: this.onSelectCar })}>
-                            <MaterialCommunityIcons name='car' size={14} style={{ color: '#fff' }} />
-                            <Text style={{ color: '#fff', fontSize: 11, fontWeight: 'bold', paddingLeft: 10 }}>装 车</Text>
-                        </Button>}
+                        <View style={{ flexDirection: 'row' }}>
+                            {taskInfo.load_task_status == 1 && pushCarInCommand.isResultStatus != 1 && <Button small rounded
+                                style={{ backgroundColor: '#00cade', width: 70, height: 20, justifyContent: 'center', flexDirection: 'row' }}
+                                onPress={() => RouterDirection.selectCarVin(this.props.parent)({ onSelect: this.onSelectCar, initParam: { carStatus: 1 } })}>
+                                <MaterialCommunityIcons name='car' size={14} style={{ color: '#fff' }} />
+                                <Text style={{ color: '#fff', fontSize: 11, fontWeight: 'bold', paddingLeft: 10 }}>装 车</Text>
+                            </Button>}
+                            <Button small rounded
+                                style={{ backgroundColor: '#00cade', width: 90, height: 20, marginLeft: 10, justifyContent: 'center', flexDirection: 'row' }}
+                                onPress={() => RouterDirection.addCar(this.props.parent)({ onSelect: this.onSelectCar })}>
+                                <MaterialCommunityIcons name='plus-circle-outline' size={14} style={{ color: '#fff' }} />
+                                <Text style={{ color: '#fff', fontSize: 11, fontWeight: 'bold', paddingLeft: 10 }}>新增车辆</Text>
+                            </Button>
+                        </View>
                         {taskInfo.load_task_status == 1 && pushCarInCommand.isResultStatus == 1 && <View style={{ width: 70, alignItems: 'center' }}>
                             <ActivityIndicator
                                 animating={true}
@@ -208,6 +223,7 @@ class Cars extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        userReducer: state.userReducer,
         carsReducer: state.carsReducer
     }
 }

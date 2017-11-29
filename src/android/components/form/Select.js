@@ -3,8 +3,8 @@ import {
     StyleSheet,
     Text,
     View,
-    TouchableHighlight,
-    DatePickerAndroid
+    DatePickerAndroid,
+    TouchableOpacity
 } from 'react-native'
 
 import { Icon } from 'native-base'
@@ -119,8 +119,7 @@ export default class Select extends Component {
 
     renderEnable() {
         return (
-            <TouchableHighlight
-                underlayColor='rgba(0,0,0,0.1)'
+            <TouchableOpacity
                 onPress={this.showList}>
                 <View style={this.props.containerSytle}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', flex: 1 }}>
@@ -135,7 +134,7 @@ export default class Select extends Component {
                     </View>
                     {this.renderValidateMessage()}
                 </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
         )
     }
 

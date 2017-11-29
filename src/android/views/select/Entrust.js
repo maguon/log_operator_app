@@ -3,7 +3,7 @@ import {
     Text,
     View,
     FlatList,
-    TouchableNativeFeedback,
+    TouchableOpacity,
     InteractionManager,
     ActivityIndicator
 } from 'react-native'
@@ -46,11 +46,11 @@ class Entrust extends Component {
                 <FlatList
                     showsVerticalScrollIndicator={false}
                     data={entrustList}
-                    renderItem={({ item, index }) => <TouchableNativeFeedback key={index} onPress={() => this._onPress(item)} background={TouchableNativeFeedback.SelectableBackground()}>
+                    renderItem={({ item, index }) => <TouchableOpacity key={index} onPress={() => this._onPress(item)}>
                         <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
                             <Text style={{ fontSize: 12 }}>{item.short_name}</Text>
                         </View>
-                    </TouchableNativeFeedback>}
+                    </TouchableOpacity>}
                 />
             </View>
         )

@@ -5,11 +5,9 @@ import {
     FlatList,
     InteractionManager,
     ActivityIndicator,
-    TouchableNativeFeedback,
     Modal,
     ART,
     Dimensions,
-    TouchableHighlight,
     TouchableOpacity
 } from 'react-native'
 import { Icon } from 'native-base'
@@ -54,6 +52,7 @@ class Home extends Component {
             getTaskList: {
                 OptionalParam: {
                     baseAddrId: data.baseAddrId,
+                    loadTaskStatus: '1',
                     start: 0,
                     size: 12
                 }
@@ -87,6 +86,7 @@ class Home extends Component {
                 getTaskList: {
                     OptionalParam: {
                         baseAddrId: data.baseAddrId,
+                        loadTaskStatus: '1',
                         start: 0,
                         size: 12
                     }
@@ -109,6 +109,7 @@ class Home extends Component {
             this.props.getTaskListMore({
                 OptionalParam: {
                     baseAddrId: data.baseAddrId,
+                    loadTaskStatus: '1',
                     start: taskList.length,
                     size: 12
                 }
@@ -119,7 +120,7 @@ class Home extends Component {
     renderListHeader() {
         const { carriedCount } = this.props.homeReducer.data
         return (
-            <View style={{ flexDirection: 'row', backgroundColor: '#00cade', paddingVertical: 10, borderTopWidth: 0.2, borderColor: '#00e5f6' }}>
+            <View key={'header'} style={{ flexDirection: 'row', backgroundColor: '#00cade', paddingVertical: 10, borderTopWidth: 0.2, borderColor: '#00e5f6' }}>
                 <View style={{ flex: 1, flexDirection: 'row', borderRightWidth: 0.2, borderColor: '#00e5f6' }}>
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
                         <MaterialCommunityIcons name='truck' size={40} color='#fff' />
@@ -154,7 +155,7 @@ class Home extends Component {
                 animationType={"fade"}
                 visible={this.state.menuModalIsVisible}
                 onRequestClose={() => { }}>
-                <TouchableHighlight underlayColor={'rgba(0,0,0,0.2)'} style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.2)' }} onPress={() => this.setState({ menuModalIsVisible: false })}>
+                <TouchableOpacity style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.2)' }} onPress={() => this.setState({ menuModalIsVisible: false })}>
                     <View style={{ position: 'absolute', top: 0, right: 10 }}>
                         <ART.Surface width={width} height={top} >
                             <ART.Shape d={path} fill={'#fff'} />
@@ -189,15 +190,16 @@ class Home extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                </TouchableHighlight>
+                </TouchableOpacity>
             </Modal>
         )
     }
 
     renderListItem(item, index) {
+        // console.log('index',index)
         return (
-            <TouchableNativeFeedback key={index} onPress={() => Actions.command({ initParam: { taskInfo: item } })} background={TouchableNativeFeedback.SelectableBackground()}>
-                <View style={{ borderWidth: 1, borderColor: '#eee', marginHorizontal: 10, marginTop: 10 }}>
+            <TouchableOpacity key={index} onPress={() => Actions.command({ initParam: { taskInfo: item } })}>
+                <View  key={index} style={{ borderWidth: 1, borderColor: '#eee', marginHorizontal: 10, marginTop: 10 }}>
                     <View style={{ flexDirection: 'row', backgroundColor: '#eff3f5', padding: 10, justifyContent: 'space-between' }}>
                         <View style={{ flexDirection: 'row' }}>
                             <MaterialCommunityIcons name='truck-delivery' size={20} color='#00cade' />
@@ -213,13 +215,15 @@ class Home extends Component {
                         <Text style={{ fontSize: 11, color: '#8c989f' }}>指定装载：{item.plan_count ? `${item.plan_count}` : ''}</Text>
                     </View>
                 </View>
-            </TouchableNativeFeedback>
+            </TouchableOpacity>
         )
     }
 
     render() {
         const { carriedCount, taskList, listLoadComplete } = this.props.homeReducer.data
         const { getHomeData, getTaskListMore } = this.props.homeReducer
+        // console.log('this.props.userReducer',this.props.userReducer)
+        // console.log('this.props.settingReducer',this.props.settingReducer)
         if (getHomeData.isResultStatus == 1) {
             return (
                 <View style={{ flex: 1 }}>
@@ -263,14 +267,14 @@ class Home extends Component {
                         data={taskList}
                         onEndReached={this.getTaskListMore}
                         ListHeaderComponent={this.renderListHeader}
-                        ListFooterComponent={getTaskListMore.isResultStatus == 1 ? <View style={{ marginVertical: 10, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                        ListFooterComponent={getTaskListMore.isResultStatus == 1 ? <View  key={'footer'}  style={{ marginVertical: 10, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                             <ActivityIndicator
                                 animating={getTaskListMore.isResultStatus == 1}
                                 style={{ height: 20 }}
                                 size="large"
                             />
                             <Text style={{ fontSize: 11, paddingLeft: 10 }}>正在加载……</Text>
-                        </View> : <View style={{ height: 10 }} />}
+                        </View> : <View key={'footer'} style={{ height: 10 }} />}
                         renderItem={({ item, index }) => this.renderListItem(item, index)} />
                     {this.renderMenu()}
                 </View>

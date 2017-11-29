@@ -3,8 +3,7 @@ import {
     Text,
     View,
     Modal,
-    TouchableOpacity,
-    TouchableNativeFeedback
+    TouchableOpacity
 } from 'react-native'
 import { Button, Icon } from 'native-base'
 import ImageResizer from 'react-native-image-resizer'
@@ -181,20 +180,18 @@ export default class CameraButton extends Component {
                             <View style={{ ...baseStyle.ListHeadCutLine }}>
                                 <Text style={{ ...baseStyle.modalListHeadTitle }}>照相机</Text>
                             </View>
-                            <TouchableNativeFeedback
-                                onPress={() => this.setState({ operationModalVisible: false }, this.openPicker)}
-                                background={TouchableNativeFeedback.SelectableBackground()}>
+                            <TouchableOpacity
+                                onPress={() => this.setState({ operationModalVisible: false }, this.openPicker)}>
                                 <View style={{ ...baseStyle.listItemCutLine }}>
                                     <Text style={{ ...baseStyle.modalListItemTitle }}>选择照片</Text>
                                 </View>
-                            </TouchableNativeFeedback>
-                            <TouchableNativeFeedback
-                                onPress={() => this.setState({ operationModalVisible: false }, this.launchCamera)}
-                                background={TouchableNativeFeedback.SelectableBackground()}>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => this.setState({ operationModalVisible: false }, this.launchCamera)}>
                                 <View>
                                     <Text style={{ ...baseStyle.modalListItemTitle }}>拍照</Text>
                                 </View>
-                            </TouchableNativeFeedback>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </Modal>

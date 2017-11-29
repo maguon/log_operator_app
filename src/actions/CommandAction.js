@@ -6,7 +6,7 @@ import { ObjectToUrl } from '../util/ObjectToUrl'
 export const getCommandList = (param) => async (dispatch) => {
     const url = `${base_host}/dpRouteLoadTask?${ObjectToUrl(param.OptionalParam)}`
     try {
-        let res = await httpRequest.get(url)
+        const res = await httpRequest.get(url)
         if (res.success) {
             dispatch({ type: actionTypes.commandTypes.GET_HomeCommandList_SUCCESS, payload: { data: res.result } })
         } else {
@@ -23,9 +23,10 @@ export const getCommandListWaiting = () => (dispatch) => {
 
 export const cancelCommand = (param) => async (dispatch) => {
     dispatch({ type: actionTypes.commandTypes.CancelCommand_WAITING, payload: { data: { id: param.requiredParam.dpRouteLoadTaskId } } })
-    const url = `${base_host}/user/${param.requiredParam.userId}/dpRouteLoadTask/${param.requiredParam.dpRouteLoadTaskId}/loadTaskStatus/${param.requiredParam.loadTaskStatus}`
+    const url = `${base_host}/user/${param.requiredParam.userId}/dpRouteLoadTask/${param.requiredParam.dpRouteLoadTaskId}`
     try {
-        let res = await httpRequest.put(url, param.putParam)
+        const res = await httpRequest.del(url)
+        console.log('res',res)
         if (res.success) {
             dispatch({ type: actionTypes.commandTypes.CancelCommand_SUCCESS, payload: { data: { id: param.requiredParam.dpRouteLoadTaskId } } })
         } else {

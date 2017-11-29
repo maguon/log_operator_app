@@ -93,13 +93,14 @@ class AddCarImage extends Component {
     }
 
     addCarImage(param) {
+        const { user } = this.props.userReducer.data
         this.props.addCarImage(param.filter((item) => item.success)
             .map((item) => {
                 return {
                     requiredParam: {
-                        userId: '81',
-                        carId: 1225,//this.props.initParam.carId,
-                        vin: '887766jshshsh'//this.props.initParam.vin
+                        userId: user.userId,
+                        carId: this.props.initParam.carId,
+                        vin: this.props.initParam.vin
                     },
                     optionalParam: {
                         imageType: 1
@@ -109,9 +110,9 @@ class AddCarImage extends Component {
                         key: "image"
                     },
                     postParam: {
-                        username: '13555555555',
-                        userId: '81',
-                        userType: '10',
+                        username: user.mobile,
+                        userId: user.userId,
+                        userType: user.userType,
                     }
                 }
             }))
@@ -166,6 +167,7 @@ class AddCarImage extends Component {
 
 
     render() {
+        const { user } = this.props.userReducer.data
         const { imageList } = this.props.addCarImageReducer.data
         return (
             <View style={{ flex: 1 }}>
@@ -202,6 +204,7 @@ class AddCarImage extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        userReducer: state.userReducer,
         addCarImageReducer: state.addCarImageReducer
     }
 }

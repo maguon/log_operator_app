@@ -24,10 +24,11 @@ class CarInfo extends Component {
 
     componentDidMount() {
         this.props.getCarInfoWaiting()
+        const { user } = this.props.userReducer.data
         InteractionManager.runAfterInteractions(() => this.props.getCarInfo({
             OptionalParam: { vin: this.props.initParam.vin },
             requiredParam: {
-                userId: 81,
+                userId: user.userId,
                 carId: this.props.initParam.carId
             }
         }))
@@ -117,7 +118,8 @@ class CarInfo extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        carInfoReducer: state.carInfoReducer
+        carInfoReducer: state.carInfoReducer,
+        userReducer: state.userReducer
     }
 }
 

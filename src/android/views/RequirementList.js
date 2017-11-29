@@ -3,7 +3,7 @@ import {
     Text,
     View,
     FlatList,
-    TouchableNativeFeedback,
+    TouchableOpacity,
     InteractionManager,
     ActivityIndicator,
     Button
@@ -65,9 +65,8 @@ class RequirementList extends Component {
                             <Text style={{ fontSize: 11, paddingLeft: 10 }}>正在加载……</Text>
                         </View> : <View style={{ height: 10 }} />}
                         data={[...requirementList]}
-                        renderItem={({ item, index }) => <TouchableNativeFeedback key={index}
-                            onPress={() => Actions.requirementInfo({ initParam: { requirementInfo: item } })}
-                            background={TouchableNativeFeedback.SelectableBackground()}>
+                        renderItem={({ item, index }) => <TouchableOpacity key={index}
+                            onPress={() => Actions.requirementInfo({ initParam: { requirementInfo: item } })}>
                             <View style={{ borderWidth: 1, borderColor: '#dedede', marginHorizontal: 10, marginTop: 10 }}>
                                 <View style={{ flexDirection: 'row', backgroundColor: '#eff3f5', padding: 10, justifyContent: 'space-between' }}>
                                     <View style={{ flexDirection: 'row' }}>
@@ -83,7 +82,7 @@ class RequirementList extends Component {
                                     <Text style={{ fontSize: 11, color: '#8c989f' }}>派送车辆：<Text style={{ color: '#00cade' }}>{item.pre_count ? `${item.pre_count}` : ''}</Text></Text>
                                 </View>
                             </View>
-                        </TouchableNativeFeedback>}
+                        </TouchableOpacity>}
                     />
                 </View>
             )

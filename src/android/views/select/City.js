@@ -3,9 +3,9 @@ import {
     Text,
     View,
     FlatList,
-    TouchableNativeFeedback,
     InteractionManager,
-    ActivityIndicator
+    ActivityIndicator,
+    TouchableOpacity
 } from 'react-native'
 import { connect } from 'react-redux'
 import * as cityAction from '../../../actions/CityAction'
@@ -62,11 +62,11 @@ class City extends Component {
                     <FlatList
                         showsVerticalScrollIndicator={false}
                         data={cityList}
-                        renderItem={({ item, index }) => <TouchableNativeFeedback key={index} onPress={() => this._onPress(item)} background={TouchableNativeFeedback.SelectableBackground()}>
+                        renderItem={({ item, index }) => <TouchableOpacity key={index} onPress={() => this._onPress(item)}>
                             <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
                                 <Text style={{ fontSize: 12 }}>{item.city_name}</Text>
                             </View>
-                        </TouchableNativeFeedback>}
+                        </TouchableOpacity>}
                     />
                 </View>
             )

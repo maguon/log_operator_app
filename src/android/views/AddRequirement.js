@@ -30,13 +30,14 @@ class AddRequirement extends Component {
     }
 
     addRequirement() {
+        const { user } = this.props.userReducer.data
         if (this.props.settingReducer.data.baseAddrId) {
             this.props.addRequirement({
-                requiredParam: { userId: 81 },
+                requiredParam: { userId: user.userId },
                 postParam: {
                     routeStartId: this.props.settingReducer.data.cityId,
                     routeStart: this.props.settingReducer.data.cityName,
-                    baseAddrId: this.props.settingReducer.data.baseAddrId, 
+                    baseAddrId: this.props.settingReducer.data.baseAddrId,
                     routeEndId: this.state.routeEndId,
                     routeEnd: this.state.routeEnd,
                     receiveId: this.state.receiveId,
@@ -82,7 +83,7 @@ class AddRequirement extends Component {
                 <ScrollView
                     showsHorizontalScrollIndicator={false}>
                     <View style={{ flex: 1 }}>
-                    <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
+                        <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
                             <Text style={{ fontSize: 12, fontWeight: 'bold' }}>起始城市：<Text style={{ fontWeight: '100' }}>{this.props.settingReducer.data.cityName ? this.props.settingReducer.data.cityName : '未选择装车城市'}</Text></Text>
                         </View>
                         <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
@@ -92,7 +93,11 @@ class AddRequirement extends Component {
                             title='目的城市：'
                             value={this.state.routeEnd ? this.state.routeEnd : '请选择'}
                             showList={RouterDirection.selectCity(this.props.parent)}
-                            onValueChange={(param) => this.setState({ routeEndId: param.id, routeEnd: param.city_name })}
+                            onValueChange={(param) => {
+                                if (this.state.routeEndId != param.id) {
+                                    this.setState({ routeEndId: param.id, routeEnd: param.city_name, receiveId: 0, receive: '' })
+                                }
+                            }}
                             defaultValue={'请选择'}
                         />
                         {this.state.routeEndId ? <Select

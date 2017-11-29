@@ -3,7 +3,7 @@ import {
     Text,
     View,
     FlatList,
-    TouchableNativeFeedback,
+    TouchableOpacity,
     InteractionManager,
     ActivityIndicator,
 } from 'react-native'
@@ -91,9 +91,8 @@ class TaskInfoAtWork extends Component {
 
     renderItem(item, index) {
         return (
-            <TouchableNativeFeedback key={index}
-                onPress={() => RouterDirection.carInfo(this.props.parent)({ initParam: { carId: item.car_id,vin:item.vin } })}
-                background={TouchableNativeFeedback.SelectableBackground()}>
+            <TouchableOpacity key={index}
+                onPress={() => RouterDirection.carInfo(this.props.parent)({ initParam: { carId: item.car_id,vin:item.vin } })}>
                 <View style={{ flexDirection: 'row', padding: 10, borderBottomWidth: 0.5, borderColor: '#eee', alignItems: 'center' }}>
                     <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
                         <MaterialCommunityIcons name='car' size={14} style={{ color: '#8c989f' }} />
@@ -106,7 +105,7 @@ class TaskInfoAtWork extends Component {
                         <Icon name='ios-arrow-forward' style={{ fontSize: 14, color: '#8c989f' }} />
                     </View>
                 </View>
-            </TouchableNativeFeedback>
+            </TouchableOpacity>
         )
     }
 

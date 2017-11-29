@@ -5,6 +5,7 @@ import { ObjectToUrl } from '../util/ObjectToUrl'
 
 export const getCarVinList = (param) => async (dispatch) => {
     const url = `${base_host}/carList?${ObjectToUrl(param.OptionalParam)}`
+    
     dispatch({ type: actionTypes.carVinTypes.GET_CarVinList_WAITING, payload: {} })
     try {
         let res = await httpRequest.get(url)

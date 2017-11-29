@@ -3,7 +3,7 @@ import {
     Text,
     View,
     FlatList,
-    TouchableNativeFeedback,
+    TouchableOpacity,
     InteractionManager,
     ActivityIndicator
 } from 'react-native'
@@ -21,6 +21,16 @@ class CarVin extends Component {
         this._onPress = this._onPress.bind(this)
     }
 
+    static defaultProps = {
+        initParam: {
+            carStatus: null
+        }
+    }
+
+    componentDidMount(){
+        this.props.cleanCarVin()
+    }
+
     shouldComponentUpdate(nextProps, nextState) {
         if (this.state.vin != nextState.vin) {
             if (nextState.vin == '') {
@@ -29,6 +39,7 @@ class CarVin extends Component {
                 this.props.getCarVinList({
                     OptionalParam: {
                         vinCode: nextState.vin,
+                        ...this.props.initParam,
                         start: 0,
                         size: 12
                     }
@@ -41,6 +52,7 @@ class CarVin extends Component {
     _onPress(item) {
         this.props.onSelect(item)
         Actions.pop()
+        this.props.cleanCarVin()
     }
 
     render() {
@@ -57,11 +69,11 @@ class CarVin extends Component {
                 <View style={{ flex: 1 }}>
                     <FlatList
                         data={carVinList}
-                        renderItem={({ item, index }) => <TouchableNativeFeedback key={index} onPress={() => this._onPress(item)} background={TouchableNativeFeedback.SelectableBackground()}>
+                        renderItem={({ item, index }) => <TouchableOpacity key={index} onPress={() => this._onPress(item)}>
                             <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
                                 <Text style={{ fontSize: 12 }}>{item.vin ? `${item.vin}` : ''}</Text>
                             </View>
-                        </TouchableNativeFeedback>} />
+                        </TouchableOpacity>} />
                 </View>
             </View>
         )

@@ -3,7 +3,7 @@ import {
     Text,
     View,
     FlatList,
-    TouchableNativeFeedback,
+    TouchableOpacity,
     InteractionManager,
     ActivityIndicator
 } from 'react-native'
@@ -69,11 +69,11 @@ class Truck extends Component {
                             <Text style={{ fontSize: 11, paddingLeft: 10 }}>正在加载……</Text>
                         </View> : <View />}
                         data={truckList}
-                        renderItem={({ item, index }) => <TouchableNativeFeedback key={index} onPress={() => this._onPress(item)} background={TouchableNativeFeedback.SelectableBackground()}>
+                        renderItem={({ item, index }) => <TouchableOpacity key={index} onPress={() => this._onPress(item)}>
                             <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
                                 <Text style={{ fontSize: 12 }}>{item.truck_num}</Text>
                             </View>
-                        </TouchableNativeFeedback>}
+                        </TouchableOpacity>}
                     />
                 </View>
             )

@@ -44,16 +44,20 @@ class AddCar extends Component {
         if (addCar.isResultStatus == 2) {
             ToastAndroid.show('创建成功！', ToastAndroid.SHORT)
             // console.log('nextProps.addCarReducer',nextProps.addCarReducer)
-            Actions.addCarImage({ initParam: { carId: nextProps.addCarReducer.data.carId, vin: this.state.vin } })
+            RouterDirection.addCarImage(this.props.parent)({ initParam: { carId: nextProps.addCarReducer.data.carId, vin: this.state.vin } })
+            this.props.onSelect({ id: nextProps.addCarReducer.data.carId, vin: this.state.vin, make_name: this.state.makeName })
             this.props.resetAddCar()
         }
     }
 
-
+    static defaultProps = {
+        onSelect: (param) => { }
+    }
 
     _onPressOK() {
+        const { user } = this.props.userReducer.data
         const { vin, engineNum, makeId, makeName, routeStartId, routeStart, routeEndId, routeEnd, receiveId, entrustId } = this.state
-        let initParam = { vin, engineNum, makeId, makeName, routeStartId, routeStart, routeEndId, routeEnd, receiveId, entrustId }
+        const initParam = { vin, engineNum, makeId, makeName, routeStartId, routeStart, routeEndId, routeEnd, receiveId, entrustId }
         for (key in initParam) {
             if (!initParam[key]) {
                 delete initParam[key]
@@ -61,7 +65,7 @@ class AddCar extends Component {
         }
         this.props.addCar({
             requiredParam: {
-                userId: 38
+                userId: user.userId
             },
             postParam: initParam
         })
@@ -87,6 +91,7 @@ class AddCar extends Component {
     }
 
     render() {
+        //console.log(this.props.userReducer)
         return (
             <View style={{ flex: 1 }}>
                 <ScrollView>
@@ -130,7 +135,7 @@ class AddCar extends Component {
                         <Select
                             title='委托方：'
                             value={this.state.entrust ? `${this.state.entrust}` : '请选择'}
-                            showList={(param) => RouterDirection.selectEntrust(this.props.parent)({ ...param, cityId: this.state.routeStartId })}
+                            showList={RouterDirection.selectEntrust(this.props.parent)}
                             onValueChange={(param) => {
                                 if (this.state.entrustId != param.id) { this.setState({ entrustId: param.id, entrust: param.entrust_name }) }
                             }}
@@ -141,11 +146,13 @@ class AddCar extends Component {
                             value={this.state.routeEnd ? `${this.state.routeEnd}` : '请选择'}
                             showList={RouterDirection.selectCity(this.props.parent)}
                             onValueChange={(param) => {
-                                if (this.state.routeEndId != param.id) { this.setState({ routeEndId: param.id, routeEnd: param.city_name }) }
+                                if (this.state.routeEndId != param.id) { 
+                                    this.setState({ routeEndId: param.id, routeEnd: param.city_name ,receiveId:0,receive:''}) 
+                                }
                             }}
                             defaultValue={'请选择'}
                         />
-                        <Select
+                        {this.state.routeEndId ? <Select
                             title='经销商：'
                             value={this.state.receive ? `${this.state.receive}` : '请选择'}
                             showList={(param) => RouterDirection.selectReceive(this.props.parent)({ ...param, cityId: this.state.routeEndId })}
@@ -153,7 +160,9 @@ class AddCar extends Component {
                                 if (this.state.receiveId != param.id) { this.setState({ receiveId: param.id, receive: param.receive_name }) }
                             }}
                             defaultValue={'请选择'}
-                        />
+                        /> : <View style={{ padding: 10, backgroundColor: '#eee' }}>
+                                <Text style={{ fontSize: 12, fontWeight: 'bold' }}>经销商：<Text style={{ fontWeight: '100' }}>请先选择目的城市</Text></Text>
+                            </View>}
                         <View style={{ flexDirection: 'row' }}>
                             <View style={{ flex: 1 }}>
                                 <Button full style={{ backgroundColor: '#00cade', justifyContent: 'center', marginHorizontal: 10, marginTop: 30 }} onPress={this._onPressOK}>
@@ -175,6 +184,7 @@ class AddCar extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        userReducer: state.userReducer,
         settingReducer: state.settingReducer,
         addCarReducer: state.addCarReducer
     }

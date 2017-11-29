@@ -3,9 +3,9 @@ import {
     Text,
     View,
     FlatList,
-    TouchableNativeFeedback,
     InteractionManager,
-    ActivityIndicator
+    ActivityIndicator,
+    TouchableOpacity
 } from 'react-native'
 import { connect } from 'react-redux'
 import * as makeAction from '../../../actions/MakeAction'
@@ -47,11 +47,11 @@ class Make extends Component {
                         showsHorizontalScrollIndicator={false}
                         showsVerticalScrollIndicator={false}
                         data={makeList}
-                        renderItem={({ item, index }) => <TouchableNativeFeedback key={index} onPress={() => this._onPress(item)} background={TouchableNativeFeedback.SelectableBackground()}>
+                        renderItem={({ item, index }) => <TouchableOpacity key={index} onPress={() => this._onPress(item)}>
                             <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
                                 <Text style={{ fontSize: 12 }}>{item.make_name}</Text>
                             </View>
-                        </TouchableNativeFeedback>}
+                        </TouchableOpacity>}
                     />
                 </View>
             )

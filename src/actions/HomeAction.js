@@ -6,8 +6,10 @@ import { ObjectToUrl } from '../util/ObjectToUrl'
 export const getHomeData = (param) => async (dispatch) => {
     const urls = [`${base_host}/dpRouteLoadTaskCount?${ObjectToUrl(param.getCarriedCount.OptionalParam)}`,
     `${base_host}/dpRouteTask?${ObjectToUrl(param.getTaskList.OptionalParam)}`]
+    //console.log('urls',urls)
     try {
-        let res = await Promise.all(urls.map(url => httpRequest.get(url)))
+        const res = await Promise.all(urls.map(url => httpRequest.get(url)))
+        //console.log('res',res)
         if (res[0].success && res[1].success) {
             dispatch({
                 type: actionTypes.homeTypes.GET_HomeData_SUCCESS, payload: {
@@ -34,7 +36,7 @@ export const getTaskListMore = (param) => async (dispatch) => {
     const url = `${base_host}/dpRouteTask?${ObjectToUrl(param.OptionalParam)}`
     dispatch({ type: actionTypes.homeTypes.GET_HomeTaskListMore_WAITING, payload: {} })
     try {
-        let res = await httpRequest.get(url)
+        const res = await httpRequest.get(url)
         if (res.success) {
             dispatch({ type: actionTypes.homeTypes.GET_HomeTaskListMore_SUCCESS, payload: { data: { size: param.OptionalParam.size, taskList: res.result } } })
         } else {
