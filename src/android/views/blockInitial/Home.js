@@ -33,13 +33,18 @@ class Home extends Component {
         this.renderListHeader = this.renderListHeader.bind(this)
         this.getTaskListMore = this.getTaskListMore.bind(this)
         this.renderMenu = this.renderMenu.bind(this)
-        this._onSaveBaseAddr=this._onSaveBaseAddr.bind(this)
+        this._onSaveBaseAddr = this._onSaveBaseAddr.bind(this)
+        this.initView = this.initView.bind(this)
     }
 
     componentDidMount() {
         const { user } = this.props.userReducer.data
         const { data } = this.props.settingReducer
         this.props.getHomeDataWaiting()
+        this.initView(user, data)
+    }
+
+    initView(user, data) {
         InteractionManager.runAfterInteractions(() => this.props.getHomeData({
             getCarriedCount: {
                 OptionalParam: {
@@ -72,32 +77,22 @@ class Home extends Component {
     componentWillReceiveProps(nextProps) {
         const { data } = nextProps.settingReducer
         const { user } = nextProps.userReducer.data
-        if(data.baseAddrId!=this.props.settingReducer.data.baseAddrId) {
+        if (data.baseAddrId != this.props.settingReducer.data.baseAddrId) {
             this.props.getHomeDataWaiting()
-            InteractionManager.runAfterInteractions(() => this.props.getHomeData({
-                getCarriedCount: {
-                    OptionalParam: {
-                        loadDateStart: moment().format('YYYY-MM-01'),
-                        loadDateEnd: moment().format('YYYY-MM-DD'),
-                        loadTaskStatusArr: '3,7,9',
-                        fieldOpId: user.userId
-                    }
-                },
-                getTaskList: {
-                    OptionalParam: {
-                        baseAddrId: data.baseAddrId,
-                        loadTaskStatus: '1',
-                        start: 0,
-                        size: 12
-                    }
-                }
-            }))  
-        }else if (nextProps.leftButtonTitle!=data.baseAddr) {
-            Actions.refresh({ 
-                onPressLeft: () => RouterDirection.selectCity(this.props.parent)({onSelect:this._onSaveBaseAddr,  isMultistep: true }),
+            this.initView(user, data)
+        } else if (nextProps.leftButtonTitle != data.baseAddr) {
+            Actions.refresh({
+                onPressLeft: () => RouterDirection.selectCity(this.props.parent)({ onSelect: this._onSaveBaseAddr, isMultistep: true }),
                 leftButtonTitle: data.baseAddr,
                 onPressRight: () => this.setState({ menuModalIsVisible: true })
-             })
+            })
+        }
+
+
+        const { isPopRefresh } = nextProps
+        if (isPopRefresh) {
+            this.initView(user, data)
+            Actions.refresh({ isPopRefresh: !isPopRefresh })
         }
     }
 
@@ -199,7 +194,7 @@ class Home extends Component {
         // console.log('index',index)
         return (
             <TouchableOpacity key={index} onPress={() => Actions.command({ initParam: { taskInfo: item } })}>
-                <View  key={index} style={{ borderWidth: 1, borderColor: '#eee', marginHorizontal: 10, marginTop: 10 }}>
+                <View key={index} style={{ borderWidth: 1, borderColor: '#eee', marginHorizontal: 10, marginTop: 10 }}>
                     <View style={{ flexDirection: 'row', backgroundColor: '#eff3f5', padding: 10, justifyContent: 'space-between' }}>
                         <View style={{ flexDirection: 'row' }}>
                             <MaterialCommunityIcons name='truck-delivery' size={20} color='#00cade' />
@@ -267,7 +262,7 @@ class Home extends Component {
                         data={taskList}
                         onEndReached={this.getTaskListMore}
                         ListHeaderComponent={this.renderListHeader}
-                        ListFooterComponent={getTaskListMore.isResultStatus == 1 ? <View  key={'footer'}  style={{ marginVertical: 10, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                        ListFooterComponent={getTaskListMore.isResultStatus == 1 ? <View key={'footer'} style={{ marginVertical: 10, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                             <ActivityIndicator
                                 animating={getTaskListMore.isResultStatus == 1}
                                 style={{ height: 20 }}

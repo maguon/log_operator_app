@@ -118,7 +118,7 @@ export default class App extends Component {
                                     rightType={1}/>
                                 <Scene key="task" title='司机任务' component={Task} hideTabBar hideNavBar={false} navBar={NavBar} />
                                 <Scene key="carVinAtHomeBlock" title='选择商品车' component={CarVin} hideNavBar={false} navBar={NavBar} />
-                                <Scene key="command" title='调度指令' component={Command} hideTabBar hideNavBar={false} navBar={NavBar} />
+                                <Scene key="command"  isRequirePopRefresh={true} title='调度指令' component={Command} hideTabBar hideNavBar={false} navBar={NavBar} />
                                 <Scene key="driverInfo" title='司机信息' component={DriverInfo} hideNavBar={false} navBar={NavBar} />
                                 <Scene key="cars" title='装车信息' component={Cars} hideNavBar={false} navBar={NavBar} />
                                 <Scene key="carInfoAtHomeBlock" title='商品车信息' component={CarInfo} hideNavBar={false} navBar={NavBar} />
