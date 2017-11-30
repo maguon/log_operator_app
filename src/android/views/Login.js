@@ -56,6 +56,12 @@ class Login extends Component {
         }
     }
 
+    componentDidMount() {
+        localStorage.load({ key: localStorageKey.USER })
+            .then(res => this.setState({ textUserName: res.mobile }))
+            .catch(err => console.log(err))
+    }
+
     componentWillReceiveProps(nextProps) {
         const { initPush, login, loginFlow, data } = nextProps.userReducer
         if (loginFlow.step == 1 && loginFlow.isResultStatus == 2) {

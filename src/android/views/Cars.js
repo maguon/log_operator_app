@@ -192,12 +192,12 @@ class Cars extends Component {
                                 <MaterialCommunityIcons name='car' size={14} style={{ color: '#fff' }} />
                                 <Text style={{ color: '#fff', fontSize: 11, fontWeight: 'bold', paddingLeft: 10 }}>装 车</Text>
                             </Button>}
-                            <Button small rounded
+                            {taskInfo.load_task_status == 1 && pushCarInCommand.isResultStatus != 1 &&<Button small rounded
                                 style={{ backgroundColor: '#00cade', width: 90, height: 20, marginLeft: 10, justifyContent: 'center', flexDirection: 'row' }}
                                 onPress={() => RouterDirection.addCar(this.props.parent)({ onSelect: this.onSelectCar })}>
                                 <MaterialCommunityIcons name='plus-circle-outline' size={14} style={{ color: '#fff' }} />
                                 <Text style={{ color: '#fff', fontSize: 11, fontWeight: 'bold', paddingLeft: 10 }}>新增车辆</Text>
-                            </Button>
+                            </Button>}
                         </View>
                         {taskInfo.load_task_status == 1 && pushCarInCommand.isResultStatus == 1 && <View style={{ width: 70, alignItems: 'center' }}>
                             <ActivityIndicator
