@@ -20,6 +20,7 @@ import * as carsTypes from './CarsTypes'
 import * as loginTypes from './LoginTypes'
 import * as initializationTypes from './InitializationTypes'
 import * as passwordTypes from './PasswordTypes'
+import * as taskTypes from './TaskTypes'
 
 export {
     cityTypes,
@@ -43,5 +44,6 @@ export {
     carsTypes,
     loginTypes,
     initializationTypes,
-    passwordTypes
+    passwordTypes,
+    taskTypes
 }   

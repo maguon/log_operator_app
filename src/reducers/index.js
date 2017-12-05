@@ -21,6 +21,7 @@ import carsReducer from './carsReducer'
 import userReducer from './userReducer'
 import initializationReducer from './initializationReducer'
 import passwordReducer from './passwordReducer'
+import taskReducer from './taskReducer'
 
 export default combineReducers({
     homeReducer,
@@ -44,5 +45,6 @@ export default combineReducers({
     carsReducer,
     userReducer,
     initializationReducer,
-    passwordReducer
+    passwordReducer,
+    taskReducer
 })

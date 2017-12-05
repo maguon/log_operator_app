@@ -37,6 +37,7 @@ import Make from './views/select/Make'
 import AddCarImage from './views/AddCarImage'
 
 import Login from './views/Login'
+import QRCodeScreen from './views/QRCodeScreen'
 import Initialization from './views/Initialization'
 import Orientation from 'react-native-orientation'
 
@@ -112,11 +113,11 @@ export default class App extends Component {
                         <Scene key="login" component={Login} hideNavBar hideTabBar />
                         <Scene key="main" tabs={true} tabBarStyle={styles.tabBarStyle} tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}>
                             <Scene key="homeBlock" icon={TabIcon} initial={true} online='ios-home' outline='ios-home-outline' >
-                                <Scene key="home" initial={true} component={Home} hideNavBar={false} navBar={TopBar}
+                                <Scene key="home" initial={true}  component={Home} hideNavBar={false} navBar={TopBar}
                                     title=''
                                     leftType={1}
                                     rightType={1}/>
-                                <Scene key="task" title='司机任务' component={Task} hideTabBar hideNavBar={false} navBar={NavBar} />
+                                <Scene key="task" title='司机任务'  component={Task} hideTabBar hideNavBar={false} navBar={NavBar} />
                                 <Scene key="carVinAtHomeBlock" title='选择商品车' component={CarVin} hideNavBar={false} navBar={NavBar} />
                                 <Scene key="command"  isRequirePopRefresh={true} title='调度指令' component={Command} hideTabBar hideNavBar={false} navBar={NavBar} />
                                 <Scene key="driverInfo" title='司机信息' component={DriverInfo} hideNavBar={false} navBar={NavBar} />
@@ -130,6 +131,7 @@ export default class App extends Component {
                                 <Scene key="addRequirementAtHomeBlock" title='增加需求' component={AddRequirement} hideTabBar={true} hideNavBar={false} navBar={NavBar} />
                                 <Scene key="addCarAtHomeBlock" title='增加商品车' component={AddCar} hideNavBar={false} hideTabBar={true} navBar={NavBar} />
                                 <Scene key="addCarImageAtHomeBlock" title='添加照片' component={AddCarImage} hideNavBar={false} hideTabBar navBar={NavBar} />
+                                <Scene key="qrCodeScreen" title='扫一扫' component={QRCodeScreen} hideNavBar={false} hideTabBar navBar={NavBar} />
                             </Scene>
                             <Scene key="workBlock" icon={TabIcon} online='ios-bus' outline='ios-bus-outline' >
                                 <Scene key="work" title='工作' initial={true} rightType={1} onPressRight={() => Actions.addCarAtWorkBlock()}  component={Work} hideNavBar={false} navBar={TopBar} />

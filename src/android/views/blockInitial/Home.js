@@ -35,6 +35,7 @@ class Home extends Component {
         this.renderMenu = this.renderMenu.bind(this)
         this._onSaveBaseAddr = this._onSaveBaseAddr.bind(this)
         this.initView = this.initView.bind(this)
+        this.onSelectQRCode = this.onSelectQRCode.bind(this)
     }
 
     componentDidMount() {
@@ -112,6 +113,13 @@ class Home extends Component {
         }
     }
 
+    onSelectQRCode(result) {
+         InteractionManager.runAfterInteractions(() => Actions.task({ initParam: { driverInfo: result} }))
+        
+        //console.log('result',result)
+        //console.log('result',JSON.parse(result))
+    }
+
     renderListHeader() {
         const { carriedCount } = this.props.homeReducer.data
         return (
@@ -163,7 +171,11 @@ class Home extends Component {
                             alignItems: 'flex-start',
                             borderRadius: 3
                         }}>
-                            <TouchableOpacity style={{ padding: 5, flexDirection: 'row', alignItems: 'center' }}>
+                            <TouchableOpacity style={{ padding: 5, flexDirection: 'row', alignItems: 'center' }}
+                                onPress={() => {
+                                    this.setState({ menuModalIsVisible: false })
+                                    Actions.qrCodeScreen({ onSelectQRCode: this.onSelectQRCode })
+                                }}>
                                 <Icon name='ios-qr-scanner' style={{ fontSize: 12 }} />
                                 <Text style={{ fontSize: 12, paddingLeft: 5 }}>扫一扫</Text>
                             </TouchableOpacity>
