@@ -16,6 +16,7 @@ import { Actions } from 'react-native-router-flux'
 class Task extends Component {
     constructor(props) {
         super(props)
+        this.initView=this.initView.bind(this)
     }
 
     static defaultProps = {
@@ -28,6 +29,11 @@ class Task extends Component {
 
     componentDidMount() {
         this.props.getDriverCommandListWaiting()
+        this.initView()
+
+    }
+
+    initView(){
         InteractionManager.runAfterInteractions(() => this.props.getDriverCommandList({
             getDriverId: {
                 requiredParam: {
@@ -41,6 +47,15 @@ class Task extends Component {
                 }
             }
         }))
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('nextProps', nextProps)
+        const { isPopRefresh } = nextProps
+        if (isPopRefresh) {
+            this.initView()
+            Actions.refresh({ isPopRefresh: !isPopRefresh })
+        }
     }
 
 
@@ -77,12 +92,12 @@ class Task extends Component {
                             </View>
                         </View>
                     </TouchableOpacity>
-                    <View style={{ backgroundColor: '#fafafa', flex: 1, paddingHorizontal: 10, paddingTop: 10 }}>
+                    <View style={{ backgroundColor: '#fafafa', flex: 1, padding:5 }}>
                         <FlatList
                             data={commandList}
                             renderItem={({ item, index }) => {
                                 return (
-                                    <TouchableOpacity key={index} style={{ borderWidth: 0.5, borderColor: '#a8a8a8' }} onPress={() => { }}>
+                                    <TouchableOpacity key={index} style={{ borderWidth: 0.5, borderColor: '#a8a8a8', margin:5}} onPress={() => Actions.command({ initParam: { taskInfo: item } })}>
                                         <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#eff3f5', padding: 10, justifyContent: 'space-between' }}>
                                             <View style={{ flexDirection: 'row' }}>
                                                 <MaterialCommunityIcons name='truck-delivery' size={20} color='#00cade' />
