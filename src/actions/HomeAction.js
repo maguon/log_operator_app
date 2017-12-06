@@ -6,10 +6,8 @@ import { ObjectToUrl } from '../util/ObjectToUrl'
 export const getHomeData = (param) => async (dispatch) => {
     const urls = [`${base_host}/dpRouteLoadTaskCount?${ObjectToUrl(param.getCarriedCount.OptionalParam)}`,
     `${base_host}/dpRouteTask?${ObjectToUrl(param.getTaskList.OptionalParam)}`]
-    console.log('urls',urls)
     try {
         const res = await Promise.all(urls.map(url => httpRequest.get(url)))
-        console.log('res',res)
         if (res[0].success && res[1].success) {
             dispatch({
                 type: actionTypes.homeTypes.GET_HomeData_SUCCESS, payload: {

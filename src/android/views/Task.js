@@ -50,7 +50,6 @@ class Task extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('nextProps', nextProps)
         const { isPopRefresh } = nextProps
         if (isPopRefresh) {
             this.initView()
