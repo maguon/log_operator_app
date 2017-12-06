@@ -3,13 +3,15 @@ import {
     Text,
     View,
     Dimensions,
-    Image
+    Image,
+    TouchableOpacity
 } from 'react-native'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { Icon } from 'native-base'
 import FontTag from '../components/FontTag'
 import DrivingLicenseTypeList from '../../config/DrivingLicenseType.json'
 import { file_host } from '../../config/Host'
+import * as RouterDirection from '../../util/RouterDirection'
 
 const window = Dimensions.get('window')
 
@@ -59,9 +61,11 @@ export default class DriverInfo extends Component {
                 <View style={{ flex: 1, backgroundColor: '#fff', margin: 10 }}>
                     <View style={{ flexDirection: 'row' }}>
                         <View style={{ width: (window.width - 30) / 2, backgroundColor: '#fff', height: ((window.width - 30) / 2) / 16 * 9 }}>
-                            {driverInfo.drive_image && <Image
-                                source={{ uri: `${file_host}/image/${driverInfo.drive_image}` }}
-                                style={{ width: (window.width - 30) / 2, height: ((window.width - 30) / 2) / 16 * 9, borderColor: '#e4e4e4', borderWidth: 1 }} />}
+                            {driverInfo.drive_image && <TouchableOpacity onPress={() => RouterDirection.singlePhotoView(this.props.parent)({ initParam: { imageUrlList: [`${file_host}/image/${driverInfo.drive_image}`], index: 0 } })}>
+                                <Image
+                                    source={{ uri: `${file_host}/image/${driverInfo.drive_image}` }}
+                                    style={{ width: (window.width - 30) / 2, height: ((window.width - 30) / 2) / 16 * 9, borderColor: '#e4e4e4', borderWidth: 1 }} />
+                            </TouchableOpacity>}
                             {!driverInfo.drive_image && <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                                 <Text style={{ fontSize: 11 }}>暂无</Text>
                             </View>}
@@ -70,9 +74,11 @@ export default class DriverInfo extends Component {
                             </View>
                         </View>
                         <View style={{ width: (window.width - 30) / 2, marginLeft: 10, backgroundColor: '#000', height: ((window.width - 30) / 2) / 16 * 9 }}>
-                            {driverInfo.driver_image_re && <Image
-                                source={{ uri: `${file_host}/image/${driverInfo.driver_image_re}` }}
-                                style={{ width: (window.width - 30) / 2, height: ((window.width - 30) / 2) / 16 * 9, borderColor: '#e4e4e4', borderWidth: 1 }} />}
+                            {driverInfo.driver_image_re && <TouchableOpacity onPress={() => RouterDirection.singlePhotoView(this.props.parent)({ initParam: { imageUrlList: [`${file_host}/image/${driverInfo.driver_image_re}`], index: 0 } })}>
+                                <Image
+                                    source={{ uri: `${file_host}/image/${driverInfo.driver_image_re}` }}
+                                    style={{ width: (window.width - 30) / 2, height: ((window.width - 30) / 2) / 16 * 9, borderColor: '#e4e4e4', borderWidth: 1 }} />
+                            </TouchableOpacity>}
                             {!driverInfo.driver_image_re && <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                                 <Text style={{ fontSize: 11 }}>暂无</Text>
                             </View>}
@@ -83,9 +89,11 @@ export default class DriverInfo extends Component {
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: 10 }}>
                         <View style={{ width: (window.width - 30) / 2, backgroundColor: '#000', height: ((window.width - 30) / 2) / 16 * 9 }}>
-                            {driverInfo.license_image && <Image
-                                source={{ uri: `${file_host}/image/${driverInfo.license_image}` }}
-                                style={{ width: (window.width - 30) / 2, height: ((window.width - 30) / 2) / 16 * 9, borderColor: '#e4e4e4', borderWidth: 1 }} />}
+                            {driverInfo.license_image && <TouchableOpacity onPress={() => RouterDirection.singlePhotoView(this.props.parent)({ initParam: { imageUrlList: [`${file_host}/image/${driverInfo.license_image}`], index: 0 } })}>
+                                <Image
+                                    source={{ uri: `${file_host}/image/${driverInfo.license_image}` }}
+                                    style={{ width: (window.width - 30) / 2, height: ((window.width - 30) / 2) / 16 * 9, borderColor: '#e4e4e4', borderWidth: 1 }} />
+                            </TouchableOpacity>}
                             {!driverInfo.license_image && <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                                 <Text style={{ fontSize: 11 }}>暂无</Text>
                             </View>}
@@ -94,9 +102,11 @@ export default class DriverInfo extends Component {
                             </View>
                         </View>
                         <View style={{ width: (window.width - 30) / 2, marginLeft: 10, backgroundColor: '#000', height: ((window.width - 30) / 2) / 16 * 9 }}>
-                            {driverInfo.op_license_image && <Image
-                                source={{ uri: `${file_host}/image/${driverInfo.op_license_image}` }}
-                                style={{ width: (window.width - 30) / 2, height: ((window.width - 30) / 2) / 16 * 9, borderColor: '#e4e4e4', borderWidth: 1 }} />}
+                            {driverInfo.op_license_image && <TouchableOpacity onPress={() => RouterDirection.singlePhotoView(this.props.parent)({ initParam: { imageUrlList: [`${file_host}/image/${driverInfo.op_license_image}`], index: 0 } })}>
+                                <Image
+                                    source={{ uri: `${file_host}/image/${driverInfo.op_license_image}` }}
+                                    style={{ width: (window.width - 30) / 2, height: ((window.width - 30) / 2) / 16 * 9, borderColor: '#e4e4e4', borderWidth: 1 }} />
+                            </TouchableOpacity>}
                             {!driverInfo.op_license_image && <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                                 <Text style={{ fontSize: 11 }}>暂无</Text>
                             </View>}
@@ -105,11 +115,13 @@ export default class DriverInfo extends Component {
                             </View>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row' , marginTop: 10}}>
+                    <View style={{ flexDirection: 'row', marginTop: 10 }}>
                         <View style={{ width: (window.width - 30) / 2, backgroundColor: '#fff', height: ((window.width - 30) / 2) / 16 * 9 }}>
-                            {driverInfo.driver_avatar_image && <Image
-                                source={{ uri: `${file_host}/image/${driverInfo.driver_avatar_image}` }}
-                                style={{ width: (window.width - 30) / 2, height: ((window.width - 30) / 2) / 16 * 9, borderColor: '#e4e4e4', borderWidth: 1 }} />}
+                            {driverInfo.driver_avatar_image && <TouchableOpacity onPress={() => RouterDirection.singlePhotoView(this.props.parent)({ initParam: { imageUrlList: [`${file_host}/image/${driverInfo.driver_avatar_image}`], index: 0 } })}>
+                                <Image
+                                    source={{ uri: `${file_host}/image/${driverInfo.driver_avatar_image}` }}
+                                    style={{ width: (window.width - 30) / 2, height: ((window.width - 30) / 2) / 16 * 9, borderColor: '#e4e4e4', borderWidth: 1 }} />
+                            </TouchableOpacity>}
                             {!driverInfo.driver_avatar_image && <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                                 <Text style={{ fontSize: 11 }}>暂无</Text>
                             </View>}

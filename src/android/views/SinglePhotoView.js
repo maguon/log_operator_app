@@ -55,7 +55,6 @@ export default class SinglePhotoView extends Component {
 
     renderPhoteView() {
         const {initParam} =this.props
-        console.log('initParam',initParam)
         return initParam.imageUrlList.map((item, i) => {
             return <View key={i} style={{ flex: 1 }} >
                 <PhotoView
