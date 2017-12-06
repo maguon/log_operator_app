@@ -5,7 +5,7 @@ import {
     Dimensions,
     StyleSheet,
     Modal,
-    TouchableHighlight,
+    TouchableOpacity,
     FlatList,
     StatusBar,
     ActivityIndicator,
@@ -17,6 +17,7 @@ import ImagePicker from 'react-native-image-picker'
 import ImageCropPicker from 'react-native-image-crop-picker'
 import ImageItem from '../components/ForFlatLast/ImageItem'
 import CameraButton from '../components/CameraButton'
+import * as RouterDirection from '../../util/RouterDirection'
 import { connect } from 'react-redux'
 import * as addCarImageAction from '../../actions/AddCarImageAction'
 
@@ -131,30 +132,49 @@ class AddCarImage extends Component {
     }
 
     renderImage(item, i) {
+        const { imageList } = this.props.addCarImageReducer.data
         const numColumns = 2
         if (!item.isCameraButton) {
             if (i % numColumns == 1) {
-                return <ImageItem
-                    key={i}
-                    imageUrl={item}
-                    containerStyle={{ marginLeft: 5, marginRight: 10 }}
-                />
+                return <TouchableOpacity onPress={() => RouterDirection.singlePhotoView(this.props.parent)({ initParam: { imageUrlList: imageList, index: i } })}>
+                    <ImageItem
+                        key={i}
+                        imageUrl={item}
+                        containerStyle={{ marginLeft: 5, marginRight: 10 }}
+                    />
+                </TouchableOpacity>
             } else {
-                return <ImageItem
-                    key={i}
-                    imageUrl={item}
-                    containerStyle={{ marginLeft: 10, marginRight: 5 }}
-                />
+                return <TouchableOpacity onPress={() => RouterDirection.singlePhotoView(this.props.parent)({ initParam: { imageUrlList: imageList, index: i } })}>
+                    <ImageItem
+                        key={i}
+                        imageUrl={item}
+                        containerStyle={{ marginLeft: 10, marginRight: 5 }}
+                    />
+                </TouchableOpacity>
             }
         } else {
             if (i % numColumns == 1) {
-                return <View style={{ ...baseStyle.cameraButtonItemContainer, marginLeft: 5, marginRight: 10 }}>
+                return <View style={{
+                    width: ImageWidth,
+                    height: ImageHeight,
+                    marginTop: 10,
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center', marginLeft: 5, marginRight: 10
+                }}>
                     <CameraButton
                         getImage={this.addCarImage}
                         _cameraStart={this._cameraStart} />
                 </View>
             } else {
-                return <View style={{ ...baseStyle.cameraButtonItemContainer, marginLeft: 10, marginRight: 5 }}>
+                return <View style={{
+                    width: ImageWidth,
+                    height: ImageHeight,
+                    marginTop: 10,
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center', marginLeft: 10, marginRight: 5
+                }}>
                     <CameraButton
                         getImage={this.addCarImage}
                         _cameraStart={this._cameraStart} />

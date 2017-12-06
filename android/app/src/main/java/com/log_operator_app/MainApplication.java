@@ -3,6 +3,7 @@ package com.log_operator_app;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactnative.photoview.PhotoViewPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.github.yamill.orientation.OrientationPackage;
 import com.jeepeng.react.xgpush.PushPackage;
@@ -30,6 +31,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new PhotoViewPackage(),
             new RCTCameraPackage(),
             new OrientationPackage(),
             new PushPackage(),

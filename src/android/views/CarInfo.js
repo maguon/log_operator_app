@@ -5,7 +5,8 @@ import {
     Dimensions,
     InteractionManager,
     ActivityIndicator,
-    FlatList
+    FlatList,
+    TouchableOpacity
 } from 'react-native'
 
 import { connect } from 'react-redux'
@@ -13,6 +14,7 @@ import * as carInfoAction from '../../actions/CarInfoAction'
 import moment from 'moment'
 import ImageItem from '../components/ForFlatLast/ImageItem'
 import { file_host } from '../../config/Host'
+import * as RouterDirection from '../../util/RouterDirection'
 
 const window = Dimensions.get('window')
 
@@ -66,18 +68,23 @@ class CarInfo extends Component {
 
     renderImage(item, i) {
         const numColumns = 2
+        const { imageList } = this.props.carInfoReducer.data
         if (i % numColumns == 1) {
-            return <ImageItem
-                key={i}
-                imageUrl={`${file_host}/image/${item.url}`}
-                containerStyle={{ marginLeft: 5, marginRight: 10 }}
-            />
+            return <TouchableOpacity onPress={() => RouterDirection.singlePhotoView(this.props.parent)({ initParam: { imageUrlList: imageList.map(url => `${file_host}/image/${item.url}`), index: i } })}>
+                <ImageItem
+                    key={i}
+                    imageUrl={`${file_host}/image/${item.url}`}
+                    containerStyle={{ marginLeft: 5, marginRight: 10 }}
+                />
+            </TouchableOpacity>
         } else {
-            return <ImageItem
-                key={i}
-                imageUrl={`${file_host}/image/${item.url}`}
-                containerStyle={{ marginLeft: 10, marginRight: 5 }}
-            />
+            return <TouchableOpacity onPress={() => RouterDirection.singlePhotoView(this.props.parent)({ initParam: { imageUrlList: imageList.map(url => `${file_host}/image/${item.url}`), index: i } })}>
+                <ImageItem
+                    key={i}
+                    imageUrl={`${file_host}/image/${item.url}`}
+                    containerStyle={{ marginLeft: 10, marginRight: 5 }}
+                />
+            </TouchableOpacity>
         }
     }
 
@@ -107,8 +114,8 @@ class CarInfo extends Component {
                         numColumns={2}
                         data={imageList}
                         renderItem={({ item, index }) => this.renderImage(item, index)}
-                        ListHeaderComponent={this.renderListHeader} 
-                        ListFooterComponent={<View style={{height:10}}/>}/>
+                        ListHeaderComponent={this.renderListHeader}
+                        ListFooterComponent={<View style={{ height: 10 }} />} />
                 </View>
             )
         }

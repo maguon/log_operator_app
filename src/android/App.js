@@ -35,6 +35,7 @@ import CommandList from './views/CommandList'
 import TaskInfoAtWork from './views/TaskInfoAtWork'
 import Make from './views/select/Make'
 import AddCarImage from './views/AddCarImage'
+import SinglePhotoView from './views/SinglePhotoView'
 
 import Login from './views/Login'
 import QRCodeScreen from './views/QRCodeScreen'
@@ -123,6 +124,7 @@ export default class App extends Component {
                                 <Scene key="driverInfo" title='司机信息' component={DriverInfo} hideNavBar={false} navBar={NavBar} />
                                 <Scene key="cars" title='装车信息' component={Cars} hideNavBar={false} navBar={NavBar} />
                                 <Scene key="carInfoAtHomeBlock" title='商品车信息' component={CarInfo} hideNavBar={false} navBar={NavBar} />
+                                <Scene key="singlePhotoViewAtHomeBlock"  component={SinglePhotoView} hideNavBar={true}  hideTabBar={true}/>
                                 <Scene key="cityAtHomeBlock" title='选择城市' component={City} hideNavBar={false} hideTabBar={true} navBar={NavBar} />
                                 <Scene key="entrustAtHomeBlock" title='选择委托方' component={Entrust} hideNavBar={false} hideTabBar={true} navBar={NavBar} />
                                 <Scene key="receiveAtHomeBlock" title='选择经销商' component={Receive} hideNavBar={false} hideTabBar={true} navBar={NavBar} />
@@ -149,6 +151,7 @@ export default class App extends Component {
                                 <Scene key="taskInfoAtWork" title='装车信息' component={TaskInfoAtWork} hideNavBar={false} hideTabBar navBar={NavBar} />
                                 <Scene key="makeAtWorkBlock" title='选择品牌' component={Make} hideNavBar={false} hideTabBar navBar={NavBar} />
                                 <Scene key="addCarImageAtWorkBlock" title='添加照片' component={AddCarImage} hideNavBar={false} hideTabBar navBar={NavBar} />
+                                <Scene key="singlePhotoViewAtWorkBlock"  component={SinglePhotoView} hideNavBar={true}  hideTabBar={true}/>
                             </Scene>
                             <Scene key="requirementBlock" icon={TabIcon} online='ios-archive' outline='ios-archive-outline' >
                                 <Scene key="requirement" initial={true} rightType={1} title='需求管理' onPressRight={() => Actions.addRequirementAtRequirementBlock()} component={Requirement} hideNavBar={false} navBar={TopBar} />
