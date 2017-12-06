@@ -5,13 +5,15 @@ import * as actionTypes from '../actionTypes'
 const initialState = {
     data: {
         baseAddrId: 0,
-        baseAddr: '请选择当前位置'
+        baseAddr: '请选择当前位置',
+        cityId: 0,
+        cityName: ''
     }
 }
 
 export default handleActions({
     [actionTypes.settingTypes.LOAD_BaseAddr]: (state, action) => {
-        const { payload: { data } } = action    
+        const { payload: { data } } = action
         return {
             data
         }

@@ -21,12 +21,14 @@ class CommandList extends Component {
     }
 
     componentDidMount() {
+        console.log('this.props.initParam',this.props.initParam)
         this.props.getCommandListWaiting()
         InteractionManager.runAfterInteractions(() => this.props.getCommandList({ OptionalParam: { ...this.props.initParam, start: 0, size: 10 } }))
     }
 
 
     getCommandListMore() {
+        console.log('this.props.initParam',this.props.initParam)
         const { commandList, listLoadComplete } = this.props.commandListReducer.data
         const { getCommandListMore } = this.props.commandListReducer
         if (!listLoadComplete && getCommandListMore.isResultStatus != 1) {
@@ -87,7 +89,7 @@ class CommandList extends Component {
                                         <Text style={{ fontSize: 10, color: '#8c989f' }}>实际装车：<Text style={{ color: '#00cade' }}>{item.car_count || item.car_count == 0 ? `${item.car_count}` : ''}</Text></Text>
                                     </View>
                                     <View>
-                                        <Text style={{ fontSize: 10, color: '#8c989f' }}>{item.created_on ? `${moment(`${item.created_on}`).format('YYYY-MM-DD HH:mm')}` : ''}</Text>
+                                        <Text style={{ fontSize: 10, color: '#8c989f' }}>{item.load_date ? `${moment(`${item.load_date}`).format('YYYY-MM-DD HH:mm')}` : '未装车'}</Text>
                                     </View>
                                 </View>
                             </View>

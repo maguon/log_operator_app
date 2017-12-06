@@ -10,21 +10,23 @@ import * as RouterDirection from '../../../util/RouterDirection'
 import TextBox from '../../components/form/TextBox'
 import Select from '../../components/form/Select'
 import DateTimePicker from '../../components/form/DateTimePicker'
+import { connect } from 'react-redux'
 
-export default class Work extends Component {
+class Work extends Component {
     constructor(props) {
         super(props)
+        const { data } = this.props.settingReducer
         this.state = {
             loadDateStart: '',
             loadDateEnd: '',
             routeEndId: 0,
             routeEnd: '',
-            routeStart: '',
-            routeStartId: 0,
+            routeStart: data.cityId  ? data.cityName : '',
+            routeStartId: data.cityId,
             receiveId: 0,
             receive: '',
-            baseAddrId: 0,
-            baseAddr: '',
+            baseAddrId: data.baseAddrId,
+            baseAddr: data.baseAddrId  ? data.baseAddr : '',
             vin: '',
             driveId: 0,
             driveName: '',
@@ -37,8 +39,8 @@ export default class Work extends Component {
     }
 
     _onPressOK() {
-        const { loadDateStart, loadDateEnd, routeEndId, routeStartId, vin, driveId, truckId, dpRouteTaskId } = this.state
-        let initParam = { loadDateStart, loadDateEnd, routeEndId, routeStartId, vin, driveId, truckId, dpRouteTaskId }
+        const { loadDateStart, loadDateEnd, routeEndId, routeStartId, vin, driveId, truckId, dpRouteTaskId,baseAddrId } = this.state
+        let initParam = { loadDateStart, loadDateEnd, routeEndId, routeStartId, vin, driveId, truckId, dpRouteTaskId,baseAddrId }
         for (key in initParam) {
             if (!initParam[key]) {
                 delete initParam[key]
@@ -48,17 +50,18 @@ export default class Work extends Component {
     }
 
     _onPressReset() {
+        const { data } = this.props.settingReducer
         this.setState({
             loadDateStart: '',
             loadDateEnd: '',
             routeEndId: 0,
             routeEnd: '',
-            routeStart: '',
-            routeStartId: 0,
+            routeStart: data.cityId  ? data.cityName : '',
+            routeStartId: data.cityId,
             receiveId: 0,
             receive: '',
-            baseAddrId: 0,
-            baseAddr: '',
+            baseAddrId: data.baseAddrId,
+            baseAddr: data.baseAddrId  ? data.baseAddr : '',
             vin: '',
             driveId: 0,
             driveName: '',
@@ -208,3 +211,16 @@ export default class Work extends Component {
         )
     }
 }
+
+
+const mapStateToProps = (state) => {
+    return {
+        settingReducer: state.settingReducer
+    }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Work)
