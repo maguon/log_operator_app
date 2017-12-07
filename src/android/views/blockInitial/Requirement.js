@@ -123,7 +123,6 @@ export default class Requirement extends Component {
                             value={this.state.baseAddr ? this.state.baseAddr : '请选择'}
                             showList={(param) => RouterDirection.selectBaseAddr(this.props.parent)({ ...param, cityId: this.state.routeStartId })}
                             onValueChange={(param) => {
-                                console.log(param)
                                 this.setState({ baseAddr: param.addr_name, baseAddrId: param.id })
                             }}
                             defaultValue={'请选择'}
@@ -135,7 +134,6 @@ export default class Requirement extends Component {
                             value={this.state.receive ? this.state.receive : '请选择'}
                             showList={(param) => RouterDirection.selectReceive(this.props.parent)({ ...param, cityId: this.state.routeEndId })}
                             onValueChange={(param) => {
-                                console.log(param)
                                 this.setState({ receiveId: param.id, receive: param.short_name })
                             }}
                             defaultValue={'请选择'}
