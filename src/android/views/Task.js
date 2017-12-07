@@ -100,7 +100,9 @@ class Task extends Component {
                                         <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#eff3f5', padding: 10, justifyContent: 'space-between' }}>
                                             <View style={{ flexDirection: 'row' }}>
                                                 <MaterialCommunityIcons name='truck-delivery' size={20} color='#00cade' />
-                                                <Text style={{ paddingLeft: 10, fontWeight: 'bold', color: '#8c989f' }}>{item.city_route_start ? `${item.city_route_start}` : ''}->{item.city_route_end ? `${item.city_route_end}` : ''}</Text>
+                                                <Text style={{ paddingLeft: 10, fontWeight: 'bold', color: '#8c989f' }}>{item.city_route_start ? `${item.city_route_start}` : ''}</Text>
+                                                <MaterialCommunityIcon name='ray-start-arrow' size={20} style={{ paddingLeft: 5, color: '#fff' }} />
+                                                <Text style={{ paddingLeft: 5, fontWeight: 'bold', color: '#8c989f' }}>{item.city_route_end ? `${item.city_route_end}` : ''}</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row' }}>
                                                 <Text style={{ paddingLeft: 10, fontSize: 11, color: '#8c989f' }}>指定编号：{item.id ? `${item.id}` : ''}</Text>
