@@ -122,7 +122,10 @@ export default class Requirement extends Component {
                             title='装车地点：'
                             value={this.state.baseAddr ? this.state.baseAddr : '请选择'}
                             showList={(param) => RouterDirection.selectBaseAddr(this.props.parent)({ ...param, cityId: this.state.routeStartId })}
-                            onValueChange={(param) => this.setState({ baseAddr: param.address, baseAddrId: param.id })}
+                            onValueChange={(param) => {
+                                console.log(param)
+                                this.setState({ baseAddr: param.addr_name, baseAddrId: param.id })
+                            }}
                             defaultValue={'请选择'}
                         /> : <View style={{ padding: 10, backgroundColor: '#eee' }}>
                                 <Text style={{ fontSize: 12, fontWeight: 'bold' }}>装车地点：<Text style={{ fontWeight: '100' }}>请先选择起始城市</Text></Text>
@@ -131,7 +134,10 @@ export default class Requirement extends Component {
                             title='送达地点：'
                             value={this.state.receive ? this.state.receive : '请选择'}
                             showList={(param) => RouterDirection.selectReceive(this.props.parent)({ ...param, cityId: this.state.routeEndId })}
-                            onValueChange={(param) => this.setState({ receiveId: param.id, receive: param.address })}
+                            onValueChange={(param) => {
+                                console.log(param)
+                                this.setState({ receiveId: param.id, receive: param.short_name })
+                            }}
                             defaultValue={'请选择'}
                         /> : <View style={{ padding: 10, backgroundColor: '#eee' }}>
                                 <Text style={{ fontSize: 12, fontWeight: 'bold' }}>送达地点：<Text style={{ fontWeight: '100' }}>请先选择目的城市</Text></Text>

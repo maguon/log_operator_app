@@ -37,7 +37,9 @@ class TaskInfoAtWork extends Component {
                 <View style={{ flexDirection: 'row', paddingTop: 10, justifyContent: 'space-between' }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <MaterialCommunityIcons name='map-marker-multiple' size={20} color='#00cade' />
-                        <Text style={{ paddingLeft: 5, color: '#8c989f', fontWeight: 'bold' }}>{taskInfo.city_start_name ? `${taskInfo.city_start_name}` : ''} -> {taskInfo.city_name ? `${taskInfo.city_name}` : ''}</Text>
+                        <Text style={{ paddingLeft: 5, color: '#8c989f', fontWeight: 'bold' }}>{taskInfo.city_start_name ? `${taskInfo.city_start_name}` : ''}</Text>
+                        <MaterialCommunityIcons name='ray-start-arrow' size={20} style={{ paddingLeft: 5, color: '#8c989f' }} />
+                        <Text style={{ paddingLeft: 5, color: '#8c989f', fontWeight: 'bold' }}>{taskInfo.city_name ? `${taskInfo.city_name}` : ''}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <MaterialCommunityIcons name='account' size={16} color='#aaa' />

@@ -114,8 +114,8 @@ class Home extends Component {
     }
 
     onSelectQRCode(result) {
-         InteractionManager.runAfterInteractions(() => Actions.task({ initParam: { driverInfo: result} }))
-        
+        InteractionManager.runAfterInteractions(() => Actions.task({ initParam: { driverInfo: result } }))
+
         //console.log('result',result)
         //console.log('result',JSON.parse(result))
     }
@@ -208,9 +208,13 @@ class Home extends Component {
             <TouchableOpacity key={index} onPress={() => Actions.command({ initParam: { taskInfo: item } })}>
                 <View key={index} style={{ borderWidth: 1, borderColor: '#eee', marginHorizontal: 10, marginTop: 10 }}>
                     <View style={{ flexDirection: 'row', backgroundColor: '#eff3f5', padding: 10, justifyContent: 'space-between' }}>
-                        <View style={{ flexDirection: 'row' }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <MaterialCommunityIcons name='truck-delivery' size={20} color='#00cade' />
-                            <Text style={{ paddingLeft: 10, fontWeight: 'bold', color: '#8c989f' }}>{item.city_route_start ? `${item.city_route_start}` : ''} -> {item.city_route_end ? `${item.city_route_end}` : ''}</Text>
+                            <Text style={{ paddingLeft: 5, fontWeight: 'bold', color: '#8c989f' }}>{item.city_route_start ? `${item.city_route_start}` : ''}</Text>
+                            <MaterialCommunityIcons name='ray-start-arrow' size={18} style={{ paddingLeft: 5, color: '#8c989f' }} />
+                            <Text style={{ paddingLeft: 5, fontWeight: 'bold', color: '#8c989f' }}>
+                                {item.city_route_end ? `${item.city_route_end}` : ''}
+                            </Text>
                         </View>
                         <View style={{ flexDirection: 'row' }}>
                             <MaterialCommunityIcons name='account' size={20} color='#00cade' />

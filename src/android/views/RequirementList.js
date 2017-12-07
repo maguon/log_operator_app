@@ -68,10 +68,12 @@ class RequirementList extends Component {
                         renderItem={({ item, index }) => <TouchableOpacity key={index}
                             onPress={() => Actions.requirementInfo({ initParam: { requirementInfo: item } })}>
                             <View style={{ borderWidth: 1, borderColor: '#dedede', marginHorizontal: 10, marginTop: 10 }}>
-                                <View style={{ flexDirection: 'row', backgroundColor: '#eff3f5', padding: 10, justifyContent: 'space-between' }}>
-                                    <View style={{ flexDirection: 'row' }}>
+                                <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#eff3f5', padding: 10, justifyContent: 'space-between' }}>
+                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                         <MaterialCommunityIcons name='truck-delivery' size={20} color='#00cade' />
-                                        <Text style={{ paddingLeft: 10, fontWeight: 'bold', color: '#8c989f' }}>{item.route_start ? `${item.route_start}` : ''} -> {item.route_end ? `${item.route_end}` : ''}</Text>
+                                        <Text style={{ paddingLeft: 5, fontWeight: 'bold', color: '#8c989f' }}>{item.route_start ? `${item.route_start}` : ''}</Text>
+                                        <MaterialCommunityIcons name='ray-start-arrow' size={18} style={{ paddingLeft: 5, color: '#8c989f' }} />
+                                        <Text style={{ paddingLeft: 5, fontWeight: 'bold', color: '#8c989f' }}>{item.route_end ? `${item.route_end}` : ''}</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row' }}>
                                         <Text style={{ fontSize: 11, color: '#8c989f' }}>{item.created_on ? moment(`${item.created_on}`).format('YYYY-MM-DD HH:mm') : ''}</Text>

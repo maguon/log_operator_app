@@ -69,12 +69,14 @@ export const addCarImage = (parent) => {
 }
 
 export const singlePhotoView = (parent) => {
-    console.log('singlePhotoView')
-    if (parent === 'homeBlock') {
-        console.log('singlePhotoView')
-        return Actions.singlePhotoViewAtHomeBlock
-    }
+    if (parent === 'homeBlock') return Actions.singlePhotoViewAtHomeBlock
     if (parent === 'workBlock') return Actions.singlePhotoViewAtWorkBlock
+}
+
+
+export const addRequirement= (parent) =>{
+    if (parent === 'homeBlock') return Actions.addRequirementAtHomeBlock
+    if (parent === 'requirementBlock') return Actions.addRequirementAtRequirementBlock
 }
 
 

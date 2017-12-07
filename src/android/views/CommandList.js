@@ -21,14 +21,12 @@ class CommandList extends Component {
     }
 
     componentDidMount() {
-        console.log('this.props.initParam',this.props.initParam)
         this.props.getCommandListWaiting()
         InteractionManager.runAfterInteractions(() => this.props.getCommandList({ OptionalParam: { ...this.props.initParam, start: 0, size: 10 } }))
     }
 
 
     getCommandListMore() {
-        console.log('this.props.initParam',this.props.initParam)
         const { commandList, listLoadComplete } = this.props.commandListReducer.data
         const { getCommandListMore } = this.props.commandListReducer
         if (!listLoadComplete && getCommandListMore.isResultStatus != 1) {
@@ -71,9 +69,11 @@ class CommandList extends Component {
                             onPress={() => Actions.taskInfoAtWork({ initParam: { taskInfo: item } })}>
                             <View style={{ borderWidth: 1, borderColor: '#dedede', marginHorizontal: 10, marginTop: 10 }}>
                                 <View style={{ flexDirection: 'row', backgroundColor: '#eff3f5', padding: 10, justifyContent: 'space-between' }}>
-                                    <View style={{ flexDirection: 'row' }}>
+                                    <View style={{ flexDirection: 'row',alignItems:'center' }}>
                                         <MaterialCommunityIcons name='truck-delivery' size={14} color='#00cade' />
-                                        <Text style={{ fontSize: 11, paddingLeft: 10, fontWeight: 'bold', color: '#8c989f' }}>{item.addr_name ? `${item.addr_name}` : ''} -> {item.city_name ? `${item.city_name}` : ''} {item.short_name ? `${item.short_name}` : ''}</Text>
+                                        <Text style={{ fontSize: 11, paddingLeft: 5, fontWeight: 'bold', color: '#8c989f' }}>{item.addr_name ? `${item.addr_name}` : ''}</Text>
+                                        <MaterialCommunityIcons name='ray-start-arrow' size={16} style={{ paddingLeft: 5, color: '#8c989f' }} />
+                                        <Text style={{ fontSize: 11, paddingLeft: 5, fontWeight: 'bold', color: '#8c989f' }}>{item.city_name ? `${item.city_name}` : ''}{item.short_name ? `(${item.short_name})` : ''}</Text>
                                     </View>
                                 </View>
                                 <View style={{ flexDirection: 'row', backgroundColor: '#fff', padding: 10, justifyContent: 'space-between' }}>

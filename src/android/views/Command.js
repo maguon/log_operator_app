@@ -72,9 +72,11 @@ class Command extends Component {
                 <View>
                     <Text style={{ fontSize: 11, color: '#8c989f' }}>指令编号：{taskInfo.id ? `${taskInfo.id}` : ''}</Text>
                 </View>
-                <View style={{ flexDirection: 'row', paddingTop: 10 }}>
+                <View style={{ flexDirection: 'row', paddingTop: 10,alignItems: 'center' }}>
                     <MaterialCommunityIcons name='map-marker-multiple' size={20} color='#00cade' />
-                    <Text style={{ paddingLeft: 5, color: '#8c989f', fontWeight: 'bold' }}>{taskInfo.city_route_start ? `${taskInfo.city_route_start}` : ''} -> {taskInfo.city_route_end ? `${taskInfo.city_route_end}` : ''}</Text>
+                    <Text style={{ paddingLeft: 5, color: '#8c989f', fontWeight: 'bold' }}>{taskInfo.city_route_start ? `${taskInfo.city_route_start}` : ''}</Text>
+                    <MaterialCommunityIcons name='ray-start-arrow' size={18} style={{ paddingLeft: 5, color: '#8c989f' }} />
+                    <Text style={{ paddingLeft: 5, color: '#8c989f', fontWeight: 'bold' }}>{taskInfo.city_route_end ? `${taskInfo.city_route_end}` : ''}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
                     <View style={{ flexDirection: 'row' }}>
@@ -107,7 +109,7 @@ class Command extends Component {
                 <TouchableOpacity onPress={() => this.carry(item)}>
                     <View key={index} style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#eee' }}>
                         <View>
-                            <Text style={{ color: '#8c989f', fontWeight: 'bold' }}>{item.data.city_name ? `${item.data.city_name}` : ''} - {item.data.short_name ? `${item.data.short_name}` : ''}</Text>
+                            <Text style={{ color: '#8c989f', fontWeight: 'bold' }}>{item.data.city_name ? `${item.data.city_name}` : ''}{item.data.short_name ? `(${item.data.short_name})` : ''}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
                             <View>
@@ -125,7 +127,7 @@ class Command extends Component {
                 <TouchableOpacity onPress={() => this.carry(item)}>
                     <View key={index} style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#eee' }}>
                         <View>
-                            <Text style={{ color: '#8c989f', fontWeight: 'bold' }}>{item.data.city_name ? `${item.data.city_name}` : ''} - {item.data.short_name ? `${item.data.short_name}` : ''}</Text>
+                            <Text style={{ color: '#8c989f', fontWeight: 'bold' }}>{item.data.city_name ? `${item.data.city_name}` : ''}{item.data.short_name ? `(${item.data.short_name})` : ''}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
                             <View>
@@ -142,7 +144,7 @@ class Command extends Component {
             return (
                 <View key={index} style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#eee' }}>
                     <View>
-                        <Text style={{ color: '#8c989f', fontWeight: 'bold' }}>{item.data.city_name ? `${item.data.city_name}` : ''} - {item.data.short_name ? `${item.data.short_name}` : ''}</Text>
+                        <Text style={{ color: '#8c989f', fontWeight: 'bold' }}>{item.data.city_name ? `${item.data.city_name}` : ''}{item.data.short_name ? `(${item.data.short_name})` : ''}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
                         <View>
@@ -179,8 +181,6 @@ class Command extends Component {
     }
 
     render() {
-        console.log('this.props.commandReducer', this.props.commandReducer)
-        console.log('this.props.initParam.taskInfo', this.props.initParam.taskInfo)
         const { commandList } = this.props.commandReducer.data
         const { getCommandList } = this.props.commandReducer
         if (getCommandList.isResultStatus == 1) {

@@ -141,7 +141,7 @@ class Work extends Component {
                             showList={(param) => RouterDirection.selectReceive(this.props.parent)({ ...param, cityId: this.state.routeEndId })}
                             onValueChange={(param) => {
                                 if (this.state.receiveId != param.id) {
-                                    this.setState({ receiveId: param.id, receive: param.address })
+                                    this.setState({ receiveId: param.id, receive: param.short_name })
                                 }
                             }}
                             defaultValue={'请选择'}
