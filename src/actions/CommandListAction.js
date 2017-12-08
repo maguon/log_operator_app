@@ -5,6 +5,7 @@ import { ObjectToUrl } from '../util/ObjectToUrl'
 
 export const getCommandList = (param) => async (dispatch) => {
     const url = `${base_host}/dpRouteLoadTask?${ObjectToUrl(param.OptionalParam)}`
+    
     try {
         let res = await httpRequest.get(url)
         if (res.success) {

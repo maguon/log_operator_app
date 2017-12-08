@@ -29,6 +29,7 @@ class TaskInfoAtWork extends Component {
 
     renderHeader() {
         const { taskInfo } = this.props.initParam
+        console.log('taskInfo',taskInfo)
         return (<View>
             <View style={{ padding: 10, backgroundColor: '#f2f6f9', borderBottomWidth: 0.5, borderColor: '#ccc' }}>
                 <View >
@@ -80,7 +81,7 @@ class TaskInfoAtWork extends Component {
                 <View style={{ flexDirection: 'row', paddingTop: 10 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <MaterialCommunityIcons name='clock' size={11} color='#aaa' />
-                        <Text style={{ fontSize: 11, paddingLeft: 5, color: '#8c989f' }}>执行时间：2017-09-06</Text>
+                        <Text style={{ fontSize: 11, paddingLeft: 5, color: '#8c989f' }}>计划执行时间：{taskInfo.task_plan_date ? `${moment(taskInfo.task_plan_date).format('YYYY-MM-DD')}` : ''}</Text>
                     </View>
                 </View>
             </View>

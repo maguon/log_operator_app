@@ -76,12 +76,18 @@ class RequirementList extends Component {
                                         <Text style={{ paddingLeft: 5, fontWeight: 'bold', color: '#8c989f' }}>{item.route_end ? `${item.route_end}` : ''}</Text>
                                     </View>
                                     <View style={{ flexDirection: 'row' }}>
-                                        <Text style={{ fontSize: 11, color: '#8c989f' }}>{item.created_on ? moment(`${item.created_on}`).format('YYYY-MM-DD HH:mm') : ''}</Text>
+                                        {item.demand_status == 0 && <Text style={{ fontSize:11, color: '#00cade' }}>已取消</Text>}
+                                        {item.demand_status == 1 && <Text style={{ fontSize:11, color: '#00cade' }}>未完成</Text>}
+                                        {item.demand_status == 2 && <Text style={{ fontSize:11, color: '#00cade' }}>完成</Text>}
                                     </View>
                                 </View>
                                 <View style={{ flexDirection: 'row', backgroundColor: '#fff', padding: 10, justifyContent: 'space-between' }}>
                                     <Text style={{ fontSize: 11, color: '#8c989f' }}>指令时间：{item.date_id ? moment(`${item.date_id}`).format('YYYY-MM-DD') : ''}</Text>
-                                    <Text style={{ fontSize: 11, color: '#8c989f' }}>派送车辆：<Text style={{ color: '#00cade' }}>{item.pre_count ? `${item.pre_count}` : ''}</Text></Text>
+                                    <Text style={{ fontSize: 11, color: '#8c989f' }}>计划运送：<Text style={{ color: '#00cade' }}>{item.pre_count ? `${item.pre_count}` : ''}</Text></Text>
+                                </View>
+                                <View style={{ flexDirection: 'row', backgroundColor: '#fff', paddingBottom: 10, paddingHorizontal: 10, justifyContent: 'space-between' }}>
+                                    <Text style={{ fontSize: 11, color: '#8c989f' }}>执行时间：{item.created_on ? moment(`${item.created_on}`).format('YYYY-MM-DD HH:mm') : ''}</Text>
+                                    <Text style={{ fontSize: 11, color: '#8c989f' }}>已派发：<Text style={{ color: '#00cade' }}>{item.plan_count ? `${item.plan_count}` : '0'}</Text></Text>
                                 </View>
                             </View>
                         </TouchableOpacity>}

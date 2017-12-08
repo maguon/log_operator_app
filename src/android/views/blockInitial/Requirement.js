@@ -9,6 +9,7 @@ import Select from '../../components/form/Select'
 import DateTimePicker from '../../components/form/DateTimePicker'
 import * as RouterDirection from '../../../util/RouterDirection'
 import { Actions } from 'react-native-router-flux'
+import CheckBox from '../../components/form/CheckBox'
 
 export default class Requirement extends Component {
     constructor(props) {
@@ -25,15 +26,23 @@ export default class Requirement extends Component {
             dateIdStart: '',
             dateIdEnd: '',
             baseAddrId: 0,
-            baseAddr: ''
+            baseAddr: '',
+            demandStatus: 3,
+            demandStatusValue: '全部'
         }
         this._onPressOK = this._onPressOK.bind(this)
         this._onPressReset = this._onPressReset.bind(this)
     }
 
     _onPressOK() {
-        const { createdOnStart, createdOnEnd, dateIdStart, dateIdEnd, routeStartId, routeEndId, baseAddrId, receiveId } = this.state
-        let initParam = { createdOnStart, createdOnEnd, dateIdStart, dateIdEnd, routeStartId, routeEndId, baseAddrId, receiveId }
+        const { createdOnStart, createdOnEnd, dateIdStart, dateIdEnd, routeStartId, routeEndId, baseAddrId, receiveId, demandStatus } = this.state
+        let initParam = { createdOnStart, createdOnEnd, dateIdStart, dateIdEnd, routeStartId, routeEndId, baseAddrId, receiveId, demandStatus }
+        if (initParam.demandStatus == 0) {
+            initParam.demandStatus = '0'
+        } else if ( initParam.demandStatus == 3) {
+            delete initParam.demandStatus
+        }
+
         for (key in initParam) {
             if (!initParam[key]) {
                 delete initParam[key]
@@ -140,6 +149,12 @@ export default class Requirement extends Component {
                         /> : <View style={{ padding: 10, backgroundColor: '#eee' }}>
                                 <Text style={{ fontSize: 12, fontWeight: 'bold' }}>送达地点：<Text style={{ fontWeight: '100' }}>请先选择目的城市</Text></Text>
                             </View>}
+                        <CheckBox
+                            listTitle='需求状态'
+                            title='需求状态：'
+                            value={this.state.demandStatusValue ? this.state.demandStatusValue : '全部'}
+                            itemList={[{ id: 0, value: '已取消' }, { id: 1, value: '未完成' }, { id: 2, value: '完成' }, { id: 3, value: '全部' }]}
+                            onCheck={(param) => this.setState({ demandStatus: param.id, demandStatusValue: param.value })} />
                         <View style={{ flexDirection: 'row' }}>
                             <View style={{ flex: 1 }}>
                                 <Button full style={{ backgroundColor: '#00cade', justifyContent: 'center', marginHorizontal: 10, marginTop: 30 }} onPress={this._onPressOK}>

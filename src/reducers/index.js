@@ -22,6 +22,7 @@ import userReducer from './userReducer'
 import initializationReducer from './initializationReducer'
 import passwordReducer from './passwordReducer'
 import taskReducer from './taskReducer'
+import requirementInfoReducer from './requirementInfoReducer'
 
 export default combineReducers({
     homeReducer,
@@ -46,5 +47,6 @@ export default combineReducers({
     userReducer,
     initializationReducer,
     passwordReducer,
-    taskReducer
+    taskReducer,
+    requirementInfoReducer
 })

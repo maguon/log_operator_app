@@ -21,6 +21,7 @@ import * as loginTypes from './LoginTypes'
 import * as initializationTypes from './InitializationTypes'
 import * as passwordTypes from './PasswordTypes'
 import * as taskTypes from './TaskTypes'
+import * as requirementInfoTypes from './RequirementInfoTypes'
 
 export {
     cityTypes,
@@ -45,5 +46,6 @@ export {
     loginTypes,
     initializationTypes,
     passwordTypes,
-    taskTypes
+    taskTypes,
+    requirementInfoTypes
 }   

@@ -134,6 +134,7 @@ export default class App extends Component {
                                 <Scene key="addCarAtHomeBlock" title='增加商品车' component={AddCar} hideNavBar={false} hideTabBar={true} navBar={NavBar} />
                                 <Scene key="addCarImageAtHomeBlock" title='添加照片' component={AddCarImage} hideNavBar={false} hideTabBar navBar={NavBar} />
                                 <Scene key="qrCodeScreen" title='扫一扫' component={QRCodeScreen} hideNavBar={false} hideTabBar navBar={NavBar} />
+                                
                             </Scene>
                             <Scene key="workBlock" icon={TabIcon} online='ios-bus' outline='ios-bus-outline' >
                                 <Scene key="work" title='工作' initial={true} rightType={1} onPressRight={() => Actions.addCarAtWorkBlock()}  component={Work} hideNavBar={false} navBar={TopBar} />
@@ -162,6 +163,7 @@ export default class App extends Component {
                                 <Scene key="entrustAtRequirementBlock" title='选择委托方' component={Entrust} hideNavBar={false} hideTabBar={true}  navBar={NavBar} />
                                 <Scene key="receiveAtRequirementBlock" title='选择送达地点' component={Receive} hideNavBar={false}  hideTabBar={true}  navBar={NavBar} />
                                 <Scene key="baseAddrAtRequirementBlock" title='选择装车地点' component={BaseAddr} hideNavBar={false}  hideTabBar={true} navBar={NavBar} />
+                                <Scene key="taskInfoAtWorkAtRequirementBlock" title='装车信息' component={TaskInfoAtWork} hideNavBar={false} hideTabBar navBar={NavBar} />
                             </Scene>
                             <Scene key="settingBlock" icon={TabIcon} online='ios-settings' outline='ios-settings-outline' >
                                 <Scene key="setting" initial={true} title='设置' component={Setting} hideNavBar={false} navBar={TopBar} />

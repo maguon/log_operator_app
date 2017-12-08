@@ -1,0 +1,5 @@
+export const GET_RequirementInfoCommandList_SUCCESS = 'GET_RequirementInfoCommandList_SUCCESS'
+export const GET_RequirementInfoCommandList_FAILED = 'GET_RequirementInfoCommandList_FAILED'
+export const GET_RequirementInfoCommandList_WAITING = 'GET_RequirementInfoCommandList_WAITING'
+export const GET_RequirementInfoCommandList_ERROR = 'GET_RequirementInfoCommandList_ERROR'
+export const GET_RequirementInfoCommandList_SERVICEERROR = 'GET_RequirementInfoCommandList_SERVICEERROR'
