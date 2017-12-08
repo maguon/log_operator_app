@@ -16,7 +16,7 @@ import { Actions } from 'react-native-router-flux'
 class Task extends Component {
     constructor(props) {
         super(props)
-        this.initView=this.initView.bind(this)
+        this.initView = this.initView.bind(this)
     }
 
     static defaultProps = {
@@ -33,7 +33,7 @@ class Task extends Component {
 
     }
 
-    initView(){
+    initView() {
         InteractionManager.runAfterInteractions(() => this.props.getDriverCommandList({
             getDriverId: {
                 requiredParam: {
@@ -91,12 +91,15 @@ class Task extends Component {
                             </View>
                         </View>
                     </TouchableOpacity>
-                    <View style={{ backgroundColor: '#fafafa', flex: 1, padding:5 }}>
+                    <View style={{ backgroundColor: '#fafafa', flex: 1, padding: 5 }}>
                         <FlatList
                             data={commandList}
+                            ListEmptyComponent={<View style={{ flex: 1,justifyContent:'center',alignItems:'center' }}>
+                                <Text>暂时无任务</Text>
+                            </View>}
                             renderItem={({ item, index }) => {
                                 return (
-                                    <TouchableOpacity key={index} style={{ borderWidth: 0.5, borderColor: '#a8a8a8', margin:5}} onPress={() => Actions.command({ initParam: { taskInfo: item } })}>
+                                    <TouchableOpacity key={index} style={{ borderWidth: 0.5, borderColor: '#a8a8a8', margin: 5 }} onPress={() => Actions.command({ initParam: { taskInfo: item } })}>
                                         <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#eff3f5', padding: 10, justifyContent: 'space-between' }}>
                                             <View style={{ flexDirection: 'row' }}>
                                                 <MaterialCommunityIcons name='truck-delivery' size={20} color='#00cade' />
