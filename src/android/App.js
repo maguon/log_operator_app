@@ -41,6 +41,7 @@ import Login from './views/Login'
 import QRCodeScreen from './views/QRCodeScreen'
 import Initialization from './views/Initialization'
 import Orientation from 'react-native-orientation'
+import RetrievePassword from './views/RetrievePassword'
 
 const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
     const style = {
@@ -108,10 +109,14 @@ export default class App extends Component {
                                 && user.userType) {
                                 return 'main'
                             } else {
-                                return 'login'
+                                return 'loginBlock'
                             }
                         }}>
-                        <Scene key="login" component={Login} hideNavBar hideTabBar />
+                        {/* <Scene key="login" component={Login} hideNavBar hideTabBar /> */}
+                        <Scene key="loginBlock" >
+                            <Scene key="login" initial={true} component={Login} hideNavBar hideTabBar />
+                            <Scene key="retrievePassword" title='找回密码' component={RetrievePassword} hideTabBar hideNavBar={false} navBar={NavBar} />
+                        </Scene>
                         <Scene key="main" tabs={true} tabBarStyle={styles.tabBarStyle} tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}>
                             <Scene key="homeBlock" icon={TabIcon} initial={true} online='ios-home' outline='ios-home-outline' >
                                 <Scene key="home" initial={true}  component={Home} hideNavBar={false} navBar={TopBar}
