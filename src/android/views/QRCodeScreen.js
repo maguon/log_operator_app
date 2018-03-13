@@ -42,7 +42,6 @@ export default class QRCodeScreen extends Component {
 }
 
 var styles = StyleSheet.create({
-
     camera: {
         height: 568,
         alignItems: 'center',
