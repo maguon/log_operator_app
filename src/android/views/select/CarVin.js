@@ -33,7 +33,7 @@ class CarVin extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         if (this.state.vin != nextState.vin) {
-            if (nextState.vin == '') {
+            if (`${nextState.vin}`.length <6) {
                 this.props.cleanCarVin()
             } else {
                 this.props.getCarVinList({
@@ -64,7 +64,7 @@ class CarVin extends Component {
                     value={this.state.vin ? this.state.vin : ''}
                     defaultValue={''}
                     onValueChange={(param) => this.setState({ vin: param })}
-                    placeholder='请输入车牌'
+                    placeholder='请至少输入6位'
                 />
                 <View style={{ flex: 1 }}>
                     <FlatList

@@ -91,6 +91,7 @@ class AddRequirement extends Component {
                         </View>
                         <Select
                             title='目的城市：'
+                            isRequire={true}
                             value={this.state.routeEnd ? this.state.routeEnd : '请选择'}
                             showList={RouterDirection.selectCity(this.props.parent)}
                             onValueChange={(param) => {
@@ -101,6 +102,7 @@ class AddRequirement extends Component {
                             defaultValue={'请选择'}
                         />
                         {this.state.routeEndId ? <Select
+                            isRequire={true}
                             title='送达地点：'
                             value={this.state.receive ? this.state.receive : '请选择'}
                             showList={(param) => RouterDirection.selectReceive(this.props.parent)({ ...param, cityId: this.state.routeEndId })}
@@ -110,10 +112,11 @@ class AddRequirement extends Component {
                                 }
                             }}
                             defaultValue={'请选择'}
-                        /> : <View style={{ padding: 10, backgroundColor: '#eee' }}>
-                                <Text style={{ fontSize: 12, fontWeight: 'bold' }}>送达地点：<Text style={{ fontWeight: '100' }}>请先选择目的城市</Text></Text>
+                        /> : <View style={{ paddingLeft: 4,paddingVertical:10, backgroundColor: '#eee' }}>
+                                <Text style={{ fontSize: 12, fontWeight: 'bold' }}><Text style={{ color: 'red' }}>*</Text>送达地点：<Text style={{ fontWeight: '100' }}>请先选择目的城市</Text></Text>
                             </View>}
                         <TextBox
+                            isRequire={true}
                             title='运送车辆数：'
                             value={this.state.preCount ? this.state.preCount : ''}
                             defaultValue={''}
@@ -121,12 +124,14 @@ class AddRequirement extends Component {
                             placeholder='请输入车辆数'
                         />
                         <DateTimePicker
+                            isRequire={true}
                             title='指令时间：'
                             defaultValue={'请选择'}
                             value={this.state.dateId ? this.state.dateId : '请选择'}
                             onValueChange={(param) => this.setState({ dateId: param })}
                         />
                         <Button full style={{ backgroundColor: '#00cade', justifyContent: 'center', marginHorizontal: 10, marginTop: 30 }} onPress={this.addRequirement}>
+                        
                             <Text style={{ color: '#fff' }}>确 定</Text>
                         </Button>
                     </View>

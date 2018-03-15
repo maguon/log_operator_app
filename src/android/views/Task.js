@@ -95,7 +95,7 @@ class Task extends Component {
                         <FlatList
                             data={commandList}
                             ListEmptyComponent={<View style={{ flex: 1,justifyContent:'center',alignItems:'center' }}>
-                                <Text>暂时无任务</Text>
+                                <Text>该司机在您所在的装车地点暂无装车任务</Text>
                             </View>}
                             renderItem={({ item, index }) => {
                                 return (
@@ -104,7 +104,7 @@ class Task extends Component {
                                             <View style={{ flexDirection: 'row' }}>
                                                 <MaterialCommunityIcons name='truck-delivery' size={20} color='#00cade' />
                                                 <Text style={{ paddingLeft: 10, fontWeight: 'bold', color: '#8c989f' }}>{item.city_route_start ? `${item.city_route_start}` : ''}</Text>
-                                                <MaterialCommunityIcon name='ray-start-arrow' size={20} style={{ paddingLeft: 5, color: '#fff' }} />
+                                                <MaterialCommunityIcons name='ray-start-arrow' size={20} style={{ paddingLeft: 5, color: '#fff' }} />
                                                 <Text style={{ paddingLeft: 5, fontWeight: 'bold', color: '#8c989f' }}>{item.city_route_end ? `${item.city_route_end}` : ''}</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row' }}>

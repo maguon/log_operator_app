@@ -27,7 +27,7 @@ class Command extends Component {
 
     componentDidMount() {
         this.props.getCommandListWaiting()
-        const { taskInfo } = this.props.initParam
+        const { taskInfo } = this.props
         InteractionManager.runAfterInteractions(() => this.props.getCommandList({
             OptionalParam: {
                 dpRouteTaskId: taskInfo.id
@@ -61,12 +61,12 @@ class Command extends Component {
     }
 
     carry(param) {
-        const { truck_id } = this.props.initParam.taskInfo
+        const { truck_id } = this.props.taskInfo
         Actions.cars({ initParam: { commandInfo: { ...param.data, truck_id } } })
     }
 
     renderListHeader() {
-        const { taskInfo } = this.props.initParam
+        const { taskInfo } = this.props
         return (
             <View style={{ padding: 10, backgroundColor: '#f2f6f9', borderBottomWidth: 0.5, borderColor: '#a8a8a8' }}>
                 <View>
@@ -103,7 +103,7 @@ class Command extends Component {
     }
 
     renderListItem(item, index) {
-        const { taskInfo } = this.props.initParam
+        const { taskInfo } = this.props
         if (item.data.load_task_status == 3) {
             return (
                 <TouchableOpacity onPress={() => this.carry(item)}>
@@ -211,10 +211,11 @@ class Command extends Component {
 }
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state,ownProps) => {
     return {
         commandReducer: state.commandReducer,
-        userReducer: state.userReducer
+        userReducer: state.userReducer,
+        taskInfo:state.homeReducer.data.taskList.find(item=>item.id==ownProps.initParam.taskInfo.id)
     }
 }
 

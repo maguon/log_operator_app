@@ -21,12 +21,12 @@ class Work extends Component {
             loadDateEnd: '',
             routeEndId: 0,
             routeEnd: '',
-            routeStart: data.cityId  ? data.cityName : '',
+            routeStart: data.cityId ? data.cityName : '',
             routeStartId: data.cityId,
             receiveId: 0,
             receive: '',
             baseAddrId: data.baseAddrId,
-            baseAddr: data.baseAddrId  ? data.baseAddr : '',
+            baseAddr: data.baseAddrId ? data.baseAddr : '',
             vin: '',
             driveId: 0,
             driveName: '',
@@ -39,8 +39,8 @@ class Work extends Component {
     }
 
     _onPressOK() {
-        const { loadDateStart, loadDateEnd, routeEndId, routeStartId, vin, driveId, truckId, dpRouteTaskId,baseAddrId } = this.state
-        let initParam = { loadDateStart, loadDateEnd, routeEndId, routeStartId, vin, driveId, truckId, dpRouteTaskId,baseAddrId }
+        const { loadDateStart, loadDateEnd, routeEndId, routeStartId, vin, driveId, truckId, dpRouteTaskId, baseAddrId } = this.state
+        let initParam = { loadDateStart, loadDateEnd, routeEndId, routeStartId, vin, driveId, truckId, dpRouteTaskId, baseAddrId, fieldOpId: this.props.userReducer.data.user.userId }
         for (key in initParam) {
             if (!initParam[key]) {
                 delete initParam[key]
@@ -56,12 +56,12 @@ class Work extends Component {
             loadDateEnd: '',
             routeEndId: 0,
             routeEnd: '',
-            routeStart: data.cityId  ? data.cityName : '',
+            routeStart: data.cityId ? data.cityName : '',
             routeStartId: data.cityId,
             receiveId: 0,
             receive: '',
             baseAddrId: data.baseAddrId,
-            baseAddr: data.baseAddrId  ? data.baseAddr : '',
+            baseAddr: data.baseAddrId ? data.baseAddr : '',
             vin: '',
             driveId: 0,
             driveName: '',
@@ -128,7 +128,7 @@ class Work extends Component {
                             showList={(param) => RouterDirection.selectBaseAddr(this.props.parent)({ ...param, cityId: this.state.routeStartId })}
                             onValueChange={(param) => {
                                 if (this.state.baseAddrId != param.id) {
-                                    this.setState({ baseAddr: param.address, baseAddrId: param.id })
+                                    this.setState({ baseAddr: param.addr_name, baseAddrId: param.id })
                                 }
                             }}
                             defaultValue={'请选择'}
@@ -161,15 +161,14 @@ class Work extends Component {
                         />
                         <Select
                             title='VIN：'
-                            value={this.state.vin ? this.state.vin : '请选择'}
+                            value={this.state.vin ? this.state.vin : '请输入'}
                             showList={RouterDirection.selectCarVin(this.props.parent)}
                             onValueChange={(param) => {
-
                                 if (this.state.vin != param.vin) {
                                     this.setState({ vin: param.vin })
                                 }
                             }}
-                            defaultValue={'请选择'}
+                            defaultValue={'请输入'}
                         />
                         <Select
                             title='司机：'
@@ -215,7 +214,8 @@ class Work extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        settingReducer: state.settingReducer
+        settingReducer: state.settingReducer,
+        userReducer: state.userReducer
     }
 }
 

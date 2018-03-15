@@ -115,9 +115,6 @@ class Home extends Component {
 
     onSelectQRCode(result) {
         InteractionManager.runAfterInteractions(() => Actions.task({ initParam: { driverInfo: result } }))
-
-        //console.log('result',result)
-        //console.log('result',JSON.parse(result))
     }
 
     renderListHeader() {
@@ -203,7 +200,6 @@ class Home extends Component {
     }
 
     renderListItem(item, index) {
-        // console.log('index',index)
         return (
             <TouchableOpacity key={index} onPress={() => Actions.command({ initParam: { taskInfo: item } })}>
                 <View key={index} style={{ borderWidth: 1, borderColor: '#eee', marginHorizontal: 10, marginTop: 10 }}>
@@ -233,6 +229,7 @@ class Home extends Component {
     render() {
         const { carriedCount, taskList, listLoadComplete } = this.props.homeReducer.data
         const { getHomeData, getTaskListMore } = this.props.homeReducer
+
         // console.log('this.props.userReducer',this.props.userReducer)
         // console.log('this.props.settingReducer',this.props.settingReducer)
         if (getHomeData.isResultStatus == 1) {
