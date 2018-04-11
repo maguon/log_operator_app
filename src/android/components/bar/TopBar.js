@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux'
 import EntypoIcon from 'react-native-vector-icons/Entypo'
 import { connect } from 'react-redux'
 import moment from 'moment'
-import * as homeAction from '../../../actions/HomeAction'
+import * as homeAction from '../../views/blockInitial/home/HomeAction'
 
 class TopBar extends Component {
     constructor(props) {
@@ -22,8 +22,8 @@ class TopBar extends Component {
 
     render() {
         const { title, layout } = this.props
-        const { user } = this.props.userReducer.data
-        const { data } = this.props.settingReducer
+        const { user } = this.props.loginReducer.data
+        // const { data } = this.props.settingReducer
         return (
             <View androidStatusBarColor='#00cade' style={{ flex: 1, position: 'absolute', top: 0, backgroundColor: '#fff', width: layout.initWidth }}>
                 <StatusBar hidden={false} />
@@ -35,14 +35,14 @@ class TopBar extends Component {
                         </Button>
                     </View>}
                     <Title>{title}</Title>
-                    {this.props.rightType == 2 && <View style={{ position: 'absolute', right: 0, flexDirection: 'row' }}>
+                    {/* {this.props.rightType == 2 && <View style={{ position: 'absolute', right: 0, flexDirection: 'row' }}>
                         <Button transparent onPress={() => this.props.getHomeData({
                             getCarriedCount: {
                                 OptionalParam: {
                                     loadDateStart: moment().format('YYYY-MM-01'),
                                     loadDateEnd: moment().format('YYYY-MM-DD'),
                                     loadTaskStatusArr: '3,7,9',
-                                    fieldOpId: user.userId
+                                    fieldOpId: user.uid
                                 }
                             },
                             getTaskList: {
@@ -59,7 +59,7 @@ class TopBar extends Component {
                         <Button transparent onPress={this.props.onPressRight}>
                             <EntypoIcon name="dots-three-vertical" style={{ fontSize: 20, color: '#8cf8f6', marginRight: 10 }} />
                         </Button>
-                    </View>}
+                    </View>} */}
                     {this.props.rightType == 1 && <View style={{ position: 'absolute', right: 0, flexDirection: 'row' }}>
                         <Button transparent onPress={this.props.onPressRight}>
                             <Icon name="ios-add" style={{ fontSize: 30, color: '#8cf8f6', marginRight: 10 }} />
@@ -74,7 +74,7 @@ class TopBar extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        userReducer: state.userReducer,
+        loginReducer: state.loginReducer,
         settingReducer: state.settingReducer
     }
 }

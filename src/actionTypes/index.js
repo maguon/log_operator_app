@@ -1,28 +1,26 @@
-import * as cityTypes from './CityTypes'
-import * as entrustTypes from './EntrustTypes'
-import * as receiveTypes from './ReceiveTypes'
-import * as addRequirementTypes from './AddRequirementTypes'
-import * as baseAddrTypes from './BaseAddrTypes'
-import * as requirementListTypes from './RequirementListTypes'
-import * as settingTypes from './SettingTypes'
-import * as truckTypes from './TruckTypes'
+import * as cityTypes from '../android/views/select/city/CityTypes'
+import * as entrustTypes from '../android/views/select/entrust/EntrustTypes'
+import * as receiveTypes from '../android/views/select/receive/ReceiveTypes'
+import * as addRequirementTypes from '../android/views/createRequirement/AddRequirementTypes'
+import * as baseAddrTypes from '../android/views/select/baseAddr/BaseAddrTypes'
+import * as requirementListTypes from '../android/views/requirementList/RequirementListTypes'
+import * as settingTypes from '../android/views/blockInitial/setting/SettingTypes'
+import * as truckTypes from '../android/views/select/truck/TruckTypes'
 import * as driverTypes from './DriverTypes'
-import * as carVinTypes from './CarVinTypes'
-import * as commandListTypes from './CommandListTypes'
-import * as taskInfoAtWorkTypes from './TaskInfoAtWorkTypes'
-import * as carInfoTypes from './CarInfoTypes'
-import * as makeTypes from './MakeTypes'
-import * as addCarTypes from './AddCarTypes'
-import * as addCarImageTypes from './AddCarImageTypes'
-import * as homeTypes from './HomeTypes'
-import * as commandTypes from './CommandTypes'
-import * as carsTypes from './CarsTypes'
-import * as loginTypes from './LoginTypes'
-import * as initializationTypes from './InitializationTypes'
-import * as passwordTypes from './PasswordTypes'
-import * as taskTypes from './TaskTypes'
-import * as requirementInfoTypes from './RequirementInfoTypes'
-import * as retrievePasswordTypes from './RetrievePasswordTypes'
+import * as commandListTypes from '../android/views/commandList/CommandListTypes'
+import * as taskInfoAtWorkTypes from '../android/views/taskInfoAtWork/TaskInfoAtWorkTypes'
+import * as carInfoTypes from '../android/views/carInfo/CarInfoTypes'
+import * as makeTypes from '../android/views/select/make/MakeTypes'
+import * as addCarTypes from '../android/views/createCar/AddCarTypes'
+import * as addCarImageTypes from '../android/views/uploadImageForCreateCar/AddCarImageTypes'
+import * as homeTypes from '../android/views/blockInitial/home/HomeTypes'
+import * as commandTypes from '../android/views/command/CommandTypes'
+import * as carsTypes from '../android/views/cars/CarsTypes'
+import * as loginTypes from '../android/views/login/LoginTypes'
+import * as initializationTypes from '../android/views/initialization/InitializationTypes'
+import * as taskTypes from '../android/views/task/TaskTypes'
+import * as requirementInfoTypes from '../android/views/requirementInfo/RequirementInfoTypes'
+import * as retrievePasswordTypes from '../android/views/retrievePassword/RetrievePasswordTypes'
 
 export {
     cityTypes,
@@ -34,7 +32,6 @@ export {
     settingTypes,
     truckTypes,
     driverTypes,
-    carVinTypes,
     commandListTypes,
     taskInfoAtWorkTypes,
     carInfoTypes,
@@ -46,7 +43,6 @@ export {
     carsTypes,
     loginTypes,
     initializationTypes,
-    passwordTypes,
     taskTypes,
     requirementInfoTypes,
     retrievePasswordTypes

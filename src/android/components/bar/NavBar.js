@@ -4,9 +4,9 @@ import { Header, Title, Button, Icon, Right, Left, Body } from 'native-base'
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import  moment  from 'moment'
-import * as homeAction from '../../../actions/HomeAction'
-import * as settingAction from '../../../actions/SettingAction'
-import * as commandAction from '../../../actions/CommandAction'
+import * as homeAction from '../../views/blockInitial/home/HomeAction'
+//import * as settingAction from '../../../actions/SettingAction'
+import * as commandAction from '../../views/command/CommandAction'
 
 class NavBar extends Component {
     constructor(props) {
@@ -20,8 +20,8 @@ class NavBar extends Component {
 
     render() {
         let { title, layout, rightType } = this.props
-        const { userId } = this.props.userReducer.data.user
-        const { baseAddrId } = this.props.settingReducer.data
+        const { uid } = this.props.loginReducer.data.user
+       // const { baseAddrId } = this.props.settingReducer.data
         return (
             <View androidStatusBarColor='#00cade' style={{ flex: 1, position: 'absolute', top: 0, backgroundColor: '#fff', width: layout.initWidth }}>
                 <StatusBar hidden={false} />
@@ -32,11 +32,11 @@ class NavBar extends Component {
                             <Icon name="ios-arrow-back" size={30} color='#ffffff' />
                         </Button>
                     </View>
-                    {rightType == 1 && <View style={{ position: 'absolute', right: 10 }}>
+                    {/* {rightType == 1 && <View style={{ position: 'absolute', right: 10 }}>
                         <Button transparent onPress={()=>this.props.refresh(userId,baseAddrId)}>
                             <Text style={{ color: '#fff' }} >刷新</Text>
                         </Button>
-                    </View>}
+                    </View>} */}
                 </Header>
             </View>
         )
@@ -46,8 +46,8 @@ class NavBar extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        userReducer: state.userReducer,
-        settingReducer: state.settingReducer
+        loginReducer: state.loginReducer,
+       // settingReducer: state.settingReducer
     }
 }
 

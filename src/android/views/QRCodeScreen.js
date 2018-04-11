@@ -15,6 +15,7 @@ export default class QRCodeScreen extends Component {
     }
 
     _onBarCodeRead(result) {
+        console.log('result',result)
         try{
             if(result.type=="QR_CODE"){
                 const res=JSON.parse(result.data)

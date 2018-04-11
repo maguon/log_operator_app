@@ -1,6 +1,0 @@
-export const ADD_Car_SUCCESS = 'ADD_Car_SUCCESS'
-export const ADD_Car_FAILED = 'ADD_Car_FAILED'
-export const ADD_Car_WAITING = 'ADD_Car_WAITING'
-export const ADD_Car_ERROR = 'ADD_Car_ERROR'
-export const ADD_Car_SERVICEERROR = 'ADD_Car_SERVICEERROR'
-export const RESET_ADD_Car = 'RESET_ADD_Car'

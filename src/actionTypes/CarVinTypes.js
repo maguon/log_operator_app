@@ -1,6 +1,0 @@
-export const GET_CarVinList_SUCCESS = 'GET_CarVinList_SUCCESS'
-export const GET_CarVinList_FAILED = 'GET_CarVinList_FAILED'
-export const GET_CarVinList_WAITING = 'GET_CarVinList_WAITING'
-export const GET_CarVinList_ERROR = 'GET_CarVinList_ERROR'
-export const GET_CarVinList_SERVICEERROR = 'GET_CarVinList_SERVICEERROR'
-export const CLEAN_CarVinList = 'CLEAN_CarVinList'

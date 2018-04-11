@@ -3,6 +3,7 @@ package com.log_operator_app;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.react.rnspinkit.RNSpinkitPackage;
 import com.reactnative.photoview.PhotoViewPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.github.yamill.orientation.OrientationPackage;
@@ -31,6 +32,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNSpinkitPackage(),
             new PhotoViewPackage(),
             new RCTCameraPackage(),
             new OrientationPackage(),

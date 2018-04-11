@@ -26,6 +26,19 @@ export const validate = (value, verifications) => {
 }
 
 
+export const required = (msg) => (value) => (!value && value != 0 && value != '') ? msg : undefined
+
+export const requiredObj = (msg) => (value) => (!value || Object.keys(value).length == 0 || (!value.id && value.id != 0 && value.id != '')) ? msg : undefined
+
+
+export const trailerNumber = (msg) => (value) =>{
+    if ((/^([1-9][0-9]?)$/.test(value))) {
+        return undefined
+    } else {
+        return msg
+    }
+} 
+
 const validateLength = (value, condition) => {
     if (value.length >= condition.arguments[0] && value.length <= condition.arguments[1]) {
         return false
@@ -61,7 +74,7 @@ const validateMoney = (value) => {
     }
 }
 
-const validateCardNo=(value)=>{
+const validateCardNo = (value) => {
     if ((/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(value))) {
         return false
     } else {
