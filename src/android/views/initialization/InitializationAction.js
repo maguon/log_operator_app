@@ -33,6 +33,7 @@ import XGPush from 'react-native-xinge-push'
 export const validateVersion = (tryCount = 1) => async (dispatch) => {
     const currentStep = 1
     try {
+       // console.log(ccc)
         dispatch({ type: actionTypes.initializationTypes.init_app_waiting, payload: {} })
         const url = `${base_host}/app?${ObjectToUrl({ app: 3, type: 1 })}`
         const res = await httpRequest.get(url)
@@ -114,6 +115,7 @@ export const validateVersion = (tryCount = 1) => async (dispatch) => {
 export const initPush = () => async (dispatch) => {
     const currentStep = 2
     try {
+
         XGPush.init(2100270818, 'AK3E3I847AMD')
         const deviceToken = await XGPush.register('jeepeng')
         if (deviceToken) {

@@ -7,13 +7,15 @@ import {
     Dimensions,
     StatusBar,
     Image,
-    StyleSheet
+    StyleSheet,
+    ImageBackground
 } from 'react-native'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as initializationAction from './InitializationAction'
 import { Button } from 'native-base'
 import { Actions } from 'react-native-router-flux'
+import Spinkit from 'react-native-spinkit'
 
 const window = Dimensions.get('window')
 const ImageWidth = window.width
@@ -41,25 +43,29 @@ class Initialization extends Component {
     }
 
     render() {
-        const { data, initAPP, loadLocalStorage, validateToken, validateVersion } = this.props.initializationReducer
+        const { initializationReducer: { data, initAPP, loadLocalStorage, validateToken, validateVersion } } = this.props
         return (
             <View style={styles.container}>
                 <StatusBar hidden={true} />
-                <Image source={{ uri: 'init_back' }}
-                    style={styles.image}
-                />
-                {(validateVersion.isResultStatus == 3 || validateToken.isResultStatus == 3) &&
-                    <Button block onPress={() => { }} style={styles.button}>
-                        <Text style={styles.buttonTiltle}>联系管理员</Text>
-                    </Button>}
-                {(validateVersion.isResultStatus == 5 || validateToken.isResultStatus == 5) &&
-                    <Button block onPress={() => this.initApp()} style={styles.button}>
-                        <Text style={styles.buttonTiltle}>重试</Text>
-                    </Button>}
-                {initAPP.isResultStatus == 2 && data.version.force_update == 1 &&
-                    <Button block onPress={() => this.linkDownload(data.version.url)} style={styles.button}>
-                        <Text style={styles.buttonTiltle}>立即更新</Text>
-                    </Button>}
+                <ImageBackground source={{ uri: 'init_back' }} style={styles.image}>
+                    {initAPP.isResultStatus == 1 && <Spinkit type={'Wave'}
+                        color='rgba(255,255,255,0.5)'
+                        size={70}
+                        style={{ marginBottom: 50, alignSelf: 'center' }}
+                        isVisible={initAPP.isResultStatus == 1} />}
+                    {(initAPP.isResultStatus == 2 && initAPP.step == 0 && validateVersion.isResultStatus == 3 || validateVersion.isResultStatus == 4) &&
+                        <Button block onPress={this.props.validateVersion} style={styles.button}>
+                            <Text style={styles.buttonTiltle}>重新获取版本号</Text>
+                        </Button>}
+                    {(initAPP.isResultStatus == 2 && initAPP.step == 0 && validateVersion.isResultStatus == 5) &&
+                        <Button block onPress={() => this.linkDownload(data.version.url)} style={styles.button}>
+                            <Text style={styles.buttonTiltle}>立即更新</Text>
+                        </Button>}
+                    {(initAPP.isResultStatus == 2 && initAPP.step == 1) &&
+                        <Button block onPress={this.props.initPush} style={styles.button}>
+                            <Text style={styles.buttonTiltle}>重新获取deviceToken</Text>
+                        </Button>}
+                </ImageBackground>
             </View>
         )
     }
@@ -74,17 +80,19 @@ const styles = StyleSheet.create({
     },
     image: {
         width: ImageWidth,
-        height: ImageHeight
+        height: ImageHeight,
+        justifyContent: "flex-end"
     },
     buttonTiltle: {
         fontSize: 18,
-        color: '#0078a7'
+        color: 'rgba(0,0,0,0.4)'
     },
     button: {
-        position: 'absolute',
-        bottom: 50, width: window.width / 4 * 3,
-        backgroundColor: 'rgba(255,255,255,0.9)',
-        borderRadius: 25
+        marginBottom: 30,
+        width: window.width / 4 * 3,
+        backgroundColor: 'rgba(255,255,255,0.4)',
+        borderRadius: 25,
+        alignSelf: 'center'
     }
 })
 
@@ -95,18 +103,13 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    // initAppWaiting: () => {
-    //     dispatch(InitializationAction.initAppWaiting())
-    // },
+    initPush: () => {
+        dispatch(initializationAction.initPush())
+    },
     validateVersion: () => {
         dispatch(initializationAction.validateVersion())
-    },
-    // validateVersion: (param) => {
-    //     dispatch(InitializationAction.validateVersion(param))
-    // },
-    // validateToken: (param) => {
-    //     dispatch(InitializationAction.validateToken(param))
-    // }
+    }
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Initialization)
