@@ -148,7 +148,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         enableReinitialize: true,
         onSubmit: (values, dispatch, props) => {
             const { parent, onSelect } = props
-            console.log('props', props)
             dispatch(addCarAction.submit({ values, parent, onSelect }))
         }
     })(AddCar))

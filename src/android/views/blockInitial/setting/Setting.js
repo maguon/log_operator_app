@@ -56,7 +56,6 @@ class Setting extends Component {
             settingReducer: { data: { baseAddr } },
             loginReducer: { data: { user: { real_name, avatar_image, mobile } } },
             initializationReducer: { data: { version: { force_update, currentVersion, url } } }, initializationReducer } = this.props
-        console.log('android_app', android_app)
         return (
             <Container>
                 <Content style={globalStyles.container}>

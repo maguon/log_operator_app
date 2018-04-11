@@ -42,7 +42,6 @@ class Initialization extends Component {
 
     render() {
         const { data, initAPP, loadLocalStorage, validateToken, validateVersion } = this.props.initializationReducer
-        // console.log('this.props.initializationReducer',this.props.initializationReducer)
         return (
             <View style={styles.container}>
                 <StatusBar hidden={true} />

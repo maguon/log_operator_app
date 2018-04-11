@@ -100,9 +100,6 @@ class CarInfo extends Component {
         const { carInfo, imageList } = this.props.carInfoReducer.data
         const { getCarInfo } = this.props.carInfoReducer
         const { setCarImageIndex } = this.props
-        // console.log('this.props.initParam', this.props.initParam)
-        // console.log('this.props.carInfoReducer.carInfo', carInfo)
-        // console.log('this.props.carInfoReducer.imageList', imageList)
         if (getCarInfo.isResultStatus == 1) {
             return (
                 <View style={{ flex: 1 }}>

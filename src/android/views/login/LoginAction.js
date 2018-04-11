@@ -28,11 +28,8 @@ export const cleanLogin = () => async (dispatch, getState) => {
 }
 
 export const login = (param, tryCount = 1) => async (dispatch, getState) => {
-    console.log('loginParam', param)
-    console.log('getState()', getState())
     try {
         dispatch({ type: actionTypes.loginTypes.login_waiting, payload: {} })
-        console.log('initPushParam', param)
         const { mobile, password } = param
         const { initializationReducer: { data: {
             version: { currentVersion },
@@ -43,22 +40,17 @@ export const login = (param, tryCount = 1) => async (dispatch, getState) => {
             deviceType: 1,
             deviceToken
         })}`
-        console.log('url', url)
         const res = await httpRequest.post(url, { mobile, password })
-        console.log('res', res)
         if (res.success) {
             if (res.result.type == 39 || res.result.type == 31) {
                 const getUserInfoUrl = `${base_host}/user?${ObjectToUrl({ userId: res.result.userId })}`
-                console.log('getUserInfoUrl', getUserInfoUrl)
                 const getUserInfoRes = await httpRequest.get(getUserInfoUrl)
-                console.log('getUserInfoRes', getUserInfoRes)
                 if (getUserInfoRes.success) {
                     const { uid, mobile, real_name, type, gender, avatar_image, status } = getUserInfoRes.result[0]
                     const user = {
                         uid, mobile, real_name, type, gender, avatar_image, status,
                         token: res.result.accessToken,
                     }
-                    console.log('user', user)
                     requestHeaders.set('auth-token', res.result.accessToken)
                     requestHeaders.set('user-type', type)
                     requestHeaders.set('user-name', mobile)

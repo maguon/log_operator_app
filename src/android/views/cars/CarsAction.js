@@ -8,10 +8,8 @@ import { ObjectToUrl } from '../../../util/ObjectToUrl'
 export const finishCarry = (param) => async (dispatch) => {
     dispatch({ type: actionTypes.carsTypes.Finish_Carry_WAITING, payload: {} })
     const url = `${base_host}/user/${param.requiredParam.userId}/dpRouteLoadTask/${param.requiredParam.dpRouteLoadTaskId}/loadTaskStatus/${param.requiredParam.loadTaskStatus}`
-   // console.log('url', url)
     try {
-        let res = await httpRequest.put(url, {})
-        //console.log('res', res)
+        const res = await httpRequest.put(url, {})
         if (res.success) {
             dispatch({ type: actionTypes.carsTypes.Finish_Carry_SUCCESS, payload: { data: param.requiredParam.loadTaskStatus } })
             dispatch({
@@ -40,7 +38,7 @@ export const resetFinishCarry = () => (dispatch) => {
 export const getCommandCarList = (param) => async (dispatch) => {
     const url = `${base_host}/dpRouteLoadTask/${param.requiredParam.dpRouteLoadTaskId}/dpRouteLoadTaskDetail`
     try {
-        let res = await httpRequest.get(url)
+        const res = await httpRequest.get(url)
         if (res.success) {
             dispatch({ type: actionTypes.carsTypes.GET_CommandCarList_SUCCESS, payload: { data: { carList: res.result, taskInfo: param.taskInfo } } })
         } else {
@@ -59,7 +57,7 @@ export const getCommandCarListWaiting = () => (dispatch) => {
 export const pushCarInCommand = (param) => async (dispatch) => {
     const url = `${base_host}/user/${param.requiredParam.userId}/dpRouteLoadTask/${param.requiredParam.dpRouteLoadTaskId}/dpRouteLoadTaskDetail?${ObjectToUrl(param.OptionalParam)}`
     try {
-        let res = await httpRequest.post(url, param.postParam)
+        const res = await httpRequest.post(url, param.postParam)
         if (res.success) {
             dispatch({ type: actionTypes.carsTypes.PUSH_CarInCommand_SUCCESS, payload: { data: { ...param.car, id: res.id } } })
         } else {
@@ -83,7 +81,7 @@ export const removeCommandCar = (param) => async (dispatch) => {
     dispatch({ type: actionTypes.carsTypes.REMOVE_CommandCar_WAITING, payload: { data: { id: param.requiredParam.dpRouteTaskDetailId } } })
     const url = `${base_host}/user/${param.requiredParam.userId}/dpRouteTaskDetail/${param.requiredParam.dpRouteTaskDetailId}?${ObjectToUrl(param.OptionalParam)}`
     try {
-        let res = await httpRequest.del(url)
+        const res = await httpRequest.del(url)
         if (res.success) {
             dispatch({ type: actionTypes.carsTypes.REMOVE_CommandCar_SUCCESS, payload: { data: { id: param.requiredParam.dpRouteTaskDetailId } } })
         } else {

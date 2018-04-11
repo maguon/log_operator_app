@@ -27,7 +27,6 @@ class Cars extends Component {
 
     componentDidMount() {
         const { commandInfo } = this.props.initParam
-        // console.log('this.props.initParam', this.props.initParam)
         this.props.getCommandCarListWaiting()
         InteractionManager.runAfterInteractions(() => this.props.getCommandCarList({
             requiredParam: {
@@ -38,7 +37,6 @@ class Cars extends Component {
     }
 
     onSelectCar(param) {
-        // console.log('param', param)
         const { user } = this.props.loginReducer.data
         const { taskInfo } = this.props.carsReducer.data
         this.props.pushCarInCommandWaiting()
