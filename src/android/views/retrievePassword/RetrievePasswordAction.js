@@ -1,52 +1,42 @@
-import httpRequest from '../../../util/HttpRequest.js'
-import { base_host } from '../../../config/Host'
-import * as actionTypes from '../../../actionTypes/index'
+import * as httpRequest from '../../../util/HttpRequest'
+import { base_host, file_host, record_host } from '../../../config/Host'
+import * as retrievePasswordActionTypes from './RetrievePasswordActionTypes'
 import { ObjectToUrl } from '../../../util/ObjectToUrl'
+import { getFormValues } from 'redux-form'
+import { ToastAndroid } from 'react-native'
+import {Actions } from 'react-native-router-flux'
 
+export const retrieve = () => async (dispatch, getState) => {
+    dispatch({ type: retrievePasswordActionTypes.Retrieve_WAITING, payload: {} })
+    const state = getState()
+    const sendSMSFormValues = getFormValues('sendSMSForm')(state)
+    const retrievePasswordFormValues = getFormValues('retrievePasswordForm')(state)
+    if (!sendSMSFormValues || !sendSMSFormValues.mobile) {
+        ToastAndroid.showWithGravity(`电话号码不能为空！`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
+        return
+    }
 
-export const getVCode = (param) => (dispatch) => {
-    dispatch({ type: actionTypes.retrievePasswordTypes.GET_VCODE_WAITING, payload: {} })
-    const url = `${base_host}/phone/${param.requiredParam.mobile}/passwordSms`
-    httpRequest
-        .postCallBack(url, {}, (err, res) => {
-            if (err) {
-                dispatch({ type: actionTypes.retrievePasswordTypes.GET_VCODE_ERROR, payload: { errorMsg: err } })
-            }
-            else {
-                if (res.success) {
-                    dispatch({ type: actionTypes.retrievePasswordTypes.GET_VCODE_SUCCESS, payload: {} })
-                }
-                else {
-                    dispatch({ type: actionTypes.retrievePasswordTypes.GET_VCODE_FAILED, payload: { failedMsg: res.msg } })
-                }
-            }
+    if (retrievePasswordFormValues.firstPassword != retrievePasswordFormValues.secondPassword) {
+        ToastAndroid.showWithGravity(`两次输入的密码不一致`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
+        return
+    }
+
+    try {
+        const url = `${base_host}/phone/${sendSMSFormValues.mobile}/password`
+        const res = await httpRequest.put(url, {
+            captcha: retrievePasswordFormValues.vCode,
+            password: retrievePasswordFormValues.firstPassword
         })
-}
-
-export const resetGetVCode = () => (dispatch) => {
-    dispatch({ type: actionTypes.retrievePasswordTypes.Reset_GET_VCODE, payload: {} })
-}
-
-
-export const resetRetrieve = () => (dispatch) => {
-    dispatch({ type: actionTypes.retrievePasswordTypes.Reset_Retrieve, payload: {} })
-}
-
-export const retrieve = (param) => (dispatch) => {
-    dispatch({ type: actionTypes.retrievePasswordTypes.Retrieve_WAITING, payload: {} })
-    const url = `${base_host}/phone/${param.requiredParam.mobile}/password`
-    httpRequest
-        .putCallBack(url, param.putParam, (err, res) => {
-            if (err) {
-                dispatch({ type: actionTypes.retrievePasswordTypes.Retrieve_ERROR, payload: { errorMsg: err } })
-            }
-            else {
-                if (res.success) {
-                    dispatch({ type: actionTypes.retrievePasswordTypes.Retrieve_SUCCESS, payload: {} })
-                }
-                else {
-                    dispatch({ type: actionTypes.retrievePasswordTypes.Retrieve_FAILED, payload: { failedMsg: res.msg } })
-                }
-            }
-        })
+        if (res.success) {
+            ToastAndroid.showWithGravity(`密码修改成功！`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
+            dispatch({ type: retrievePasswordActionTypes.Retrieve_SUCCESS, payload: {} })
+            Actions.pop()
+        } else {
+            ToastAndroid.showWithGravity(`密码修改失败：${res.msg }！`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
+            dispatch({ type: retrievePasswordActionTypes.Retrieve_FAILED, payload: { failedMsg: res.msg } })
+        }
+    } catch (err) {
+        ToastAndroid.showWithGravity(`密码修改失败：${res.msg }！`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
+        dispatch({ type: retrievePasswordActionTypes.Retrieve_ERROR, payload: { errorMsg: err } })
+    }
 }

@@ -20,7 +20,7 @@ import * as loginTypes from '../android/views/login/LoginTypes'
 import * as initializationTypes from '../android/views/initialization/InitializationTypes'
 import * as taskTypes from '../android/views/task/TaskTypes'
 import * as requirementInfoTypes from '../android/views/requirementInfo/RequirementInfoTypes'
-import * as retrievePasswordTypes from '../android/views/retrievePassword/RetrievePasswordTypes'
+
 
 export {
     cityTypes,
@@ -44,6 +44,5 @@ export {
     loginTypes,
     initializationTypes,
     taskTypes,
-    requirementInfoTypes,
-    retrievePasswordTypes
+    requirementInfoTypes
 }   

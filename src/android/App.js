@@ -147,7 +147,13 @@ export default class App extends Component {
                         }}>
                         <Scene key="loginBlock" >
                             <Scene key="login" initial={true} component={Login} hideNavBar hideTabBar />
-                            <Scene key="retrievePassword" title='找回密码' component={RetrievePassword} hideTabBar hideNavBar={false} navBar={NavBar} />
+                            <Scene key="retrievePassword"
+                                title='找回密码'
+                                hideNavBar={false}
+                                LeftButton={LeftButton}
+                                component={RetrievePassword}
+                                hideTabBar
+                                navBar={NewNavBar} />
                         </Scene>
                         <Scene key="main" tabs={true} tabBarStyle={styles.tabBarStyle} tabBarSelectedItemStyle={styles.tabBarSelectedItemStyle}>
                             <Scene key="homeBlock" initial={true} icon={TabIcon} online='ios-home' outline='ios-home-outline' >

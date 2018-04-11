@@ -8,7 +8,7 @@ import demageOpResultReducer from '../android/components/demageInfo/demageOpResu
 import demageEditorReducer from '../android/components/demageInfo/demageEditor/DemageEditorReducer'
 import imageListForDemageReducer from '../android/components/demageInfo/imageListForDemage/ImageListForDemageReducer'
 import recordForDemageReducer from '../android/components/demageInfo/recordForDemage/RecordForDemageReducer'
-
+import sendSMSReducer from '../android/components/retrievePassword/sendSMS/SendSMSReducer'
 
 //view
 import addCarReducer from '../android/views/createCar/addCarReducer'
@@ -65,7 +65,7 @@ export default combineReducers({
     taskReducer,
     requirementInfoReducer,
     retrievePasswordReducer,
-
+    sendSMSReducer,
     //2018-3-26
     initializationReducer,
     loginReducer,
