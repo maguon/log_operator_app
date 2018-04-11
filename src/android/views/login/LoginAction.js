@@ -58,9 +58,8 @@ export const login = (param, tryCount = 1) => async (dispatch, getState) => {
                         key: localStorageKey.USER,
                         data: user
                     })
+                    await dispatch(initializationAction.getBaseAddr())
                     dispatch({ type: actionTypes.loginTypes.login_success, payload: { user } })
-                    dispatch(initializationAction.getBaseAddr())
-                    // Actions.mainRoot()
                 } else {
                     ToastAndroid.showWithGravity(`登陆失败：无法获取用户信息！`, ToastAndroid.CENTER, ToastAndroid.BOTTOM)
                     dispatch({ type: actionTypes.loginTypes.login_failed, payload: { failedMsg: '无法获取用户信息！' } })
