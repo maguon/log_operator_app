@@ -11,7 +11,7 @@ import DatePicker from '../../components/share/form/DatePicker'
 import CheckBox from '../../components/share/form/CheckBox'
 import * as RouterDirection from '../../../util/RouterDirection'
 import { Actions } from 'react-native-router-flux'
-import { styleColor } from '../../GlobalStyles'
+import globalStyles, { styleColor } from '../../GlobalStyles'
 import { reduxForm, Field, getFormValues, change } from 'redux-form'
 import { connect } from 'react-redux'
 import * as requirementListAction from '../requirementList/RequirementListAction'
@@ -119,12 +119,12 @@ const Requirement = props => {
                 <View style={{ flexDirection: 'row' }}>
                     <View style={{ flex: 1 }}>
                         <Button full style={{ backgroundColor: styleColor, justifyContent: 'center', marginHorizontal: 10, marginTop: 30 }} onPress={handleSubmit}>
-                            <Text style={{ color: '#fff' }}>确 定</Text>
+                            <Text style={[globalStyles.midText, { color: '#fff' }]}>确 定</Text>
                         </Button>
                     </View>
                     <View style={{ flex: 1 }}>
                         <Button full style={{ backgroundColor: styleColor, justifyContent: 'center', marginHorizontal: 10, marginTop: 30 }} onPress={reset}>
-                            <Text style={{ color: '#fff' }}>重 置</Text>
+                            <Text style={[globalStyles.midText, { color: '#fff' }]}>重 置</Text>
                         </Button>
                     </View>
                 </View>

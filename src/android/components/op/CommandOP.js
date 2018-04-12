@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import * as homeAction from '../../views/blockInitial/home/HomeAction'
 import * as commandAction from '../../views/command/CommandAction'
+import globalStyles from '../../GlobalStyles'
 
 const CommandOP = props => {
     const { getHomeData, getCommandList, getCommandListWaiting } = props
@@ -16,7 +17,7 @@ const CommandOP = props => {
                 getHomeData()
             })
         }}>
-            <Text style={{ color: '#fff' }}>刷新</Text>
+            <Text style={[globalStyles.midText, { color: '#fff' }]}>刷新</Text>
         </Button>
     )
 }

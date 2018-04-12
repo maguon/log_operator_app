@@ -145,12 +145,12 @@ const Work = props => {
                                 RouterDirection.commandList(parent)()
                                 InteractionManager.runAfterInteractions(() => getCommandList(queryWorkFormValues))
                             }}>
-                            <Text style={{ color: '#fff' }}>确 定</Text>
+                            <Text style={[globalStyles.midText, { color: '#fff' }]}>确 定</Text>
                         </Button>
                     </View>
                     <View style={{ flex: 1 }}>
                         <Button full style={{ backgroundColor: styleColor, justifyContent: 'center', marginLeft: 7.5 }} onPress={reset}>
-                            <Text style={{ color: '#fff' }}>重 置</Text>
+                            <Text style={[globalStyles.midText, { color: '#fff' }]}>重 置</Text>
                         </Button>
                     </View>
                 </View>

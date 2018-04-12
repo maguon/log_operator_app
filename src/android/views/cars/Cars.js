@@ -98,7 +98,7 @@ class Cars extends Component {
         if (taskInfo.load_task_status == 1) {
             return <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
                 <Button small style={{ backgroundColor: styleColor, padding: 10, margin: 10 }} onPress={this.finishCarry}>
-                    <Text style={{ color: '#fff' }}>完成装车</Text>
+                    <Text style={[globalStyles.midText, { color: '#fff' }]}>完成装车</Text>
                 </Button>
             </View>
         } else {
@@ -124,10 +124,10 @@ class Cars extends Component {
             return <View style={{ flexDirection: 'row', paddingHorizontal: 10, paddingVertical: 5, borderBottomWidth: 1, borderColor: '#eee', alignItems: 'center' }}>
                 <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
                     <MaterialCommunityIcons name='car' size={14} style={{ color: '#8c989f' }} />
-                    <Text style={{ fontSize: 11, paddingLeft: 10 }}>VIN：{item.data.vin ? `${item.data.vin}` : ''}</Text>
+                    <Text style={[globalStyles.smallText, { paddingLeft: 10 }]}>VIN：{item.data.vin ? `${item.data.vin}` : ''}</Text>
                 </View>
                 <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Text style={{ fontSize: 11 }}>{item.data.make_name ? `${item.data.make_name}` : ''}</Text>
+                    <Text style={globalStyles.smallText}>{item.data.make_name ? `${item.data.make_name}` : ''}</Text>
                 </View>
                 {item.removeCommandCar.isResultStatus == 1 && <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                     <ActivityIndicator
@@ -151,10 +151,10 @@ class Cars extends Component {
             return <View style={{ flexDirection: 'row', paddingHorizontal: 10, paddingVertical: 5, borderBottomWidth: 1, borderColor: '#eee', alignItems: 'center' }}>
                 <View style={{ flex: 3, flexDirection: 'row', alignItems: 'center' }}>
                     <MaterialCommunityIcons name='car' size={14} style={{ color: '#8c989f' }} />
-                    <Text style={{ fontSize: 11, paddingLeft: 10 }}>VIN：{item.data.vin ? `${item.data.vin}` : ''}</Text>
+                    <Text style={[globalStyles.smallText, { paddingLeft: 10 }]}>VIN：{item.data.vin ? `${item.data.vin}` : ''}</Text>
                 </View>
                 <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Text style={{ fontSize: 11 }}>{item.data.make_name ? `${item.data.make_name}` : ''}</Text>
+                    <Text style={globalStyles.smallText}>{item.data.make_name ? `${item.data.make_name}` : ''}</Text>
                 </View>
                 <TouchableOpacity
                     style={{ flexDirection: 'row', flex: 1, justifyContent: 'flex-end' }}
@@ -184,19 +184,19 @@ class Cars extends Component {
             return (
                 <View style={{ flex: 1 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 10, backgroundColor: '#f2f6f9', borderBottomWidth: 0.5, borderColor: '#a8a8a8' }}>
-                        <Text style={{ fontSize: 11 }}>计划运送：{taskInfo.plan_count ? `${taskInfo.plan_count}` : '0'}</Text>
+                        <Text style={globalStyles.smallText}>计划运送：{taskInfo.plan_count ? `${taskInfo.plan_count}` : '0'}</Text>
                         <View style={{ flexDirection: 'row' }}>
                             {taskInfo.load_task_status == 1 && pushCarInCommand.isResultStatus != 1 && <Button small rounded
                                 style={{ backgroundColor: styleColor, width: 70, height: 20, justifyContent: 'center', flexDirection: 'row' }}
                                 onPress={() => RouterDirection.searchCar(this.props.parent)({ onSelect: this.onSelectCar, initParam: { carStatus: 1 } })}>
                                 <MaterialCommunityIcons name='car' size={14} style={{ color: '#fff' }} />
-                                <Text style={{ color: '#fff', fontSize: 11, fontWeight: 'bold', paddingLeft: 10 }}>装 车</Text>
+                                <Text style={[globalStyles.smallText, { color: '#fff', fontWeight: 'bold', paddingLeft: 10 }]}>装 车</Text>
                             </Button>}
                             {taskInfo.load_task_status == 1 && pushCarInCommand.isResultStatus != 1 && <Button small rounded
                                 style={{ backgroundColor: styleColor, width: 90, height: 20, marginLeft: 10, justifyContent: 'center', flexDirection: 'row' }}
                                 onPress={() => RouterDirection.addCar(this.props.parent)({ onSelect: this.onSelectCar })}>
                                 <MaterialCommunityIcons name='plus-circle-outline' size={14} style={{ color: '#fff' }} />
-                                <Text style={{ color: '#fff', fontSize: 11, fontWeight: 'bold', paddingLeft: 10 }}>新增车辆</Text>
+                                <Text style={[globalStyles.smallText, { color: '#fff', fontWeight: 'bold', paddingLeft: 10 }]}>新增车辆</Text>
                             </Button>}
                         </View>
                         {taskInfo.load_task_status == 1 && pushCarInCommand.isResultStatus == 1 && <View style={{ width: 70, alignItems: 'center' }}>

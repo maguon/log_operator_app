@@ -67,48 +67,48 @@ class Command extends Component {
         return (
             <View style={{ padding: 10, backgroundColor: '#f2f6f9', borderBottomWidth: 0.5, borderColor: '#a8a8a8' }}>
                 <View>
-                    <Text style={{ fontSize: 11, color: '#8c989f' }}>指令编号：{taskInfo.id ? `${taskInfo.id}` : ''}</Text>
+                    <Text style={[globalStyles.smallText, { color: '#8c989f' }]}>指令编号：{taskInfo.id ? `${taskInfo.id}` : ''}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <MaterialCommunityIcons name='map-marker-multiple' size={20} color={styleColor} />
-                        <Text style={{ paddingLeft: 5, color: '#8c989f', fontWeight: 'bold' }}>{taskInfo.city_route_start ? `${taskInfo.city_route_start}` : ''}</Text>
+                        <Text style={[globalStyles.largeText, { paddingLeft: 5, color: '#8c989f', fontWeight: 'bold' }]}>{taskInfo.city_route_start ? `${taskInfo.city_route_start}` : ''}</Text>
                         <MaterialCommunityIcons name='ray-start-arrow' size={18} style={{ paddingLeft: 5, color: '#8c989f' }} />
-                        <Text style={{ paddingLeft: 5, color: '#8c989f', fontWeight: 'bold' }}>{taskInfo.city_route_end ? `${taskInfo.city_route_end}` : ''}</Text>
+                        <Text style={[globalStyles.largeText, { paddingLeft: 5, color: '#8c989f', fontWeight: 'bold' }]}>{taskInfo.city_route_end ? `${taskInfo.city_route_end}` : ''}</Text>
                     </View>
                     <View style={{ flexDirection: 'row' }}>
                         <MaterialCommunityIcons name='account-box' size={12} color='#aaa' />
-                        <Text style={{ fontSize: 11, paddingLeft: 5, color: '#8c989f' }}>{taskInfo.drive_name ? `${taskInfo.drive_name}` : ''}</Text>
+                        <Text style={[globalStyles.smallText, { paddingLeft: 5, color: '#8c989f' }]}>{taskInfo.drive_name ? `${taskInfo.drive_name}` : ''}</Text>
                     </View>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
                     <View style={{ flexDirection: 'row' }}>
                         <MaterialCommunityIcons name='phone' size={12} color='#aaa' />
-                        <Text style={{ fontSize: 11, paddingLeft: 5, color: '#8c989f' }}>电话：{taskInfo.tel ? `${taskInfo.tel}` : ''}</Text>
+                        <Text style={[globalStyles.smallText, { paddingLeft: 5, color: '#8c989f' }]}>电话：{taskInfo.tel ? `${taskInfo.tel}` : ''}</Text>
                     </View>
                     <View style={{ flexDirection: 'row' }}>
                         <MaterialCommunityIcons name='truck' size={12} color='#aaa' />
-                        <Text style={{ fontSize: 11, paddingLeft: 5, color: '#8c989f' }}>货车牌号：{taskInfo.truck_num ? `${taskInfo.truck_num}` : ''}</Text>
+                        <Text style={[globalStyles.smallText, { paddingLeft: 5, color: '#8c989f' }]}>货车牌号：{taskInfo.truck_num ? `${taskInfo.truck_num}` : ''}</Text>
                     </View>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
                     <View style={{ flexDirection: 'row' }}>
                         <MaterialCommunityIcons name='clock' size={12} color='#aaa' />
-                        <Text style={{ fontSize: 11, paddingLeft: 5, color: '#8c989f' }}>指令时间：{taskInfo.task_plan_date ? `${moment(taskInfo.task_plan_date).format('YYYY-MM-DD')}` : ''}</Text>
+                        <Text style={[globalStyles.smallText, { paddingLeft: 5, color: '#8c989f' }]}>指令时间：{taskInfo.task_plan_date ? `${moment(taskInfo.task_plan_date).format('YYYY-MM-DD')}` : ''}</Text>
                     </View>
                     <View style={{ flexDirection: 'row' }}>
                         <MaterialCommunityIcons name='account' size={12} color='#aaa' />
-                        <Text style={{ fontSize: 11, paddingLeft: 5, color: '#8c989f' }}>指令调度：{taskInfo.route_op_name ? `${taskInfo.route_op_name}` : ''}</Text>
+                        <Text style={[globalStyles.smallText, { paddingLeft: 5, color: '#8c989f' }]}>指令调度：{taskInfo.route_op_name ? `${taskInfo.route_op_name}` : ''}</Text>
                     </View>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
                     <View style={{ flexDirection: 'row' }}>
                         <MaterialCommunityIcons name='clock' size={12} color='#aaa' />
-                        <Text style={{ fontSize: 11, paddingLeft: 5, color: '#8c989f' }}>执行时间：{taskInfo.task_start_date ? moment(`${taskInfo.task_start_date}`).format('YYYY-MM-DD HH:mm') : ''}</Text>
+                        <Text style={[globalStyles.smallText, { paddingLeft: 5, color: '#8c989f' }]}>执行时间：{taskInfo.task_start_date ? moment(`${taskInfo.task_start_date}`).format('YYYY-MM-DD HH:mm') : ''}</Text>
                     </View>
                     <View style={{ flexDirection: 'row' }}>
                         <MaterialCommunityIcons name='car' size={12} color='#aaa' />
-                        <Text style={{ fontSize: 11, paddingLeft: 5, color: '#8c989f' }}>计划运送：{taskInfo.plan_count ? `${taskInfo.plan_count}` : ''}</Text>
+                        <Text style={[globalStyles.smallText, { paddingLeft: 5, color: '#8c989f' }]}>计划运送：{taskInfo.plan_count ? `${taskInfo.plan_count}` : ''}</Text>
                     </View>
                 </View>
             </View>
@@ -122,14 +122,14 @@ class Command extends Component {
                 <TouchableOpacity onPress={() => this.carry(item)}>
                     <View key={index} style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#eee' }}>
                         <View>
-                            <Text style={{ color: '#8c989f', fontWeight: 'bold' }}>{item.data.city_name ? `${item.data.city_name}` : ''}{item.data.short_name ? `(${item.data.short_name})` : ''}</Text>
+                            <Text style={[globalStyles.largeText, { color: '#8c989f', fontWeight: 'bold' }]}>{item.data.city_name ? `${item.data.city_name}` : ''}{item.data.short_name ? `(${item.data.short_name})` : ''}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
                             <View>
-                                <Text style={{ fontSize: 11, color: '#8c989f' }}>计划装车：{item.data.plan_count ? `${item.data.plan_count}` : '0'}</Text>
+                                <Text style={[globalStyles.smallText, { color: '#8c989f' }]}>计划装车：{item.data.plan_count ? `${item.data.plan_count}` : '0'}</Text>
                             </View>
                             <View style={{ flexDirection: 'row' }}>
-                                <Text style={{ fontSize: 11, color: '#8c989f' }}>已装车</Text>
+                                <Text style={[globalStyles.smallText, { color: '#8c989f' }]}>已装车</Text>
                             </View>
                         </View>
                     </View>
@@ -140,14 +140,14 @@ class Command extends Component {
                 <TouchableOpacity onPress={() => this.carry(item)}>
                     <View key={index} style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#eee' }}>
                         <View>
-                            <Text style={{ color: '#8c989f', fontWeight: 'bold' }}>{item.data.city_name ? `${item.data.city_name}` : ''}{item.data.short_name ? `(${item.data.short_name})` : ''}</Text>
+                            <Text style={[globalStyles.largeText, { color: '#8c989f', fontWeight: 'bold' }]}>{item.data.city_name ? `${item.data.city_name}` : ''}{item.data.short_name ? `(${item.data.short_name})` : ''}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
                             <View>
-                                <Text style={{ fontSize: 11, color: '#8c989f' }}>计划装车：{item.data.plan_count ? `${item.data.plan_count}` : '0'}</Text>
+                                <Text style={[globalStyles.smallText, { color: '#8c989f' }]}>计划装车：{item.data.plan_count ? `${item.data.plan_count}` : '0'}</Text>
                             </View>
                             <View style={{ flexDirection: 'row' }}>
-                                <Text style={{ fontSize: 11, color: '#8c989f' }}>已送达</Text>
+                                <Text style={[globalStyles.smallText, { color: '#8c989f' }]}>已送达</Text>
                             </View>
                         </View>
                     </View>
@@ -157,11 +157,11 @@ class Command extends Component {
             return (
                 <View key={index} style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#eee' }}>
                     <View>
-                        <Text style={{ color: '#8c989f', fontWeight: 'bold' }}>{item.data.city_name ? `${item.data.city_name}` : ''}{item.data.short_name ? `(${item.data.short_name})` : ''}</Text>
+                        <Text style={[globalStyles.largeText, { color: '#8c989f', fontWeight: 'bold' }]}>{item.data.city_name ? `${item.data.city_name}` : ''}{item.data.short_name ? `(${item.data.short_name})` : ''}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
                         <View>
-                            <Text style={{ fontSize: 11, color: '#8c989f' }}>计划装车：{item.data.plan_count ? `${item.data.plan_count}` : '0'}</Text>
+                            <Text style={[globalStyles.smallText, { color: '#8c989f' }]}>计划装车：{item.data.plan_count ? `${item.data.plan_count}` : '0'}</Text>
                         </View>
                         {item.cancelCommand.isResultStatus == 1 && <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: 110 }}>
                             <ActivityIndicator
@@ -182,23 +182,23 @@ class Command extends Component {
                                         { cancelable: false }
                                     )
                                 }}>
-                                    <Text style={{ color: '#fff', fontSize: 11, fontWeight: 'bold' }}>取 消</Text>
+                                    <Text style={[globalStyles.smallText, { color: '#fff', fontWeight: 'bold' }]}>取 消</Text>
                                 </Button>
                             </View>
                             <View style={{ paddingLeft: 10 }}>
                                 <Button small rounded style={{ backgroundColor: styleColor, width: 50, height: 20, justifyContent: 'center' }} onPress={() => this.carry(item)}>
-                                    <Text style={{ color: '#fff', fontSize: 11, fontWeight: 'bold' }}>装 车</Text>
+                                    <Text style={[globalStyles.smallText, { color: '#fff', fontWeight: 'bold' }]}>装 车</Text>
                                 </Button>
                             </View>
                         </View>}
                         {item.cancelCommand.isResultStatus != 1 && taskInfo.task_status < 3 && <View style={{ flexDirection: 'row' }}>
-                            <Text style={{ fontSize: 11, color: '#8c989f' }}>未达到装车条件</Text>
+                            <Text style={[globalStyles.smallText, { color: '#8c989f' }]}>未达到装车条件</Text>
                         </View>}
                         {/* {item.cancelCommand.isResultStatus != 1 && item.data.load_task_status == 8 && <View style={{ flexDirection: 'row' }}>
                             <Text style={{ fontSize: 11, color: '#8c989f' }}>已取消</Text>
                         </View>} */}
                     </View>
-                </View>
+                </View >
             )
         }
     }
@@ -244,7 +244,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
     getCommandList: () => {
         const { initParam: { taskInfo: { id } } } = ownProps
-        dispatch(commandAction.getCommandList({ dpRouteTaskId:id }))
+        dispatch(commandAction.getCommandList({ dpRouteTaskId: id }))
     },
     getCommandListWaiting: () => {
         dispatch(commandAction.getCommandListWaiting())

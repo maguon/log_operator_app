@@ -51,33 +51,33 @@ const CommandList = props => {
 }
 
 const renderListItem = props => {
-    const { item, index } =props
+    const { item, index } = props
     return (
         <TouchableOpacity key={index}
             onPress={() => Actions.taskInfoAtWork({ initParam: { taskInfo: item } })}>
             <View style={{ borderWidth: 1, borderColor: '#dedede', marginHorizontal: 10, marginTop: 10 }}>
                 <View style={{ flexDirection: 'row', backgroundColor: '#eff3f5', padding: 10, justifyContent: 'space-between' }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                        <MaterialCommunityIcons name='truck-delivery' size={14} color={styleColor} />
-                        <Text style={{ fontSize: 11, paddingLeft: 5, fontWeight: 'bold', color: '#8c989f' }}>{item.addr_name ? `${item.addr_name}` : ''}</Text>
+                        <MaterialCommunityIcons name='truck-delivery' size={16} color={styleColor} />
+                        <Text style={[globalStyles.midText, { paddingLeft: 5, fontWeight: 'bold', color: '#8c989f' }]}>{item.addr_name ? `${item.addr_name}` : ''}</Text>
                         <MaterialCommunityIcons name='ray-start-arrow' size={16} style={{ paddingLeft: 5, color: '#8c989f' }} />
-                        <Text style={{ fontSize: 11, paddingLeft: 5, fontWeight: 'bold', color: '#8c989f' }}>{item.city_name ? `${item.city_name}` : ''}{item.short_name ? `(${item.short_name})` : ''}</Text>
+                        <Text style={[globalStyles.midText, { paddingLeft: 5, fontWeight: 'bold', color: '#8c989f' }]}>{item.city_name ? `${item.city_name}` : ''}{item.short_name ? `(${item.short_name})` : ''}</Text>
                     </View>
                 </View>
                 <View style={{ flexDirection: 'row', backgroundColor: '#fff', padding: 10, justifyContent: 'space-between' }}>
                     <View>
-                        <Text style={{ fontSize: 10, color: '#8c989f' }}>司机：{item.drive_name ? `${item.drive_name}` : ''}</Text>
+                        <Text style={[globalStyles.smallText, { color: '#8c989f' }]}>司机：{item.drive_name ? `${item.drive_name}` : ''}</Text>
                     </View>
                     <View>
-                        <Text style={{ fontSize: 10, color: '#8c989f' }}>货车：{item.truck_num ? `${item.truck_num}` : ''}</Text>
+                        <Text style={[globalStyles.smallText, { color: '#8c989f' }]}>货车：{item.truck_num ? `${item.truck_num}` : ''}</Text>
                     </View>
                 </View>
                 <View style={{ flexDirection: 'row', backgroundColor: '#fff', paddingHorizontal: 10, paddingBottom: 10, justifyContent: 'space-between' }}>
                     <View>
-                        <Text style={{ fontSize: 10, color: '#8c989f' }}>实际装车：<Text style={{ color: styleColor }}>{item.car_count || item.car_count == 0 ? `${item.car_count}` : ''}</Text></Text>
+                        <Text style={[globalStyles.smallText, { color: '#8c989f' }]}>实际装车：<Text style={{ color: styleColor }}>{item.car_count || item.car_count == 0 ? `${item.car_count}` : ''}</Text></Text>
                     </View>
                     <View>
-                        <Text style={{ fontSize: 10, color: '#8c989f' }}>{item.load_date ? `${moment(`${item.load_date}`).format('YYYY-MM-DD HH:mm')}` : '未装车'}</Text>
+                        <Text style={[globalStyles.smallText, { color: '#8c989f' }]}>{item.load_date ? `${moment(`${item.load_date}`).format('YYYY-MM-DD HH:mm')}` : '未装车'}</Text>
                     </View>
                 </View>
             </View>

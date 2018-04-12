@@ -16,6 +16,7 @@ import * as routerDirection from '../../../util/RouterDirection'
 import * as homeAction from '../../views/blockInitial/home/HomeAction'
 import moment from 'moment'
 import { connect } from 'react-redux'
+import globalStyles from '../../GlobalStyles'
 
 class HomeOP extends Component {
     constructor(props) {
@@ -41,7 +42,7 @@ class HomeOP extends Component {
                     getHomeDataWaiting()
                     InteractionManager.runAfterInteractions(getHomeData)
                 }}>
-                    <Text style={{ color: '#fff' }}>刷新</Text>
+                    <Text style={[globalStyles.midText,{ color: '#fff' }]}>刷新</Text>
                 </Button>
                 <Button transparent onPress={() => this.setState({ menuModalIsVisible: true })}>
                     <EntypoIcon name="dots-three-vertical" style={{ fontSize: 20, color: '#fff' }} />

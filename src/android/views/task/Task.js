@@ -12,7 +12,7 @@ import { connect } from 'react-redux'
 import * as taskAction from './TaskAction'
 import moment from 'moment'
 import { Actions } from 'react-native-router-flux'
-import globalStyles, {styleColor} from '../../GlobalStyles'
+import globalStyles, { styleColor } from '../../GlobalStyles'
 
 class Task extends Component {
     constructor(props) {
@@ -77,17 +77,17 @@ class Task extends Component {
                         <View style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between' }}>
                             <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
                                 <MaterialCommunityIcons name='account' size={12} color='#aaa' />
-                                <Text style={{ color: styleColor, fontWeight: 'bold', paddingLeft: 5 }}>{driverInfo.drive_name ? `${driverInfo.drive_name}` : ''}</Text>
+                                <Text style={[globalStyles.midText,{ color: styleColor, fontWeight: 'bold', paddingLeft: 5 }]}>{driverInfo.drive_name ? `${driverInfo.drive_name}` : ''}</Text>
                             </View>
                             <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
                                 <MaterialCommunityIcons name='phone' size={12} color='#aaa' />
-                                <Text style={{ fontSize: 11, paddingLeft: 5 }}>{driverInfo.tel ? `${driverInfo.tel}` : ''}</Text>
+                                <Text style={[globalStyles.smallText, { paddingLeft: 5 }]}>{driverInfo.tel ? `${driverInfo.tel}` : ''}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', paddingTop: 10 }}>
                             <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
                                 <MaterialCommunityIcons name='truck-delivery' size={12} color='#aaa' />
-                                <Text style={{ fontSize: 11, paddingLeft: 5 }}>货车牌号：{driverInfo.truck_num ? `${driverInfo.truck_num}` : ''}</Text>
+                                <Text style={[globalStyles.smallText, { paddingLeft: 5 }]}>货车牌号：{driverInfo.truck_num ? `${driverInfo.truck_num}` : ''}</Text>
                             </View>
                         </View>
                     </TouchableOpacity>
@@ -96,7 +96,7 @@ class Task extends Component {
                             keyExtractor={(item, index) => index}
                             data={commandList}
                             ListEmptyComponent={<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text>该司机在您所在的装车地点暂无装车任务</Text>
+                                <Text style={globalStyles.midText}>该司机在您所在的装车地点暂无装车任务</Text>
                             </View>}
                             renderItem={({ item, index }) => {
                                 return (
@@ -104,17 +104,17 @@ class Task extends Component {
                                         <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#eff3f5', padding: 10, justifyContent: 'space-between' }}>
                                             <View style={{ flexDirection: 'row' }}>
                                                 <MaterialCommunityIcons name='truck-delivery' size={20} color={styleColor} />
-                                                <Text style={{ paddingLeft: 10, fontWeight: 'bold', color: '#8c989f' }}>{item.city_route_start ? `${item.city_route_start}` : ''}</Text>
+                                                <Text style={[globalStyles.largeText, { paddingLeft: 10, fontWeight: 'bold', color: '#8c989f' }]}>{item.city_route_start ? `${item.city_route_start}` : ''}</Text>
                                                 <MaterialCommunityIcons name='ray-start-arrow' size={20} style={{ paddingLeft: 5, color: '#8c989f' }} />
-                                                <Text style={{ paddingLeft: 5, fontWeight: 'bold', color: '#8c989f' }}>{item.city_route_end ? `${item.city_route_end}` : ''}</Text>
+                                                <Text style={[globalStyles.largeText, { paddingLeft: 5, fontWeight: 'bold', color: '#8c989f' }]}>{item.city_route_end ? `${item.city_route_end}` : ''}</Text>
                                             </View>
                                             <View style={{ flexDirection: 'row' }}>
-                                                <Text style={{ paddingLeft: 10, fontSize: 11, color: '#8c989f' }}>指定编号：{item.id ? `${item.id}` : ''}</Text>
+                                                <Text style={[globalStyles.smallText, { paddingLeft: 10, color: '#8c989f' }]}>指定编号：{item.id ? `${item.id}` : ''}</Text>
                                             </View>
                                         </View>
                                         <View style={{ flexDirection: 'row', backgroundColor: '#fff', padding: 10, justifyContent: 'space-between' }}>
-                                            <Text style={{ fontSize: 11, color: '#8c989f' }}>计划执行时间：{item.task_plan_date ? `${moment(item.task_plan_date).format('YYYY-MM-DD')}` : ''}</Text>
-                                            <Text style={{ fontSize: 11, color: '#8c989f' }}>指定装载：{item.plan_count ? `${item.plan_count}` : ''}</Text>
+                                            <Text style={[globalStyles.smallText, { color: '#8c989f' }]}>计划执行时间：{item.task_plan_date ? `${moment(item.task_plan_date).format('YYYY-MM-DD')}` : ''}</Text>
+                                            <Text style={[globalStyles.smallText, { color: '#8c989f' }]}>指定装载：{item.plan_count ? `${item.plan_count}` : ''}</Text>
                                         </View>
                                     </TouchableOpacity>
                                 )

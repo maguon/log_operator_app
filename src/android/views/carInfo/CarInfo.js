@@ -8,14 +8,15 @@ import {
     FlatList,
     TouchableOpacity
 } from 'react-native'
-
 import { connect } from 'react-redux'
 import * as carInfoAction from './CarInfoAction'
 import moment from 'moment'
 import ImageItem from '../../components/ForFlatLast/ImageItem'
 import { file_host } from '../../../config/Host'
 import * as RouterDirection from '../../../util/RouterDirection'
-import { Actions } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux'
+import { ListItem } from 'native-base'
+import globalStyles from '../../GlobalStyles'
 
 const window = Dimensions.get('window')
 
@@ -41,27 +42,27 @@ class CarInfo extends Component {
         const { carInfo } = this.props.carInfoReducer.data
         return (
             <View>
-                <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
-                    <Text style={{ fontSize: 12, fontWeight: 'bold' }}>VIN：<Text style={{ fontWeight: '100' }}>{carInfo.vin ? `${carInfo.vin}` : ''}</Text></Text>
-                </View>
-                <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
-                    <Text style={{ fontSize: 12, fontWeight: 'bold' }}>品牌：<Text style={{ fontWeight: '100' }}>{carInfo.make_name ? `${carInfo.make_name}` : ''}</Text></Text>
-                </View>
-                <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
-                    <Text style={{ fontSize: 12, fontWeight: 'bold' }}>发动机号：<Text style={{ fontWeight: '100' }}>{carInfo.engine_num ? `${carInfo.engine_num}` : ''}</Text></Text>
-                </View>
-                <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
-                    <Text style={{ fontSize: 12, fontWeight: 'bold' }}>起始地城市：<Text style={{ fontWeight: '100' }}>{carInfo.route_start ? `${carInfo.route_start}` : ''}</Text></Text>
-                </View>
-                <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
-                    <Text style={{ fontSize: 12, fontWeight: 'bold' }}>委托方：<Text style={{ fontWeight: '100' }}>{carInfo.entrust_name ? `${carInfo.entrust_name}` : ''}</Text></Text>
-                </View>
-                <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
-                    <Text style={{ fontSize: 12, fontWeight: 'bold' }}>目的地城市：<Text style={{ fontWeight: '100' }}>{carInfo.route_end ? `${carInfo.route_end}` : ''}</Text></Text>
-                </View>
-                <View style={{ padding: 10, borderBottomWidth: 0.5, borderColor: '#ccc' }}>
-                    <Text style={{ fontSize: 12, fontWeight: 'bold' }}>经销商：<Text style={{ fontWeight: '100' }}>{carInfo.receive_name ? `${carInfo.receive_name}` : ''}</Text></Text>
-                </View>
+                <ListItem>
+                    <Text style={[globalStyles.midText, { fontWeight: 'bold' }]}>VIN：<Text style={{ fontWeight: '100' }}>{carInfo.vin ? `${carInfo.vin}` : ''}</Text></Text>
+                </ListItem>
+                <ListItem>
+                    <Text style={[globalStyles.midText, { fontWeight: 'bold' }]}>品牌：<Text style={{ fontWeight: '100' }}>{carInfo.make_name ? `${carInfo.make_name}` : ''}</Text></Text>
+                </ListItem>
+                <ListItem>
+                    <Text style={[globalStyles.midText, { fontWeight: 'bold' }]}>发动机号：<Text style={{ fontWeight: '100' }}>{carInfo.engine_num ? `${carInfo.engine_num}` : ''}</Text></Text>
+                </ListItem>
+                <ListItem>
+                    <Text style={[globalStyles.midText, { fontWeight: 'bold' }]}>起始地城市：<Text style={{ fontWeight: '100' }}>{carInfo.route_start ? `${carInfo.route_start}` : ''}</Text></Text>
+                </ListItem>
+                <ListItem>
+                    <Text style={[globalStyles.midText, { fontWeight: 'bold' }]}>委托方：<Text style={{ fontWeight: '100' }}>{carInfo.entrust_name ? `${carInfo.entrust_name}` : ''}</Text></Text>
+                </ListItem>
+                <ListItem>
+                    <Text style={[globalStyles.midText, { fontWeight: 'bold' }]}>目的地城市：<Text style={{ fontWeight: '100' }}>{carInfo.route_end ? `${carInfo.route_end}` : ''}</Text></Text>
+                </ListItem>
+                <ListItem>
+                    <Text style={[globalStyles.midText, { fontWeight: 'bold' }]}>经销商：<Text style={{ fontWeight: '100' }}>{carInfo.receive_name ? `${carInfo.receive_name}` : ''}</Text></Text>
+                </ListItem>
             </View>
         )
 
@@ -115,8 +116,7 @@ class CarInfo extends Component {
             return (
                 <View style={{ flex: 1 }}>
                     <FlatList
-                        showsHorizontalScrollIndicator={false}
-                        showsVerticalScrollIndicator={false}
+                        keyExtractor={(item, index) => index}
                         numColumns={2}
                         data={imageList}
                         renderItem={({ item, index }) => this.renderImage(item, index, setCarImageIndex)}
