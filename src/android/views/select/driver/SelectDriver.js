@@ -13,7 +13,7 @@ import { Field, reduxForm, getFormValues } from 'redux-form'
 import { Actions } from 'react-native-router-flux'
 
 const renderListItem = props => {
-    const { item: { drive_name, tel, id }, item, onSelect } = props
+    const { item: { drive_name, mobile, id }, item, onSelect } = props
     return (
         <TouchableOpacity
             style={styles.item}
@@ -22,7 +22,7 @@ const renderListItem = props => {
                 Actions.pop()
             }}>
             <Text style={globalStyles.midText}>{drive_name ? `${drive_name}` : ''}</Text>
-            <Text style={globalStyles.midText}>{tel ? `${tel}` : ''}</Text>
+            <Text style={globalStyles.midText}>{mobile ? `${mobile}` : ''}</Text>
         </TouchableOpacity>
     )
 }
@@ -41,7 +41,7 @@ const SelectDriver = props => {
     }
     else {
         let list = !searchDriverValues && hasAll ? [{ id: null, drive_name: '全部' }, ...driverList] : driverList
-        list = searchDriverValues ? list.filter(item => item.drive_name.indexOf(searchDriverValues.searchField) >= 0 || item.tel.indexOf(searchDriverValues.searchField) >= 0) : list
+        list = searchDriverValues ? list.filter(item => item.drive_name.indexOf(searchDriverValues.searchField) >= 0 || (item.mobile && item.mobile.indexOf(searchDriverValues.searchField)) >= 0) : list
 
         return (
 

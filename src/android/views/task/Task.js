@@ -81,7 +81,7 @@ class Task extends Component {
                             </View>
                             <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
                                 <MaterialCommunityIcons name='phone' size={12} color='#aaa' />
-                                <Text style={[globalStyles.smallText, { paddingLeft: 5 }]}>{driverInfo.tel ? `${driverInfo.tel}` : ''}</Text>
+                                <Text style={[globalStyles.smallText, { paddingLeft: 5 }]}>{driverInfo.mobile ? `${driverInfo.mobile}` : ''}</Text>
                             </View>
                         </View>
                         <View style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', paddingTop: 10 }}>

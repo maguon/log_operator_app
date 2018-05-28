@@ -60,7 +60,7 @@ class TaskInfoAtWork extends Component {
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <MaterialCommunityIcons name='phone' size={11} color='#aaa' />
-                        <Text style={[globalStyles.smallText, { paddingLeft: 5, color: '#8c989f' }]}>电话：{taskInfo.tel ? `${taskInfo.tel}` : ''}</Text>
+                        <Text style={[globalStyles.smallText, { paddingLeft: 5, color: '#8c989f' }]}>电话：{taskInfo.mobile ? `${taskInfo.mobile}` : ''}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <MaterialCommunityIcons name='truck' size={11} color='#aaa' />

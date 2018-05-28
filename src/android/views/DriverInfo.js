@@ -43,7 +43,7 @@ const DriverInfoHeader = props => {
                 </View>
                 <View style={styles.headerItemContainer}>
                     <MaterialCommunityIcons name='cellphone-android' size={12} color='#aaa' />
-                    <Text style={[globalStyles.smallText, styles.headerItemText]}>{driverInfo.tel ? `${driverInfo.tel}` : ''}</Text>
+                    <Text style={[globalStyles.smallText, styles.headerItemText]}>{driverInfo.mobile ? `${driverInfo.mobile}` : ''}</Text>
                 </View>
             </View>
             <View style={styles.headerRow}>

@@ -64,6 +64,7 @@ class Command extends Component {
 
     renderListHeader() {
         const { taskInfo } = this.props
+        console.log('taskInfo',taskInfo)
         return (
             <View style={{ padding: 10, backgroundColor: '#f2f6f9', borderBottomWidth: 0.5, borderColor: '#a8a8a8' }}>
                 <View>
@@ -84,7 +85,7 @@ class Command extends Component {
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 10 }}>
                     <View style={{ flexDirection: 'row' }}>
                         <MaterialCommunityIcons name='phone' size={12} color='#aaa' />
-                        <Text style={[globalStyles.smallText, { paddingLeft: 5, color: '#8c989f' }]}>电话：{taskInfo.tel ? `${taskInfo.tel}` : ''}</Text>
+                        <Text style={[globalStyles.smallText, { paddingLeft: 5, color: '#8c989f' }]}>电话：{taskInfo.mobile ? `${taskInfo.mobile}` : ''}</Text>
                     </View>
                     <View style={{ flexDirection: 'row' }}>
                         <MaterialCommunityIcons name='truck' size={12} color='#aaa' />
