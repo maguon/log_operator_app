@@ -12,12 +12,12 @@ import { file_host } from '../../../config/Host'
 import * as carInfoAction from '../carInfo/CarInfoAction'
 import SinglePhotoView from './SinglePhotoView'
 
-const PhotoViewForDamageInfo = props => {
-    const { carInfoReducer: { data: { imageList, index } }, setDamageImageIndex } = props
+const PhotoViewForCarInfo = props => {
+    const { carInfoReducer: { data: { imageList, index } }, setCarImageIndex } = props
     return (
         <SinglePhotoView
             initParam={{ imageUrlList: imageList.map(item => `${file_host}/image/${item.url}`), index }}
-            onIndexChanged={(index) => setDamageImageIndex({ index })} />
+            onIndexChanged={(index) => setCarImageIndex({ index })} />
     )
 }
 
@@ -31,4 +31,4 @@ const mapDispatchToProps = (dispatch) => ({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(PhotoViewForDamageInfo)
+export default connect(mapStateToProps, mapDispatchToProps)(PhotoViewForCarInfo)

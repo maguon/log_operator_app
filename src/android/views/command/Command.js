@@ -188,7 +188,7 @@ class Command extends Component {
                             </View>
                             <View style={{ paddingLeft: 10 }}>
                                 <Button small rounded style={{ backgroundColor: styleColor, width: 50, height: 20, justifyContent: 'center' }} onPress={() => this.carry(item)}>
-                                    <Text style={[globalStyles.smallText, { color: '#fff', fontWeight: 'bold' }]}>装 车</Text>
+                                    <Text style={[globalStyles.smallText, { color: '#fff', fontWeight: 'bold' }]}>查 看</Text>
                                 </Button>
                             </View>
                         </View>}

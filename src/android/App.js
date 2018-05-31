@@ -236,6 +236,12 @@ export default class App extends Component {
                                     component={ApplyDamageUploadImage}
                                     RightButton={ApplyDamageUploadImageSubmit}
                                     navBar={NewNavBar} />
+                                <Scene key="photoViewforCarInfoAtHomeBlock"
+                                    LeftButton={LeftButton}
+                                    component={PhotoViewForCarInfo}
+                                    navBar={PhotoViewNavBar}
+                                    title='照片'
+                                    hideTabBar />
                                 <Scene key="addRequirementAtHomeBlock"
                                     title='增加需求'
                                     component={AddRequirement}
@@ -292,7 +298,7 @@ export default class App extends Component {
                                     navBar={NavSearchCarBar} />
                                 {/*share components*/}
                             </Scene>
-                            <Scene key="workBlock" icon={TabIcon} online='ios-bus' outline='ios-bus-outline' >
+                            {/* <Scene key="workBlock" icon={TabIcon} online='ios-bus' outline='ios-bus-outline' >
                                 <Scene key="work"
                                     title='工作'
                                     initial={true}
@@ -342,12 +348,6 @@ export default class App extends Component {
                                     LeftButton={LeftButton}
                                     hideTabBar
                                     navBar={NavSearchBar} />
-                                {/* <Scene key="carVinAtWorkBlock"
-                                    title='选择商品车'
-                                    component={CarVin}
-                                    hideNavBar={false}
-                                    hideTabBar={true}
-                                    navBar={NavBar} /> */}
                                 <Scene key="baseAddrAtWorkBlock"
                                     title='选择装车地点'
                                     component={BaseAddr}
@@ -405,7 +405,7 @@ export default class App extends Component {
                                     navBar={PhotoViewNavBar}
                                     title='照片'
                                     hideTabBar />
-                            </Scene>
+                            </Scene> */}
                             <Scene key="requirementBlock" icon={TabIcon} online='ios-archive' outline='ios-archive-outline' >
                                 <Scene key="requirement"
                                     initial={true}

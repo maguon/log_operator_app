@@ -17,7 +17,8 @@ export const getHomeData = (param) => async (dispatch, getState) => {
         `${base_host}/dpRouteTask?${ObjectToUrl({
             baseAddrId: baseAddrId,
             loadTaskStatus: '1'
-        })}`]  
+        })}`] 
+         
         const res = await Promise.all(urls.map(url => httpRequest.get(url)))
         if (res[0].success && res[1].success) {
             dispatch({

@@ -137,10 +137,10 @@ class Cars extends Component {
                     />
                 </View>}
                 {item.removeCommandCar.isResultStatus != 1 && <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'flex-end' }}>
-                    <TouchableOpacity onPress={() => this.removeCar(item)}>
+                    {/* <TouchableOpacity onPress={() => this.removeCar(item)}>
                         <Icon name='ios-close-circle'
                             style={{ color: '#fe8a95', fontSize: 26 }} />
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <TouchableOpacity onPress={() => RouterDirection.carInfo(this.props.parent)({ initParam: { vin: item.data.vin, carId: item.data.car_id } })} >
                         <Icon name='ios-arrow-dropright-circle'
                             style={{ color: styleColor, marginLeft: 10, fontSize: 26 }} />
@@ -185,7 +185,7 @@ class Cars extends Component {
                 <View style={{ flex: 1 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 10, backgroundColor: '#f2f6f9', borderBottomWidth: 0.5, borderColor: '#a8a8a8' }}>
                         <Text style={globalStyles.smallText}>计划运送：{taskInfo.plan_count ? `${taskInfo.plan_count}` : '0'}</Text>
-                        <View style={{ flexDirection: 'row' }}>
+                        {/* <View style={{ flexDirection: 'row' }}>
                             {taskInfo.load_task_status == 1 && pushCarInCommand.isResultStatus != 1 && <Button small rounded
                                 style={{ backgroundColor: styleColor, width: 70, height: 20, justifyContent: 'center', flexDirection: 'row' }}
                                 onPress={() => RouterDirection.searchCar(this.props.parent)({ onSelect: this.onSelectCar, initParam: { carStatus: 1 } })}>
@@ -198,21 +198,22 @@ class Cars extends Component {
                                 <MaterialCommunityIcons name='plus-circle-outline' size={14} style={{ color: '#fff' }} />
                                 <Text style={[globalStyles.smallText, { color: '#fff', fontWeight: 'bold', paddingLeft: 10 }]}>新增车辆</Text>
                             </Button>}
-                        </View>
-                        {taskInfo.load_task_status == 1 && pushCarInCommand.isResultStatus == 1 && <View style={{ width: 70, alignItems: 'center' }}>
+                        </View> */}
+                        {/* {taskInfo.load_task_status == 1 && pushCarInCommand.isResultStatus == 1 && <View style={{ width: 70, alignItems: 'center' }}>
                             <ActivityIndicator
                                 animating={true}
                                 style={{ height: 20, alignSelf: 'center' }}
                                 size="small"
                             />
-                        </View>}
+                        </View>} */}
                     </View>
                     <View style={{ flex: 1 }}>
                         <FlatList
                             keyExtractor={(item, index) => index}
                             data={carList}
                             renderItem={({ item, index }) => this.renderListItem(item, index)}
-                            ListFooterComponent={this.renderListFooter} />
+                            //ListFooterComponent={this.renderListFooter} 
+                            />
                     </View>
                 </View>
             )
