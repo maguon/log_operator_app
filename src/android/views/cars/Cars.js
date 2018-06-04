@@ -185,6 +185,7 @@ class Cars extends Component {
                 <View style={{ flex: 1 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 10, backgroundColor: '#f2f6f9', borderBottomWidth: 0.5, borderColor: '#a8a8a8' }}>
                         <Text style={globalStyles.smallText}>计划运送：{taskInfo.plan_count ? `${taskInfo.plan_count}` : '0'}</Text>
+                        <Text style={globalStyles.smallText}>实际装车：{carList.length}</Text>
                         {/* <View style={{ flexDirection: 'row' }}>
                             {taskInfo.load_task_status == 1 && pushCarInCommand.isResultStatus != 1 && <Button small rounded
                                 style={{ backgroundColor: styleColor, width: 70, height: 20, justifyContent: 'center', flexDirection: 'row' }}
@@ -212,8 +213,8 @@ class Cars extends Component {
                             keyExtractor={(item, index) => index}
                             data={carList}
                             renderItem={({ item, index }) => this.renderListItem(item, index)}
-                            //ListFooterComponent={this.renderListFooter} 
-                            />
+                        //ListFooterComponent={this.renderListFooter} 
+                        />
                     </View>
                 </View>
             )
