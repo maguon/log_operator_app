@@ -6,7 +6,7 @@ import * as actionTypes from '../../../actionTypes/index'
 import localStorageKey from '../../../util/LocalStorageKey'
 import localStorage from '../../../util/LocalStorage'
 import httpRequest from '../../../util/HttpRequest'
-import { base_host, file_host, record_host, } from '../../../config/Host'
+import { base_host } from '../../../config/Host'
 import { ObjectToUrl } from '../../../util/ObjectToUrl'
 import requestHeaders from '../../../util/RequestHeaders'
 import * as android_app from '../../../android_app.json'
@@ -33,7 +33,7 @@ import XGPush from 'react-native-xinge-push'
 export const validateVersion = (tryCount = 1) => async (dispatch) => {
     const currentStep = 1
     try {
-       // console.log(ccc)
+        // console.log(ccc)
         dispatch({ type: actionTypes.initializationTypes.init_app_waiting, payload: {} })
         const url = `${base_host}/app?${ObjectToUrl({ app: 3, type: 1 })}`
         const res = await httpRequest.get(url)
@@ -59,7 +59,6 @@ export const validateVersion = (tryCount = 1) => async (dispatch) => {
                         return false
                     }
                 })
-
             if (versionList.length > 0) {
                 if (versionList.some(item => item.force_update == 1)) {
                     versionInfo.force_update = 1
@@ -115,9 +114,8 @@ export const validateVersion = (tryCount = 1) => async (dispatch) => {
 export const initPush = () => async (dispatch) => {
     const currentStep = 2
     try {
-
         XGPush.init(2100270818, 'AK3E3I847AMD')
-        const deviceToken = await XGPush.register('jeepeng')
+        const deviceToken = await XGPush.register('log_operator_app')
         if (deviceToken) {
             dispatch({ type: actionTypes.initializationTypes.init_XGPush_success, payload: { deviceToken, step: currentStep } })
             dispatch(loadLocalStorage())
@@ -135,7 +133,7 @@ export const loadLocalStorage = (tryCount = 1) => async (dispatch, getState) => 
     const currentStep = 3
     try {
         //localStorage.remove({ key: localStorageKey.USER })
-        
+
         const localStorageRes = await localStorage.load({ key: localStorageKey.USER })
         if (localStorageRes.token && localStorageRes.uid) {
             dispatch({ type: actionTypes.initializationTypes.load_localStorage_success, payload: { userlocalStorage: localStorageRes, step: currentStep } })
@@ -217,7 +215,7 @@ export const getBaseAddr = () => async (dispatch) => {
     const currentStep = 5
     try {
         //localStorage.remove({ key: localStorageKey.BASEADDR })
-        
+
         const localStorageRes = await localStorage.load({ key: localStorageKey.BASEADDR })
         if (localStorageRes.baseAddrId && localStorageRes.baseAddr) {
             dispatch({ type: actionTypes.settingTypes.LOAD_BaseAddr, payload: { data: localStorageRes } })

@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
-import { View, Image, Dimensions, ToastAndroid, StatusBar, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native'
+import { View, Image, Dimensions, StatusBar, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native'
 import { connect } from 'react-redux'
-import { Button, Icon, Form, Item, Text, Label, Input, Left, Body, Right, Title, List, ListItem, Container } from 'native-base'
+import { Button, Icon, Item, Text, Input, Container } from 'native-base'
 import { Actions } from 'react-native-router-flux'
 import globalStyles, { styleColor } from '../../GlobalStyles'
 import { Field, reduxForm } from 'redux-form'
 import * as loginAction from './LoginAction'
-import localStorageKey from '../../../util/LocalStorageKey'
-import localStorage from '../../../util/LocalStorage'
 import Spinkit from 'react-native-spinkit'
 
 const window = Dimensions.get('window')

@@ -99,9 +99,16 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+        manifestPlaceholders = [
+            XG_ACCESS_ID: "2100270818", // 信鸽ACCESS_ID
+            XG_ACCESS_KEY: "AK3E3I847AMD", // 信鸽ACCESS_KEY
+            HW_APPID: "abe7cd97fb0f2", // 华为 appid
+            PACKAGE_NAME: applicationId
+        ]
     }
     signingConfigs {
             release {
@@ -142,16 +149,17 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-xinge-push')
     compile project(':react-native-spinkit')
     compile project(':react-native-photo-view')
     compile project(':react-native-camera')
     compile project(':react-native-orientation')
-    compile project(':react-native-xinge-push')
     compile project(':react-native-image-crop-picker')
     compile project(':react-native-image-resizer')
     compile project(':react-native-image-picker')
     compile project(':react-native-vector-icons')
     compile fileTree(dir: "libs", include: ["*.jar"])
+    compile "com.android.support:multidex:1.0.1"
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
 }
