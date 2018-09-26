@@ -1,5 +1,7 @@
 {
   "version": "0.0.4",
+  "type": "3",
+  "android": 1,
   "stage": 0,
   "stageList": [
     {

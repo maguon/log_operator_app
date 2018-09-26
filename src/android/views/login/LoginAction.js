@@ -9,6 +9,7 @@ import { ToastAndroid } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import * as initializationAction from '../initialization/InitializationAction'
 import { change } from 'redux-form'
+import * as android_app from '../../../android_app.json'
 /** 
  * 
  * tryCount : 当遇到网络错误的时候尝试的次数（从1开始）
@@ -36,10 +37,11 @@ export const login = (param, tryCount = 1) => async (dispatch, getState) => {
             deviceInfo: { deviceToken } } } } = getState()
         const url = `${base_host}/mobileUserLogin?${ObjectToUrl({
             version: currentVersion,
-            appType: 3,
+            appType: android_app.type,
             deviceType: 1,
             deviceToken
         })}`
+        console.log('url', url)
         const res = await httpRequest.post(url, { mobile, password })
         if (res.success) {
             if (res.result.type == 39 || res.result.type == 31) {

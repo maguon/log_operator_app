@@ -35,7 +35,8 @@ export const validateVersion = (tryCount = 1) => async (dispatch) => {
     try {
         // console.log(ccc)
         dispatch({ type: actionTypes.initializationTypes.init_app_waiting, payload: {} })
-        const url = `${base_host}/app?${ObjectToUrl({ app: 3, type: 1 })}`
+        const url = `${base_host}/app?${ObjectToUrl({ app: android_app.type, type: android_app.android })}`
+        console.log('url',url)
         const res = await httpRequest.get(url)
         if (res.success) {
             const versionInfo = {
